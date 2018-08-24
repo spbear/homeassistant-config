@@ -47,7 +47,7 @@ people:
 system:
   name: System
   entities:
-    - device_tracker.spbear_desktop
+    - sensor.yunhan_desktop
 
 light:
   name: Lights
