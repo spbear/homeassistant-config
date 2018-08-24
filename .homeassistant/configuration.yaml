@@ -13,6 +13,7 @@ homeassistant:
   # Customization file
   customize: !include customize.yaml
 
+
 # Show links to resources in log and frontend
 #introduction:
 
@@ -22,9 +23,7 @@ frontend:
 # Track the sun
 sun:
 
-# Weather prediction
-sensor: !include sensors.yaml
-
+# Sensors
 device_tracker:
 # - platform: nmap_tracker
 #   hosts:
@@ -65,6 +64,11 @@ device_tracker:
       - 192.168.0.24
     interval_seconds: 30
     home_interval: 1
+
+sensor: !include sensors.yaml
+
+binary_sensor: !include binary_sensors.yaml
+
 
 # Enables configuration UI
 config:

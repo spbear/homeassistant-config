@@ -16,17 +16,15 @@ default_view:
 weather:
   name: Weather
   entities:
-    - sun.sun
-    - sensor.weather_symbol
     - sensor.weather_temperature
     - sensor.weather_humidity_with_icon
+    - sensor.weather_symbol
+    - sun.sun
 
 sensor:
   name: Sensor
   entities:
-    - history_graph.gr1
     - sensor.room_temperature
-    - history_graph.gr2
     - sensor.room_humidity
     - sensor.room_illuminance
     - sensor.main_door_status
@@ -38,15 +36,15 @@ sensor:
 people:
   name: People
   entities:
-    - sensor.yunhan_android
-    - sensor.minjun_android
-    - sensor.hyunjun_android
-    - sensor.jiyeon_iphone
+    - binary_sensor.yunhan_android
+    - binary_sensor.minjun_android
+    - binary_sensor.hyunjun_android
+    - binary_sensor.jiyeon_iphone
 
 system:
   name: System
   entities:
-    - sensor.yunhan_desktop
+    - binary_sensor.yunhan_desktop
 
 light:
   name: Lights

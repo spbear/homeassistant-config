@@ -13,11 +13,11 @@ include:
     - sensor.room_door_motion
     - sensor.room_bed_motion
     - sensor.room_bed_sleep
-    - sensor.yunhan_android
-    - sensor.minjun_android
-    - sensor.hyunjun_android
-    - sensor.jiyeon_iphone
-    - sensor.yunhan_desktop
+    - binary_sensor.yunhan_android
+    - binary_sensor.minjun_android
+    - binary_sensor.hyunjun_android
+    - binary_sensor.jiyeon_iphone
+    - binary_sensor.yunhan_desktop
     - light.desk_lamp
     - light.sleep_lamp
     - media_player.playroom

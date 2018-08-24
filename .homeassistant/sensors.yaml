@@ -33,31 +33,6 @@
       device_class: humidity
       value_template: "{{ states.fan.mi_air_purifier.attributes.humidity }}"
 
-    yunhan_desktop:
-      friendly_name: Yunhan's Desktop PC
-      icon_template: "mdi:monitor"
-      value_template: "{% if is_state('device_tracker.spbear_desktop', 'home') %}on{% else %}off{% endif %}"
-
-    yunhan_android:
-      friendly_name: Yunhan's Android
-      icon_template: "mdi:cellphone-android"
-      value_template: "{% if states.sensor.yunhans_gs8.state == 'present' %}home{% else %}away{% endif %}"
-
-    minjun_android:
-      friendly_name: Minjun's Android
-      icon_template: "mdi:cellphone-android"
-      value_template: "{% if states.device_tracker.minjun_android.state == 'home' %}home{% else %}away{% endif %}"
-
-    hyunjun_android:
-      friendly_name: Hyunjun's Android
-      icon_template: "mdi:cellphone-android"
-      value_template: "{% if states.device_tracker.hyunjun_android.state == 'home' %}home{% else %}away{% endif %}"
-
-    jiyeon_iphone:
-      friendly_name: Jiyeon's iPhone
-      icon_template: "mdi:cellphone-iphone"
-      value_template: "{% if states.device_tracker.jiyeon_iphone.state == 'home' %}home{% else %}away{% endif %}"
-
     weather_humidity_with_icon:
       friendly_name: Weather Humidity
       unit_of_measurement: "%"

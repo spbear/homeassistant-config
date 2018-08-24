@@ -1,0 +1,26 @@
+- platform: template
+  sensors:
+    yunhan_desktop:
+      friendly_name: Yunhan's Desktop PC
+      icon_template: "mdi:monitor"
+      value_template: "{{ is_state('device_tracker.spbear_desktop', 'home')}}"
+
+    yunhan_android:
+      friendly_name: Yunhan's Android
+      icon_template: "mdi:cellphone-android"
+      value_template: "{{ is_state('sensor.yunhans_gs8', 'present')}}"
+
+    minjun_android:
+      friendly_name: Minjun's Android
+      icon_template: "mdi:cellphone-android"
+      value_template: "{{ is_state('device_tracker.minjun_android', 'home')}}"
+
+    hyunjun_android:
+      friendly_name: Hyunjun's Android
+      icon_template: "mdi:cellphone-android"
+      value_template: "{{ is_state('device_tracker.hyunjun_android', 'home')}}"
+
+    jiyeon_iphone:
+      friendly_name: Jiyeon's iPhone
+      icon_template: "mdi:cellphone-iphone"
+      value_template: "{{ is_state('device_tracker.jiyeon_iphone', 'home')}}"
