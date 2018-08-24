@@ -33,6 +33,10 @@
       friendly_name: Yunhan's Desktop PC
       icon_template: "mdi:monitor"
       value_template: "{% if is_state('device_tracker.spbear_desktop', 'home') %}on{% else %}off{% endif %}"
+    yunhan_android:
+      friendly_name: Yunhan's Android
+      icon_template: "mdi:cellphone-android"
+      value_template: "{% if states.sensor.yunhans_gs8.state == 'present' %}home{% else %}away{% endif %}"
 
 - platform: mqtt
   state_topic: smartthings/Daddy's Room Bed Sensor/illuminance

@@ -13,12 +13,12 @@ include:
     - sensor.room_door_motion
     - sensor.room_bed_motion
     - sensor.room_bed_sleep
-    - sensor.yunhans_gs8
+    - sensor.yunhan_android
     - device_tracker.yunhan_android
     - device_tracker.minjun_android
     - device_tracker.hyunjun_android
     - device_tracker.jiyeon_iphone
-    - device_tracker.spbear_desktop
+    - sensor.yunhan_desktop
     - light.desk_lamp
     - light.sleep_lamp
     - media_player.playroom

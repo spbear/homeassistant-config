@@ -38,8 +38,7 @@ sensor:
 people:
   name: People
   entities:
-    - sensor.yunhans_gs8
-#    - device_tracker.yunhan_android
+    - sensor.yunhan_android
     - device_tracker.minjun_android
     - device_tracker.hyunjun_android
     - device_tracker.jiyeon_iphone
