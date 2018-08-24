@@ -1,0 +1,34 @@
+minjun_android:
+  name: Minjun's Android
+  mac: !secret minjun_mac
+  picture: https://www.home-assistant.io/images/favicon-192x192.png
+  track: yes
+  hide_if_away: no
+
+hyunjun_android:
+  name: Hyunjun's Android
+  mac: !secret hyunjun_mac
+  picture: https://www.home-assistant.io/images/favicon-192x192.png
+  track: yes
+  hide_if_away: no
+
+jiyeon_iphone:
+  name: Jiyeon's iPhone
+  mac: !secret jiyeon_mac
+  picture: https://www.home-assistant.io/images/favicon-192x192.png
+  track: yes
+  hide_if_away: no
+
+yunhan_android:
+  name: Yunhan's Android
+  mac: !secret yunhan_mac
+  picture: https://www.home-assistant.io/images/favicon-192x192.png
+  track: yes
+  hide_if_away: no
+
+spbear_desktop:
+  name: Yunhan's Desktop
+  mac: !secret desktop_mac
+  picture: https://www.home-assistant.io/images/favicon-192x192.png
+  track: yes
+  hide_if_away: no

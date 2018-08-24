@@ -1,0 +1,79 @@
+default_view:
+  name: Home
+  view: yes
+  icon: mdi:home
+  entities:
+    - group.weather
+    - group.sensor
+    - group.people
+    - group.system
+    - group.light
+    - group.fan
+    - group.airconditioner
+    - group.vacuum
+    - group.speaker
+
+weather:
+  name: Weather
+  entities:
+    - sun.sun
+    - sensor.weather_symbol
+    - sensor.weather_temperature
+    - sensor.weather_humidity
+
+sensor:
+  name: Sensor
+  entities:
+    - history_graph.gr1
+    - sensor.room_temperature
+    - history_graph.gr2
+    - sensor.room_humidity
+    - sensor.room_illuminance
+    - sensor.main_door_status
+    - sensor.main_door_motion
+    - sensor.room_door_motion
+    - sensor.room_bed_motion
+    - sensor.room_bed_sleep
+
+people:
+  name: People
+  entities:
+    - sensor.yunhans_gs8
+#    - device_tracker.yunhan_android
+    - device_tracker.minjun_android
+    - device_tracker.hyunjun_android
+    - device_tracker.jiyeon_iphone
+
+system:
+  name: System
+  entities:
+    - device_tracker.spbear_desktop
+
+light:
+  name: Lights
+  entities:
+    - light.desk_lamp
+    - light.sleep_lamp
+
+speaker:
+  name: Speaker
+  entities:
+    - media_player.playroom
+
+fan:
+  name: Air
+  entities:
+    - switch.mi_air_purifier
+    - switch.mi_standing_fan
+    - switch.samsung_air_conditioner
+
+#airconditioner:
+#  name: Air Conditioner
+#  entities:
+#    - script.script_turn_on_my_room_ac
+#    - script.script_turn_off_my_room_ac
+
+vacuum:
+  name: Vacuum
+  entities:
+    - vacuum.mi_robot_vacuum

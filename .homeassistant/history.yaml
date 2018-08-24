@@ -1,0 +1,28 @@
+use_include_order: true
+include:
+  entities:
+    - sun.sun
+    - sensor.weather_symbol
+    - sensor.weather_temperature
+    - sensor.weather_humidity
+    - sensor.room_temperature
+    - sensor.room_humidity
+    - sensor.room_illuminance
+    - sensor.main_door_status
+    - sensor.main_door_motion
+    - sensor.room_door_motion
+    - sensor.room_bed_motion
+    - sensor.room_bed_sleep
+    - sensor.yunhans_gs8
+    - device_tracker.yunhan_android
+    - device_tracker.minjun_android
+    - device_tracker.hyunjun_android
+    - device_tracker.jiyeon_iphone
+    - device_tracker.spbear_desktop
+    - light.desk_lamp
+    - light.sleep_lamp
+    - media_player.playroom
+    - fan.mi_air_purifier
+    - fan.mi_standing_fan
+    - switch.samsung_air_conditioner
+    - vacuum.mi_robot_vacuum

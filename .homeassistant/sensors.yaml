@@ -1,0 +1,56 @@
+- platform: yr
+  name: Weather
+  monitored_conditions:
+    - symbol
+    - temperature
+    - humidity
+    - fog
+
+- platform: mqtt
+  state_topic: smartthings/Yunhan's GS8/presence
+  name: Yunhan's GS8
+
+#- platform: mqtt
+#  state_topic: smartthings/Daddy's Room Bed Sensor/temperature
+#  name: Room Temperature
+#  unit_of_measurement: "°C"
+
+#- platform: mqtt
+#  state_topic: smartthings/Daddy's Room Bed Sensor/humidity
+#  name: Room Humidity
+#  unit_of_measurement: "%"
+- platform: template
+  sensors:
+    room_temperature:
+      friendly_name: Room Temperature
+      unit_of_measurement: "°C"
+      value_template: "{{ '%.1f'|format(states.fan.mi_air_purifier.attributes.temperature) }}"
+    room_humidity:
+      friendly_name: Room Humidity
+      unit_of_measurement: "%"
+      value_template: "{{ states.fan.mi_air_purifier.attributes.humidity }}"
+
+- platform: mqtt
+  state_topic: smartthings/Daddy's Room Bed Sensor/illuminance
+  unit_of_measurement: "lux"
+  name: Room Illuminance
+
+- platform: mqtt
+  state_topic: smartthings/Main Door/contact
+  name: Main Door Status
+
+- platform: mqtt
+  state_topic: smartthings/Main Door/acceleration
+  name: Main Door Motion
+
+- platform: mqtt
+  state_topic: smartthings/Daddy's Room Door Sensor/motion
+  name: Room Door Motion
+
+- platform: mqtt
+  state_topic: smartthings/Daddy's Room Bed Sensor/motion
+  name: Room Bed Motion
+
+- platform: mqtt
+  state_topic: smartthings/Nokia Sleep/switch
+  name: Room Bed Sleep

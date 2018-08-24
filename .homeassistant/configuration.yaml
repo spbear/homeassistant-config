@@ -1,0 +1,194 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: !secret home_lat
+  longitude: !secret home_lon
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 0
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Asia/Seoul
+  # Customization file
+  customize: !include customize.yaml
+
+# Show links to resources in log and frontend
+#introduction:
+
+# Enables the frontend
+frontend:
+
+# Track the sun
+sun:
+
+# Weather prediction
+sensor: !include sensors.yaml
+
+device_tracker:
+# - platform: nmap_tracker
+#   hosts:
+#    - 192.168.0.20
+#    - 192.168.0.53
+#    - 192.168.0.4
+#    - 192.168.0.24
+#  interval_seconds: 30
+#  home_interval: 1
+#  track: yes
+#  hide_if_away: no
+  - platform: ping
+    hosts:
+      yunhan_android: 192.168.0.4
+    interval_seconds: 30
+    home_interval: 5
+    count: 5
+  - platform: ping
+    hosts:
+      hyunjun_android: 192.168.0.20
+    interval_seconds: 30
+    home_interval: 5
+    count: 5
+  - platform: ping
+    hosts:
+      minjun_android: 192.168.0.53
+    interval_seconds: 30
+    home_interval: 5
+    count: 5
+  - platform: ping
+    hosts:
+      jiyeon_iphone: 192.168.0.48
+    interval_seconds: 30
+    home_interval: 5
+    count: 5
+  - platform: nmap_tracker
+    hosts:
+      - 192.168.0.24
+    interval_seconds: 30
+    home_interval: 1
+
+# Enables configuration UI
+config:
+
+mqtt:
+  broker: 192.168.0.59
+  port: 1883
+  client_id: home-assistant-1
+  username: !secret mqtt_username
+  password: !secret mqtt_password
+
+http:
+  # Secrets are defined in the file secrets.yaml
+  api_password: !secret http_password
+  # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+  # base_url: example.duckdns.org:8123
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  # include_used_components: true
+
+# Discover some devices automatically
+discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history: !include history.yaml
+# exclude:
+#   domains:
+#     - automation
+#   entities:
+#     -
+
+# View all events in a logbook
+logbook:
+
+# Enables a map showing the location of tracked devices
+map:
+
+# Text to speech
+tts:
+  - platform: google
+
+# Cloud
+cloud:
+
+vacuum:
+  - platform: xiaomi_miio
+    name: "Mi Robot Vacuum"
+    host: 192.168.0.30
+    token: !secret vacuum_token
+
+fan:
+  - platform: xiaomi_miio
+    name: "Mi Air Purifier"
+    icon: mdi:weather-windy
+    host: 192.168.0.25
+    token: !secret air_purifier_token
+
+  - platform: xiaomi_miio_fan
+    name: "Mi Standing Fan"
+    host: 192.168.0.51
+    token: !secret fan_token
+
+
+remote:
+  - platform: xiaomi_miio
+    name: "Mi IR Controller"
+    host: 192.168.0.61
+    token: !secret remote_token
+    slot: 1
+    timeout: 30
+    hidden: true
+    commands:
+      turn_on_my_room_ac:
+        command:
+          - raw:Z6XTACkCAACWBgAAZREAADkjAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAjEBAAAAAAEBAQEBAAAAAAEAAAAAAAEBAQAAAAAAAAAAAAAAAAABAAEAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAABAAAAAAAAAAEBAAEAAAAAAA
+      turn_off_my_room_ac:
+        command:
+           - raw:Z6XTACkCAACWBgAAmhEAAAEjAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAjEBAAAAAAEBAQEBAAAAAAEAAAAAAAEBAQAAAAAAAAAAAAAAAAABAAEAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAEAAAAAAAEBAQEAAQEBAA
+
+      set_my_room_24c:
+        command:
+          - raw:Z6XTACkCAACWBgAAZREAADkjAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAjEBAAAAAAEBAQEBAAAAAAEAAAAAAAEBAQAAAAAAAAAAAAAAAAABAAEAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAABAAAAAAAAAAEBAAEAAAAAAA
+
+      set_my_room_25c:
+        command:
+          - raw:Z6XTACoCAACMBgAAfBEAACAjAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAjEBAAAAAAEBAQEBAQAAAAEAAAAAAAEBAQAAAAAAAAAAAAAAAAABAAEAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAABAAABAAAAAA
+
+      set_my_room_26c:
+        command:
+          - raw:Z6XTACcCAACrBgAAnBEAAAIjAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAjEBAAAAAAEBAQEBAAEAAAEAAAAAAAEBAQAAAAAAAAAAAAAAAAABAAEAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAABAAEBAAAAAA
+
+      set_my_room_27c:
+        command:
+          - raw:Z6XTACoCAACUBgAAfxEAAB4jAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAjEBAAAAAAEBAQEBAQEAAAEAAAAAAAEBAQAAAAAAAAAAAAAAAAABAAEAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAQAAAA
+
+switch: !include switches.yaml
+
+history_graph:
+  gr1:
+    name: Temperature
+    entities:
+      - sensor.weather_temperature
+      - sensor.room_temperature
+    hours_to_show: 24
+    refresh: 60
+  gr2:
+    name: Humidity
+    entities:
+      - sensor.weather_humidity
+      - sensor.room_humidity
+    hours_to_show: 24
+    refresh: 60
+
+automation: !include automations.yaml
+script: !include scripts.yaml
+
+group: !include groups.yaml

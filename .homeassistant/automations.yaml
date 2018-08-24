@@ -1,0 +1,131 @@
+##########################################################
+# MI Air Purifier
+##########################################################
+- alias: MI Air Purifier from ST
+  trigger:
+  - platform: mqtt
+    topic: smartthings/Mi Air Purifier/switch
+  condition: []
+  action:
+  - data_template:
+      entity_id: fan.mi_air_purifier
+    service_template:  >
+      fan.turn_{{ trigger.payload }}
+
+- alias: MI Air Purifier from HA
+  trigger:
+  - platform: state
+    entity_id: fan.mi_air_purifier
+  condition: []
+  action:
+  - service: mqtt.publish
+    data_template:
+      topic: smartthings/Mi Air Purifier/switch
+      payload: >
+        {% if is_state('fan.mi_air_purifier', 'on') %}on{% else %}off{% endif %}
+
+
+##########################################################
+# MI Stading Fan
+##########################################################
+- alias: MI Stading Fan from ST
+  trigger:
+  - platform: mqtt
+    topic: smartthings/Mi Standing Fan/switch
+  condition: []
+  action:
+  - data_template:
+      entity_id: fan.mi_standing_fan
+    service_template:  >
+      fan.turn_{{ trigger.payload }}
+
+- alias: MI Stading Fan from HA
+  trigger:
+  - platform: state
+    entity_id: fan.mi_standing_fan
+  condition: []
+  action:
+  - service: mqtt.publish
+    data_template:
+      topic: smartthings/Mi Standing Fan/switch
+      payload: >
+        {% if is_state('fan.mi_standing_fan', 'on') %}on{% else %}off{% endif %}
+
+##########################################################
+# Samsung Air Conditioner
+##########################################################
+- alias: Samsung Air Conditioner from MQTT
+  trigger:
+  - platform: mqtt
+    topic: smartthings/Samsung Air Conditioner/switch
+  condition: []
+  action:
+  - service_template: >
+      script.script_turn_{% if is_state('switch.samsung_air_conditioner', 'on') %}on{% else %}off{% endif %}_my_room_ac
+
+##########################################################
+# Sonos plyalist
+##########################################################
+- alias: Change Playlist on Sonos at Night
+  trigger:
+  - platform: state
+    entity_id: media_player.playroom
+    from: paused
+    to: playing
+  action:
+  - service: media_player.select_source
+    data_template:
+      entity_id: media_player.playroom
+      source: >
+        2018 August
+
+##########################################################
+# Virtual Presence
+##########################################################
+- alias: Minjun's Android Presence to ST
+  trigger:
+  - entity_id: device_tracker.minjun_android
+    platform: state
+  condition: []
+  action:
+  - service: mqtt.publish
+    data_template:
+      topic: smartthings/Minjun/presence
+      payload: >
+        {% if is_state('device_tracker.minjun_android', 'home') %}present{% else %}not present{% endif %}
+
+- alias: Hyunjun's Android Presence to ST
+  trigger:
+  - entity_id: device_tracker.hyunjun_android
+    platform: state
+  condition: []
+  action:
+  - service: mqtt.publish
+    data_template:
+      topic: smartthings/Hyunjun/presence
+      payload: >
+        {% if is_state('device_tracker.hyunjun_android', 'home') %}present{% else %}not present{% endif %}
+
+- alias: Jiyeon's iPhone Presence to ST
+  trigger:
+  - entity_id: device_tracker.jiyeon_iphone
+    platform: state
+  condition: []
+  action:
+  - service: mqtt.publish
+    data_template:
+      topic: smartthings/Jiyeon/presence
+      payload: >
+        {% if is_state('device_tracker.jiyeon_iphone', 'home') %}present{% else %}not present{% endif %}
+
+- alias: SPBEAR's Desktop Presence to ST
+  trigger:
+  - entity_id: device_tracker.spbear_desktop
+    platform: state
+  condition: []
+  action:
+    - service: mqtt.publish
+      data_template:
+        topic: smartthings/Desktop PC/switch
+        payload: >
+          {% if is_state('device_tracker.spbear_desktop', 'home') %}on{% else %}off{% endif %}

@@ -1,0 +1,17 @@
+script_turn_on_my_room_ac:
+  alias: Turn On Samsung AC
+  sequence:
+  - service: remote.send_command
+    entity_id: 'remote.mi_ir_controller'
+    data:
+      command:
+      - 'turn_on_my_room_ac'
+
+script_turn_off_my_room_ac:
+  alias: Turn Off Samsung AC
+  sequence:
+  - service: remote.send_command
+    entity_id: 'remote.mi_ir_controller'
+    data:
+      command:
+      - 'turn_off_my_room_ac'
