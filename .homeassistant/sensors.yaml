@@ -62,3 +62,5 @@
 - platform: mqtt
   state_topic: smartthings/Nokia Sleep/switch
   name: Room Bed Sleep
+  icon: mdi:hotel
+  value_template: "{% if states.sensor.room_bed_sleep == 'on' %}on the bed{% else %}away{% endif %}"
