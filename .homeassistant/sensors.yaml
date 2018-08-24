@@ -10,15 +10,6 @@
   state_topic: smartthings/Yunhan's GS8/presence
   name: Yunhan's GS8
 
-#- platform: mqtt
-#  state_topic: smartthings/Daddy's Room Bed Sensor/temperature
-#  name: Room Temperature
-#  unit_of_measurement: "°C"
-
-#- platform: mqtt
-#  state_topic: smartthings/Daddy's Room Bed Sensor/humidity
-#  name: Room Humidity
-#  unit_of_measurement: "%"
 - platform: template
   sensors:
     room_temperature:
@@ -44,25 +35,3 @@
   unit_of_measurement: "lux"
   device_class: illuminance
   name: Room Illuminance
-
-- platform: mqtt
-  state_topic: smartthings/Main Door/contact
-  name: Main Door Status
-
-- platform: mqtt
-  state_topic: smartthings/Main Door/acceleration
-  name: Main Door Motion
-
-- platform: mqtt
-  state_topic: smartthings/Daddy's Room Door Sensor/motion
-  name: Room Door Motion
-
-- platform: mqtt
-  state_topic: smartthings/Daddy's Room Bed Sensor/motion
-  name: Room Bed Motion
-
-- platform: mqtt
-  state_topic: smartthings/Nokia Sleep/switch
-  name: Room Bed Sleep
-  icon: mdi:hotel
-  value_template: "{% if states.sensor.room_bed_sleep == 'on' %}on the bed{% else %}away{% endif %}"

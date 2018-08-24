@@ -8,3 +8,14 @@ binary_sensor.jiyeon_iphone:
   device_class: presence
 binary_sensor.yunhan_desktop:
   device_class: power
+binary_sensor.main_door_status:
+  device_class: door
+binary_sensor.main_door_motion:
+  device_class: motion
+binary_sensor.room_door_motion:
+  device_class: motion
+binary_sensor.room_bed_motion:
+  device_class: motion
+binary_sensor.room_bed_sleep:
+  device_class: occupancy
+  icon: mdi:hotel

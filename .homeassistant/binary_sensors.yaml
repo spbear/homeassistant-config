@@ -24,3 +24,33 @@
       friendly_name: Jiyeon's iPhone
       icon_template: "mdi:cellphone-iphone"
       value_template: "{{ is_state('device_tracker.jiyeon_iphone', 'home')}}"
+
+- platform: mqtt
+  state_topic: smartthings/Main Door/contact
+  name: Main Door Status
+  payload_on: 'open'
+  payload_off: 'closed'
+
+- platform: mqtt
+  state_topic: smartthings/Main Door/acceleration
+  name: Main Door Motion
+  payload_on: 'active'
+  payload_off: 'inactive'
+
+- platform: mqtt
+  state_topic: smartthings/Daddy's Room Door Sensor/motion
+  name: Room Door Motion
+  payload_on: 'active'
+  payload_off: 'inactive'
+
+- platform: mqtt
+  state_topic: smartthings/Daddy's Room Bed Sensor/motion
+  name: Room Bed Motion
+  payload_on: 'active'
+  payload_off: 'inactive'
+
+- platform: mqtt
+  state_topic: smartthings/Nokia Sleep/switch
+  name: Room Bed Sleep
+  payload_on: 'on'
+  payload_off: 'off'
