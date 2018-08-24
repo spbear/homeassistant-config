@@ -14,10 +14,9 @@ include:
     - sensor.room_bed_motion
     - sensor.room_bed_sleep
     - sensor.yunhan_android
-    - device_tracker.yunhan_android
-    - device_tracker.minjun_android
-    - device_tracker.hyunjun_android
-    - device_tracker.jiyeon_iphone
+    - sensor.minjun_android
+    - sensor.hyunjun_android
+    - sensor.jiyeon_iphone
     - sensor.yunhan_desktop
     - light.desk_lamp
     - light.sleep_lamp

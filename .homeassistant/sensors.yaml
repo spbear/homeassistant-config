@@ -43,6 +43,21 @@
       icon_template: "mdi:cellphone-android"
       value_template: "{% if states.sensor.yunhans_gs8.state == 'present' %}home{% else %}away{% endif %}"
 
+    minjun_android:
+      friendly_name: Minjun's Android
+      icon_template: "mdi:cellphone-android"
+      value_template: "{% if states.device_tracker.minjun_android.state == 'home' %}home{% else %}away{% endif %}"
+
+    hyunjun_android:
+      friendly_name: Hyunjun's Android
+      icon_template: "mdi:cellphone-android"
+      value_template: "{% if states.device_tracker.hyunjun_android.state == 'home' %}home{% else %}away{% endif %}"
+
+    jiyeon_iphone:
+      friendly_name: Jiyeon's iPhone
+      icon_template: "mdi:cellphone-iphone"
+      value_template: "{% if states.device_tracker.jiyeon_iphone.state == 'home' %}home{% else %}away{% endif %}"
+
     weather_humidity_with_icon:
       friendly_name: Weather Humidity
       unit_of_measurement: "%"
