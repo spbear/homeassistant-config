@@ -66,18 +66,138 @@
 ##########################################################
 # Sonos plyalist
 ##########################################################
-- alias: Change Playlist on Sonos at Night
+
+# Play Sonos when motion is detected
+- alias: Play Sonos when motion is detected
   trigger:
   - platform: state
+    entity_id: binary_sensor.room_door_motion
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.room_bed_motion
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: binary_sensor.yunhan_android
+    state: 'on'
+  - condition: state
     entity_id: media_player.playroom
-    from: paused
-    to: playing
+    state: 'paused'
+  - condition: state
+    entity_id: binary_sensor.room_bed_sleep
+    state: 'off'
   action:
   - service: media_player.select_source
     data_template:
       entity_id: media_player.playroom
       source: >
-        2018 August
+        starbucks
+  - service: media_player.volume_set
+    data_template:
+      entity_id: media_player.playroom
+      volume_level: 0.20
+
+# Play Sonos night song when sleep sensor is detected
+- alias: Play Sonos night song when sleep sensor is detected
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.room_bed_sleep
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: binary_sensor.yunhan_android
+    state: 'on'
+  - condition: state
+    entity_id: media_player.playroom
+    state: 'playing'
+  action:
+  - service: media_player.media_stop
+    data_template:
+      entity_id: media_player.playroom
+  - wait_template: "{{ is_state('media_player.playroom', 'paused') }}"
+  - service: media_player.volume_set
+    data_template:
+      entity_id: media_player.playroom
+      volume_level: 0.12
+  - service: media_player.select_source
+    data_template:
+      entity_id: media_player.playroom
+      source: >
+        sleep
+
+# Set volume of Sonos when sleep sensor is cleared
+- alias: Set volume of Sonos when sleep sensor is cleared
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.room_bed_sleep
+    to: 'off'
+  condition:
+  - condition: state
+    entity_id: binary_sensor.yunhan_android
+    state: 'on'
+  - condition: state
+    entity_id: media_player.playroom
+    state: 'playing'
+  action:
+  - service: media_player.media_stop
+    data_template:
+      entity_id: media_player.playroom
+  - wait_template: "{{ is_state('media_player.playroom', 'paused') }}"
+  - service: media_player.volume_set
+    data_template:
+      entity_id: media_player.playroom
+      volume_level: 0.20
+  - service: media_player.select_source
+    data_template:
+      entity_id: media_player.playroom
+      source: >
+        starbucks
+
+# Stop Sonos 30 minutes after sleep sensor is detected
+- alias: Stop Sonos 60 minutes after sleep sensor is detected
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.room_bed_sleep
+    to: 'on'
+    for:
+      minutes: 30
+  - platform: state
+    entity_id: media_player.playroom
+    to: 'playing'
+    for:
+      minutes: 30
+  condition:
+  - condition: state
+    entity_id: binary_sensor.yunhan_android
+    state: 'on'
+  - condition: state
+    entity_id: binary_sensor.room_bed_sleep
+    state: 'on'
+  - condition: state
+    entity_id: media_player.playroom
+    state: 'playing'
+  action:
+  - service: media_player.media_stop
+    data_template:
+      entity_id: media_player.playroom
+
+# Stop Sonos when I am away
+- alias: Stop Sonos when I am away
+  trigger:
+  - platform: state
+    entity_id: media_player.playroom
+    to: 'playing'
+  - platform: state
+    entity_id: binary_sensor.yunhan_android
+    to: 'off'
+  condition:
+  - condition: state
+    entity_id: binary_sensor.yunhan_android
+    state: 'off'
+  action:
+  - service: media_player.media_stop
+    data_template:
+      entity_id: media_player.playroom
 
 ##########################################################
 # Virtual Presence
