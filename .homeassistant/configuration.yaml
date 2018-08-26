@@ -120,7 +120,8 @@ map:
 
 # Text to speech
 tts:
-  - platform: google
+  platform: google
+  language: 'ko'
 
 # Cloud
 cloud:
