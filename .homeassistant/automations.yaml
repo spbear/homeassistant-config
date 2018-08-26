@@ -90,6 +90,9 @@
   - condition: state
     entity_id: binary_sensor.room_bed_sleep
     state: 'off'
+  - condition: time
+    after: '06:00:00'
+    before: '02:00:00'
   action:
   - service: media_player.select_source
     data_template:
@@ -114,7 +117,16 @@
   - condition: state
     entity_id: media_player.playroom
     state: 'playing'
+  - condition: time
+    after: '20:00:00'
+    before: '03:00:00'
   action:
+#  - service: script.sonos_say
+#    data:
+#      sonos_entity: media_player.playroom
+#      volume: 0.15
+#      message: '취침모드로 음악을 바꿉니다'
+#      delay: '00:00:05'
   - service: media_player.media_stop
     data_template:
       entity_id: media_player.playroom
