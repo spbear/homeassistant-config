@@ -1,0 +1,10 @@
+[Service]
+ExecStart=/usr/bin/ssh -N -R 8123:127.0.0.1:8123 spbear@spbear.com
+Restart=Always
+StandardOutput=syslog
+StandardError=syslog
+User=homeassistant
+Group=homeassistant
+
+[Install]
+WantedBy=multi-user.target
