@@ -5,7 +5,9 @@
   trigger:
   - platform: mqtt
     topic: smartthings/Mi Air Purifier/switch
-  condition: []
+  condition:
+  - condition: template
+    value_template: "{{ states('binary_sensor.mi_air_purifier') != states('fan.mi_air_purifier') }}"
   action:
   - data_template:
       entity_id: fan.mi_air_purifier
@@ -32,7 +34,9 @@
   trigger:
   - platform: mqtt
     topic: smartthings/Mi Standing Fan/switch
-  condition: []
+  condition:
+  - condition: template
+    value_template: "{{ states('binary_sensor.mi_standing_fan') != states('fan.mi_standing_fan') }}"
   action:
   - data_template:
       entity_id: fan.mi_standing_fan

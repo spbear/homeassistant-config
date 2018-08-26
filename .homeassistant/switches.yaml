@@ -9,27 +9,3 @@
   icon: mdi:air-conditioner
   optimistic: false
   retain: true
-
-- platform: mqtt
-  name: "Mi Standing Fan"
-  state_topic: "smartthings/Mi Standing Fan/switch"
-  command_topic: "smartthings/Mi Standing Fan/switch"
-  payload_on: "on"
-  payload_off: "off"
-  state_on: "on"
-  state_off: "off"
-  icon: mdi:fan
-  optimistic: false
-  retain: true
-  
-- platform: mqtt
-  name: "Mi Air Purifier"
-  state_topic: "smartthings/Mi Air Purifier/switch"
-  command_topic: "smartthings/Mi Air Purifier/switch"
-  payload_on: "on"
-  payload_off: "off"
-  state_on: "on"
-  state_off: "off"
-  icon: mdi:fan
-  optimistic: false
-  retain: true

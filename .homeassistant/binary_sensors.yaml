@@ -54,3 +54,15 @@
   name: Room Bed Sleep
   payload_on: 'on'
   payload_off: 'off'
+
+- platform: mqtt
+  state_topic: smartthings/Mi Standing Fan/switch
+  name: Mi Standing Fan
+  payload_on: 'on'
+  payload_off: 'off'
+
+- platform: mqtt
+  state_topic: smartthings/Mi Air Purifier/switch
+  name: Mi Air Purifier
+  payload_on: 'on'
+  payload_off: 'off'

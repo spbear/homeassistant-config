@@ -14,9 +14,9 @@ homeassistant:
   customize: !include customize.yaml
 
 logger:
-  default: warn
+  default: info
   logs:
-    homeassistant.components.device_tracker: debug
+    homeassistant.components.device_tracker: error
 
 # Show links to resources in log and frontend
 #introduction:
