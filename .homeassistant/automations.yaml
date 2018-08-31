@@ -211,9 +211,36 @@
     entity_id: binary_sensor.yunhan_android
     state: 'off'
   action:
-  - service: media_player.media_stop
+  - service_template: media_player.media_stop
     data_template:
       entity_id: media_player.playroom
+
+# Play / Stop Sonos when I click the switch
+- alias: Play / Stop Sonos when I click the switch
+  trigger:
+    platform: event
+    event_type: click
+    event_data:
+      entity_id: binary_sensor.desktop_switch
+      click_type: single
+  action:
+  - service_template: media_player.media_play_pause
+    data_template:
+      entity_id: media_player.playroom
+
+# Play next song of Sonos when I double click the switch
+- alias: Play next song of Sonos when I double click the switch
+  trigger:
+    platform: event
+    event_type: click
+    event_data:
+      entity_id: binary_sensor.desktop_switch
+      click_type: double
+  action:
+  - service_template: media_player.media_next_track
+    data_template:
+      entity_id: media_player.playroom
+
 
 ##########################################################
 # Virtual Presence
