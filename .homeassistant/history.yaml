@@ -13,6 +13,7 @@ include:
     - binary_sensor.room_door_motion
     - binary_sensor.room_bed_motion
     - binary_sensor.room_bed_sleep
+    - binary_sensor.window_sensor
     - binary_sensor.yunhan_android
     - binary_sensor.minjun_android
     - binary_sensor.hyunjun_android

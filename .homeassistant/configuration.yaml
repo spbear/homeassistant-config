@@ -144,6 +144,11 @@ fan:
     host: 192.168.0.51
     token: !secret fan_token
 
+xiaomi_aqara:
+  discovery_retry: 5
+  gateways:
+    - mac: 28:6C:07:89:0F:31
+      key: !secret gateway_token
 
 remote:
   - platform: xiaomi_miio

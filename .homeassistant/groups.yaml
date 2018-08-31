@@ -32,6 +32,7 @@ sensor:
     - binary_sensor.room_door_motion
     - binary_sensor.room_bed_motion
     - binary_sensor.room_bed_sleep
+    - binary_sensor.window_sensor
 
 people:
   name: People
