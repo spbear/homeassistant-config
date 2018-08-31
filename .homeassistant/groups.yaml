@@ -33,6 +33,8 @@ sensor:
     - binary_sensor.room_bed_motion
     - binary_sensor.room_bed_sleep
     - binary_sensor.window_sensor
+    - binary_sensor.room_door_status
+    - binary_sensor.desktop_switch
 
 people:
   name: People
@@ -52,6 +54,7 @@ light:
   entities:
     - light.desk_lamp
     - light.sleep_lamp
+    - light.gateway_light
 
 speaker:
   name: Speaker

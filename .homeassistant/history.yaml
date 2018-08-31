@@ -14,13 +14,16 @@ include:
     - binary_sensor.room_bed_motion
     - binary_sensor.room_bed_sleep
     - binary_sensor.window_sensor
+    - binary_sensor.room_door_status
     - binary_sensor.yunhan_android
     - binary_sensor.minjun_android
     - binary_sensor.hyunjun_android
     - binary_sensor.jiyeon_iphone
     - binary_sensor.yunhan_desktop
+    - binary_sensor.desktop_switch
     - light.desk_lamp
     - light.sleep_lamp
+    - light.gateway_light
     - media_player.playroom
     - fan.mi_air_purifier
     - fan.mi_standing_fan

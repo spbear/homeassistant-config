@@ -21,3 +21,5 @@ binary_sensor.room_bed_sleep:
   icon: mdi:hotel
 binary_sensor.window_sensor:
   device_class: window
+binary_sensor.room_door_status:
+  device_class: door
