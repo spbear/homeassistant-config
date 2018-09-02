@@ -9,7 +9,7 @@ include:
     - sensor.room_humidity
     - sensor.room_illuminance
     - binary_sensor.main_door_status
-    - binary_sensor.main_door_motion
+    - binary_sensor.passage_motion
     - binary_sensor.room_door_motion
     - binary_sensor.room_bed_motion
     - binary_sensor.room_bed_sleep

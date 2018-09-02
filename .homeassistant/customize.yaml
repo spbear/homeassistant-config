@@ -10,7 +10,7 @@ binary_sensor.yunhan_desktop:
   device_class: power
 binary_sensor.main_door_status:
   device_class: door
-binary_sensor.main_door_motion:
+binary_sensor.passage_motion:
   device_class: motion
 binary_sensor.room_door_motion:
   device_class: motion

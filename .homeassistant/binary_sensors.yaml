@@ -32,12 +32,6 @@
   payload_off: 'closed'
 
 - platform: mqtt
-  state_topic: smartthings/Main Door/acceleration
-  name: Main Door Motion
-  payload_on: 'active'
-  payload_off: 'inactive'
-
-- platform: mqtt
   state_topic: smartthings/Daddy's Room Door Sensor/motion
   name: Room Door Motion
   payload_on: 'active'
@@ -46,6 +40,12 @@
 - platform: mqtt
   state_topic: smartthings/Daddy's Room Bed Sensor/motion
   name: Room Bed Motion
+  payload_on: 'active'
+  payload_off: 'inactive'
+
+- platform: mqtt
+  state_topic: smartthings/Passage Motion Sensor/motion
+  name: Passage Motion
   payload_on: 'active'
   payload_off: 'inactive'
 
