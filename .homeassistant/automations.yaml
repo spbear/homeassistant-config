@@ -292,3 +292,23 @@
         topic: smartthings/Desktop PC/switch
         payload: >
           {% if is_state('device_tracker.spbear_desktop', 'home') %}on{% else %}off{% endif %}
+
+- alias: Alert Intruder!
+  trigger:
+    - entity_id: binary_sensor.room_door_status
+      platform: state
+      to: 'on'
+    - entity_id: binary_sensor.room_door_motion
+      platform: state
+      to: 'on'
+    - entity_id: binary_sensor.room_bed_motion
+      platform: state
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: binary_sensor.yunhan_android
+      state: 'off'
+  action:
+    - service: script.turn_on
+      data:
+        entity_id: script.xiaomi_alarm_alert
