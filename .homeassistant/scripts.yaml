@@ -49,9 +49,7 @@ xiaomi_alarm_siren:
         gw_mac: !secret gateway_mac
     - delay:
         seconds: 6.5
-    - service: script.turn_on
-      data:
-        entity_id: script.xiaomi_alarm_siren_loop
+    - service: script.xiaomi_alarm_siren_loop
 
 # LOOP BACK TO START SIREN AGAIN
 xiaomi_alarm_siren_loop:
@@ -60,9 +58,7 @@ xiaomi_alarm_siren_loop:
     - delay:
 ### time for siren to start
         seconds: .1
-    - service: script.turn_on
-      data:
-        entity_id: script.xiaomi_alarm_siren
+    - service: script.xiaomi_alarm_siren
 
 # CANCEL Siren when Disarm - refer to Automation
 xiaomi_alarm_siren_stop:
@@ -97,9 +93,7 @@ xiaomi_alarm_light:
         brightness_pct: 100
     - delay:
         seconds: 0.2
-    - service: script.turn_on
-      data:
-        entity_id: script.xiaomi_alarm_light_loop
+    - service: script.xiaomi_alarm_light_loop
 
 xiaomi_alarm_light_loop:
   alias: Xiaomi Alarm Light Loop
@@ -107,15 +101,20 @@ xiaomi_alarm_light_loop:
     - delay:
 ### time for siren to start
         seconds: .1
-    - service: script.turn_on
-      data:
-        entity_id: script.xiaomi_alarm_light
+    - service: script.xiaomi_alarm_light
 
 xiaomi_alarm_light_stop:
   alias: Stop Xiaomi Alarm Siren
   sequence:
     - delay:
         seconds: 1
+    - service: script.turn_off
+      data:
+        entity_id: script.xiaomi_alarm_light
+    - service: script.turn_off
+      data:
+        entity_id: script.xiaomi_alarm_light_loop
+    # duplicated turn_off api call is for reducing timing issue (workaround solution)
     - service: script.turn_off
       data:
         entity_id: script.xiaomi_alarm_light
@@ -129,17 +128,9 @@ xiaomi_alarm_light_stop:
 xiaomi_alarm_alert:
   alias: Xiaomi Alarm Alert
   sequence:
-    - service: script.turn_on
-      data:
-        entity_id: script.xiaomi_alarm_light
-    - service: script.turn_on
-      data:
-        entity_id: script.xiaomi_alarm_siren
+    - service: script.xiaomi_alarm_light
+    - service: script.xiaomi_alarm_siren
     - delay:
         seconds: 20
-    - service: script.turn_on
-      data:
-        entity_id: script.xiaomi_alarm_siren_stop
-    - service: script.turn_on
-      data:
-        entity_id: script.xiaomi_alarm_light_stop
+    - service: script.xiaomi_alarm_siren_stop
+    - service: script.xiaomi_alarm_light_stop

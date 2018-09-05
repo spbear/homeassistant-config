@@ -307,8 +307,6 @@
   condition:
     - condition: state
       entity_id: binary_sensor.yunhan_android
-      state: 'off'
+      state: 'on'
   action:
-    - service: script.turn_on
-      data:
-        entity_id: script.xiaomi_alarm_alert
+    - service: script.xiaomi_alarm_alert
