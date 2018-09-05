@@ -31,6 +31,10 @@
       value_template: "{{ states.sensor.weather_humidity.state }}"
 
 - platform: mqtt
+  state_topic: sonos/playlist
+  name: Sonos Playlist
+
+- platform: mqtt
   state_topic: smartthings/Daddy's Room Bed Sensor/illuminance
   unit_of_measurement: "lux"
   device_class: illuminance

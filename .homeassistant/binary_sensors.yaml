@@ -66,3 +66,9 @@
   name: Mi Air Purifier
   payload_on: 'on'
   payload_off: 'off'
+
+- platform: mqtt
+  state_topic: sonos/manual_stop
+  name: Sonos Manual Stop
+  payload_on: 'on'
+  payload_off: 'off'

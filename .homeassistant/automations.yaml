@@ -91,18 +91,13 @@
     entity_id: binary_sensor.room_bed_sleep
     state: 'off'
   - condition: time
-    after: '06:00:00'
-    before: '02:00:00'
+    after: '07:00:00'
+    before: '03:00:00'
+  - condition: state
+    entity_id: binary_sensor.sonos_manual_stop
+    state: 'off'
   action:
-  - service: media_player.select_source
-    data_template:
-      entity_id: media_player.playroom
-      source: >
-        starbucks
-  - service: media_player.volume_set
-    data_template:
-      entity_id: media_player.playroom
-      volume_level: 0.20
+  - service: script.sonos_play_random
 
 # Play Sonos night song when sleep sensor is detected
 - alias: Play Sonos night song when sleep sensor is detected
@@ -135,11 +130,7 @@
     data_template:
       entity_id: media_player.playroom
       volume_level: 0.12
-  - service: media_player.select_source
-    data_template:
-      entity_id: media_player.playroom
-      source: >
-        sleep
+  - service: script.sonos_play_sleep_song
 
 # Set volume of Sonos when sleep sensor is cleared
 - alias: Set volume of Sonos when sleep sensor is cleared
@@ -159,15 +150,7 @@
     data_template:
       entity_id: media_player.playroom
   - wait_template: "{{ is_state('media_player.playroom', 'paused') }}"
-  - service: media_player.volume_set
-    data_template:
-      entity_id: media_player.playroom
-      volume_level: 0.20
-  - service: media_player.select_source
-    data_template:
-      entity_id: media_player.playroom
-      source: >
-        starbucks
+  - service: script.sonos_play_random
 
 # Stop Sonos 30 minutes after sleep sensor is detected
 - alias: Stop Sonos 60 minutes after sleep sensor is detected
@@ -196,6 +179,10 @@
   - service: media_player.media_stop
     data_template:
       entity_id: media_player.playroom
+  - service: mqtt.publish
+    data_template:
+      topic: sonos/manual_stop
+      payload: "off"
 
 # Stop Sonos when I am away
 - alias: Stop Sonos when I am away
@@ -214,6 +201,11 @@
   - service_template: media_player.media_stop
     data_template:
       entity_id: media_player.playroom
+  - service: mqtt.publish
+    data_template:
+      topic: sonos/manual_stop
+      payload: "off"
+
 
 # Play / Stop Sonos when I click the switch
 - alias: Play / Stop Sonos when I click the switch
@@ -224,6 +216,11 @@
       entity_id: binary_sensor.desktop_switch
       click_type: single
   action:
+  - service: mqtt.publish
+    data_template:
+      topic: sonos/manual_stop
+      payload: >
+        {% if is_state('media_player.playroom', 'playing') %}on{% else %}off{% endif %}
   - service_template: media_player.media_play_pause
     data_template:
       entity_id: media_player.playroom
@@ -237,10 +234,7 @@
       entity_id: binary_sensor.desktop_switch
       click_type: double
   action:
-  - service_template: media_player.media_next_track
-    data_template:
-      entity_id: media_player.playroom
-
+  - service: script.sonos_play_random
 
 ##########################################################
 # Virtual Presence
@@ -307,6 +301,6 @@
   condition:
     - condition: state
       entity_id: binary_sensor.yunhan_android
-      state: 'on'
+      state: 'off'
   action:
     - service: script.xiaomi_alarm_alert

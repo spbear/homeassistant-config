@@ -59,6 +59,8 @@ light:
 speaker:
   name: Speaker
   entities:
+    - sensor.sonos_playlist
+    - binary_sensor.sonos_manual_stop
     - media_player.playroom
 
 fan:

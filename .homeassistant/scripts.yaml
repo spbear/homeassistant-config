@@ -134,3 +134,49 @@ xiaomi_alarm_alert:
         seconds: 20
     - service: script.xiaomi_alarm_siren_stop
     - service: script.xiaomi_alarm_light_stop
+
+sonos_play_random:
+  alias: Play random song
+  sequence:
+    - service: mqtt.publish
+      data_template:
+        topic: "sonos/playlist"
+        payload: "{{ ['bank0', 'bank1','bank2', 'bank3','bank4', 'bank5'] | random }}"
+        retain: "true"
+    - service: media_player.volume_set
+      data_template:
+        entity_id: media_player.playroom
+        volume_level: 0.20
+    - service: media_player.select_source
+      data_template:
+        entity_id: media_player.playroom
+        source: >
+          {{ states('sensor.sonos_playlist') }}
+    - service: media_player.shuffle_set
+      data:
+        entity_id: media_player.playroom
+        shuffle: true
+    - service: media_player.media_next_track
+      data:
+        entity_id: media_player.playroom
+
+sonos_play_sleep_song:
+  alias: Play sleep song
+  sequence:
+    - service: mqtt.publish
+      data_template:
+        topic: "sonos/playlist"
+        payload: "{{ ['sleep'] | random }}"
+        retain: "true"
+    - service: media_player.select_source
+      data_template:
+        entity_id: media_player.playroom
+        source: >
+          {{ states('sensor.sonos_playlist') }}
+    - service: media_player.shuffle_set
+      data:
+        entity_id: media_player.playroom
+        shuffle: true
+    - service: media_player.media_next_track
+      data:
+        entity_id: media_player.playroom
