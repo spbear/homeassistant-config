@@ -26,4 +26,12 @@ binary_sensor.room_door_status:
 sensor.sonos_playlist:
   icon: mdi:music
 binary_sensor.sonos_manual_stop:
-  icon: mdi:music
+  icon: mdi:stop-circle
+binary_sensor.bmw:
+  icon: mdi:car
+binary_sensor.airpods:
+  icon: mdi:headphones
+binary_sensor.gear_s3:
+  icon: mdi:watch
+binary_sensor.gear_fit2_pro:
+  icon: mdi:watch

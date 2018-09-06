@@ -72,3 +72,27 @@
   name: Sonos Manual Stop
   payload_on: 'on'
   payload_off: 'off'
+
+- platform: mqtt
+  state_topic: mobile/yunhan/bluetooth/BMW 04184
+  name: BMW
+  payload_on: 'on'
+  payload_off: 'off'
+
+- platform: mqtt
+  state_topic: mobile/yunhan/bluetooth/SPBEAR AirPods
+  name: AirPods
+  payload_on: 'on'
+  payload_off: 'off'
+
+- platform: mqtt
+  state_topic: mobile/yunhan/bluetooth/Gear S3 (D578)
+  name: Gear S3
+  payload_on: 'on'
+  payload_off: 'off'
+
+- platform: mqtt
+  state_topic: mobile/yunhan/bluetooth/Gear Fit2 Pro (6C25)
+  name: Gear Fit2 Pro
+  payload_on: 'on'
+  payload_off: 'off'

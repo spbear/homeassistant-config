@@ -12,6 +12,7 @@ default_view:
     - group.airconditioner
     - group.vacuum
     - group.speaker
+    - group.bluetooth
 
 weather:
   name: Weather
@@ -70,13 +71,15 @@ fan:
     - fan.mi_standing_fan
     - switch.samsung_air_conditioner
 
-#airconditioner:
-#  name: Air Conditioner
-#  entities:
-#    - script.script_turn_on_my_room_ac
-#    - script.script_turn_off_my_room_ac
-
 vacuum:
   name: Vacuum
   entities:
     - vacuum.mi_robot_vacuum
+
+bluetooth:
+  name: Bluetooth
+  entities:
+    - binary_sensor.bmw
+    - binary_sensor.airpods
+    - binary_sensor.gear_s3
+    - binary_sensor.gear_fit2_pro
