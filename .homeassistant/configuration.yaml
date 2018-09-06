@@ -12,6 +12,13 @@ homeassistant:
   time_zone: Asia/Seoul
   # Customization file
   customize: !include customize.yaml
+  customize_glob:
+    "sensor.*":
+      show_last_changed: true
+      custom_ui_state_card: state-card-custom-ui
+    "binary_sensor.*":
+      show_last_changed: true
+      custom_ui_state_card: state-card-custom-ui
 
 logger:
   default: info
@@ -23,6 +30,9 @@ logger:
 
 # Enables the frontend
 frontend:
+
+customizer:
+  custom_ui: local
 
 # Track the sun
 sun:

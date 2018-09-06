@@ -6,36 +6,61 @@ default_view:
     - group.weather
     - group.sensor
     - group.people
-    - group.system
-    - group.light
-    - group.fan
-    - group.airconditioner
-    - group.vacuum
+    - group.main_door
+    - group.my_room
+    - group.my_desk
+    - group.my_bed
+    - group.my_door
+    - group.my_car
+    - group.my_gadget
     - group.speaker
-    - group.bluetooth
+    - group.vacuum
 
 weather:
-  name: Weather
+  name: Outside Weather
   entities:
     - sensor.weather_temperature
     - sensor.weather_humidity_with_icon
-    - sensor.weather_symbol
     - sun.sun
+    - sensor.weather_symbol
 
 sensor:
-  name: Sensor
+  name: My Room Condition
   entities:
     - sensor.room_temperature
     - sensor.room_humidity
     - sensor.room_illuminance
+    - fan.mi_air_purifier
+    - fan.mi_standing_fan
+    - switch.samsung_air_conditioner
+
+main_door:
+  name: Main Door
+  entities:
     - binary_sensor.main_door_status
     - binary_sensor.passage_motion
+
+my_room:
+  name: My Room
+  entities:
+    - binary_sensor.room_door_status
     - binary_sensor.room_door_motion
+    - binary_sensor.window_sensor
+    - light.gateway_light
+
+my_desk:
+  name: My Desk
+  entities:
+    - binary_sensor.yunhan_desktop
+    - binary_sensor.desktop_switch
+    - light.desk_lamp
+
+my_bed:
+  name: My Bed
+  entities:
     - binary_sensor.room_bed_motion
     - binary_sensor.room_bed_sleep
-    - binary_sensor.window_sensor
-    - binary_sensor.room_door_status
-    - binary_sensor.desktop_switch
+    - light.sleep_lamp
 
 people:
   name: People
@@ -45,17 +70,17 @@ people:
     - binary_sensor.hyunjun_android
     - binary_sensor.jiyeon_iphone
 
-system:
-  name: System
+my_gadget:
+  name: My Gadget
   entities:
-    - binary_sensor.yunhan_desktop
+    - binary_sensor.gear_s3
+    - binary_sensor.gear_fit2_pro
+    - binary_sensor.airpods
 
-light:
-  name: Lights
+my_car:
+  name: My Car
   entities:
-    - light.desk_lamp
-    - light.sleep_lamp
-    - light.gateway_light
+    - binary_sensor.bmw
 
 speaker:
   name: Speaker
@@ -64,22 +89,7 @@ speaker:
     - binary_sensor.sonos_manual_stop
     - media_player.playroom
 
-fan:
-  name: Air
-  entities:
-    - fan.mi_air_purifier
-    - fan.mi_standing_fan
-    - switch.samsung_air_conditioner
-
 vacuum:
   name: Vacuum
   entities:
     - vacuum.mi_robot_vacuum
-
-bluetooth:
-  name: Bluetooth
-  entities:
-    - binary_sensor.bmw
-    - binary_sensor.airpods
-    - binary_sensor.gear_s3
-    - binary_sensor.gear_fit2_pro

@@ -114,7 +114,7 @@
     state: 'playing'
   - condition: time
     after: '20:00:00'
-    before: '03:00:00'
+    before: '04:30:00'
   action:
 #  - service: script.sonos_say
 #    data:
