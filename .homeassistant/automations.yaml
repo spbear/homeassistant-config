@@ -75,6 +75,9 @@
 - alias: Play Sonos when motion is detected
   trigger:
   - platform: state
+    entity_id: binary_sensor.room_door_status
+    to: 'on'
+  - platform: state
     entity_id: binary_sensor.room_door_motion
     to: 'on'
   - platform: state
