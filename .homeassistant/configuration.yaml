@@ -166,6 +166,12 @@ fan:
     host: 192.168.0.51
     token: !secret fan_token
 
+  - platform: xiaomi_miio
+    name: "Living Room Mi Air Purifier"
+    icon: mdi:weather-windy
+    host: 192.168.0.32
+    token: !secret air_purifier_livingroom_token
+
 xiaomi_aqara:
   discovery_retry: 5
   gateways:

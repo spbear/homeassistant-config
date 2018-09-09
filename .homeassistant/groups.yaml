@@ -93,5 +93,9 @@ speaker:
 livingroom:
   name: Livingroom
   entities:
+    - sensor.livingroom_temperature
+    - sensor.livingroom_humidity
+    - sensor.livingroom_pm25
+    - fan.mi_air_purifier_livingroom
     - switch.livingroom_tv
     - vacuum.mi_robot_vacuum

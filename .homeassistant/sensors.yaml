@@ -41,6 +41,24 @@
       device_class: humidity
       value_template: "{{ states.sensor.weather_humidity.state }}"
 
+    livingroom_temperature:
+      friendly_name: Living Room Temperature
+      unit_of_measurement: "°C"
+      device_class: temperature
+      value_template: "{{ '%.1f'|format(states.fan.mi_air_purifier_livingroom.attributes.temperature) }}"
+
+    livingroom_humidity:
+      friendly_name: Living Room Humidity
+      unit_of_measurement: "%"
+      device_class: humidity
+      value_template: "{{ states.fan.mi_air_purifier_livingroom.attributes.humidity }}"
+
+    livingroom_pm25:
+      friendly_name: Living Room PM2.5
+      unit_of_measurement: "㎍/m³"
+      value_template: "{{ states.fan.mi_air_purifier_livingroom.attributes.aqi | int }}"
+
+
 - platform: mqtt
   state_topic: sonos/playlist
   name: Sonos Playlist

@@ -39,3 +39,5 @@ sensor.room_pm25:
   icon: mdi:cloud
 switch.livingroom_tv:
   icon: mdi:television
+sensor.livingroom_pm25:
+  icon: mdi:cloud
