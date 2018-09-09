@@ -37,3 +37,5 @@ binary_sensor.gear_fit2_pro:
   icon: mdi:watch
 sensor.room_pm25:
   icon: mdi:cloud
+switch.livingroom_tv:
+  icon: mdi:television

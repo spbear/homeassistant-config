@@ -14,7 +14,7 @@ default_view:
     - group.my_car
     - group.my_gadget
     - group.speaker
-    - group.vacuum
+    - group.livingroom
 
 weather:
   name: Outside Weather
@@ -90,7 +90,8 @@ speaker:
     - binary_sensor.sonos_manual_stop
     - media_player.playroom
 
-vacuum:
-  name: Vacuum
+livingroom:
+  name: Livingroom
   entities:
+    - switch.livingroom_tv
     - vacuum.mi_robot_vacuum

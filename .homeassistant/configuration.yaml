@@ -206,6 +206,13 @@ remote:
 
 switch: !include switches.yaml
 
+media_player:
+  - platform: samsungtv
+    host: 192.168.0.22
+    port: 8001
+    name: Livingroom TV
+    mac: !secret livingroom_tv_mac
+
 history_graph:
   gr1:
     name: Temperature
