@@ -13,10 +13,19 @@ homeassistant:
   # Customization file
   customize: !include customize.yaml
   customize_glob:
-    "sensor.*":
+    "light.*":
+      show_last_changed: true
+      custom_ui_state_card: state-card-custom-ui
+    "fan.*":
+      show_last_changed: true
+      custom_ui_state_card: state-card-custom-ui
+    "vacuum.*":
       show_last_changed: true
       custom_ui_state_card: state-card-custom-ui
     "binary_sensor.*":
+      show_last_changed: true
+      custom_ui_state_card: state-card-custom-ui
+    "switch.*":
       show_last_changed: true
       custom_ui_state_card: state-card-custom-ui
 
