@@ -24,6 +24,17 @@
       device_class: humidity
       value_template: "{{ states.fan.mi_air_purifier.attributes.humidity }}"
 
+    room_illuminance:
+      friendly_name: Room Illuminance
+      unit_of_measurement: "lux"
+      device_class: illuminance
+      value_template: "{{ '%d' | format((states.sensor.gateway_illumination.state | float) * 0.2152782) }}"
+
+    room_pm25:
+      friendly_name: Room PM2.5
+      unit_of_measurement: "㎍/m³"
+      value_template: "{{ states.fan.mi_air_purifier.attributes.aqi | int }}"
+
     weather_humidity_with_icon:
       friendly_name: Weather Humidity
       unit_of_measurement: "%"
@@ -33,9 +44,3 @@
 - platform: mqtt
   state_topic: sonos/playlist
   name: Sonos Playlist
-
-- platform: mqtt
-  state_topic: smartthings/Daddy's Room Bed Sensor/illuminance
-  unit_of_measurement: "lux"
-  device_class: illuminance
-  name: Room Illuminance

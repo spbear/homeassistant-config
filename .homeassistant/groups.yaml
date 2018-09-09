@@ -29,6 +29,7 @@ sensor:
   entities:
     - sensor.room_temperature
     - sensor.room_humidity
+    - sensor.room_pm25
     - sensor.room_illuminance
     - fan.mi_air_purifier
     - fan.mi_standing_fan

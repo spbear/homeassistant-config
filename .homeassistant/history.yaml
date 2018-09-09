@@ -7,6 +7,7 @@ include:
     - sensor.weather_humidity
     - sensor.room_temperature
     - sensor.room_humidity
+    - sensor.room_pm25
     - sensor.room_illuminance
     - binary_sensor.main_door_status
     - binary_sensor.passage_motion
