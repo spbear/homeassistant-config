@@ -226,3 +226,4 @@ automation: !include automations.yaml
 script: !include scripts.yaml
 
 group: !include groups.yaml
+scene: !include scene.yaml

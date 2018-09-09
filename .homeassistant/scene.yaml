@@ -1,0 +1,19 @@
+- name: Welcome
+  entities:
+    light.desk_lamp:
+      state: on
+    light.sleep_lamp:
+      state: on
+      xy_color: [0.33, 0.66]
+      brightness: 200
+    light.gateway_light:
+      state: off
+- name: Good Bye
+  entities:
+    light.desk_lamp: off
+    light.sleep_lamp: off
+    light.gateway_light: off
+    fan.mi_air_purifier: off
+    fan.mi_standing_fan: off
+    switch.samsung_air_conditioner: off
+    media_player.playroom: paused

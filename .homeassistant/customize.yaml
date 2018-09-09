@@ -35,3 +35,5 @@ binary_sensor.gear_s3:
   icon: mdi:watch
 binary_sensor.gear_fit2_pro:
   icon: mdi:watch
+sensor.room_pm25:
+  icon: mdi:cloud
