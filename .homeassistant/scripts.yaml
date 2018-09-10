@@ -146,7 +146,7 @@ sonos_play_random:
     - service: media_player.volume_set
       data_template:
         entity_id: media_player.playroom
-        volume_level: 0.20
+        volume_level: 0.12
     - service: media_player.select_source
       data_template:
         entity_id: media_player.playroom
@@ -168,6 +168,10 @@ sonos_play_sleep_song:
         topic: "sonos/playlist"
         payload: "{{ ['sleep'] | random }}"
         retain: "true"
+    - service: media_player.volume_set
+      data_template:
+        entity_id: media_player.playroom
+        volume_level: 0.10
     - service: media_player.select_source
       data_template:
         entity_id: media_player.playroom
