@@ -47,47 +47,8 @@ customizer:
 sun:
 
 # Sensors
-device_tracker:
-  - platform: nmap_tracker
-    hosts:
-      - 192.168.0.4
-    interval_seconds: 10
-    home_interval: 5
-    consider_home: 900
-    scan_options: " --privileged -sP "
-    # sudo setcap cap_net_raw,cap_net_admin,cap_net_bind_service+eip /usr/bin/nmap
-  - platform: nmap_tracker
-    hosts:
-      - 192.168.0.20
-    interval_seconds: 10
-    home_interval: 5
-    consider_home: 900
-    scan_options: " --privileged -sP "
-  - platform: nmap_tracker
-    hosts:
-      - 192.168.0.53
-    interval_seconds: 10
-    home_interval: 5
-    consider_home: 900
-    scan_options: " --privileged -sP "
-  - platform: nmap_tracker
-    hosts:
-      - 192.168.0.48
-    interval_seconds: 10
-    home_interval: 5
-    consider_home: 900
-    scan_options: " --privileged -sP "
-  - platform: nmap_tracker
-    hosts:
-      - 192.168.0.24
-    interval_seconds: 30
-    home_interval: 1
-    scan_options: " --privileged -sP "
-    # You should turn off power-control option on Window system's ethernet device
-    # http://hearit.tistory.com/13
-
+device_tracker: !include device_tracker.yaml
 sensor: !include sensors.yaml
-
 binary_sensor: !include binary_sensors.yaml
 
 
