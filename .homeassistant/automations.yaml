@@ -18,6 +18,12 @@
   trigger:
   - platform: state
     entity_id: fan.mi_air_purifier
+    from: 'on'
+    to: 'off'
+  - platform: state
+    entity_id: fan.mi_air_purifier
+    from: 'off'
+    to: 'on'
   condition: []
   action:
   - service: mqtt.publish
@@ -47,6 +53,12 @@
   trigger:
   - platform: state
     entity_id: fan.mi_standing_fan
+    from: 'on'
+    to: 'off'
+  - platform: state
+    entity_id: fan.mi_standing_fan
+    from: 'off'
+    to: 'on'
   condition: []
   action:
   - service: mqtt.publish
