@@ -29,6 +29,7 @@ include:
     - fan.mi_air_purifier
     - fan.mi_standing_fan
     - switch.samsung_air_conditioner
+    - sensor.mi_scale
     - binary_sensor.gear_s3
     - binary_sensor.airpods
     - binary_sensor.gear_fit2_pro

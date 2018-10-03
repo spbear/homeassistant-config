@@ -74,6 +74,7 @@ people:
 my_gadget:
   name: My Gadget
   entities:
+    - sensor.mi_scale
     - binary_sensor.gear_s3
     - binary_sensor.gear_fit2_pro
     - binary_sensor.airpods

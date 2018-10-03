@@ -41,3 +41,5 @@ switch.livingroom_tv:
   icon: mdi:television
 sensor.livingroom_pm25:
   icon: mdi:cloud
+sensor.mi_scale:
+  icon: mdi:scale
