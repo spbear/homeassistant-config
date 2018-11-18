@@ -133,6 +133,12 @@ fan:
     host: 192.168.0.32
     token: !secret air_purifier_livingroom_token
 
+  - platform: xiaomi_miio
+    name: "Mi Humidifier"
+    icon: mdi:weather-windy
+    host: 192.168.0.74
+    token: !secret humidifier_token
+
 xiaomi_aqara:
   discovery_retry: 5
   gateways:

@@ -32,6 +32,7 @@ sensor:
     - sensor.room_pm25
     - sensor.room_illuminance
     - fan.mi_air_purifier
+    - fan.mi_humidifier
     - fan.mi_standing_fan
     - switch.samsung_air_conditioner
 

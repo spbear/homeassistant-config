@@ -27,6 +27,7 @@ include:
     - light.gateway_light
     - media_player.playroom
     - fan.mi_air_purifier
+    - fan.mi_humidifier
     - fan.mi_standing_fan
     - switch.samsung_air_conditioner
     - sensor.mi_scale
