@@ -141,7 +141,7 @@ sonos_play_random:
     - service: mqtt.publish
       data_template:
         topic: "sonos/playlist"
-        payload: "{{ ['bank0', 'bank1','bank2', 'bank3','bank4', 'bank5'] | random }}"
+        payload: "{{ ['bank0', 'bank1','bank2', 'bank3','bank4', 'bank5', 'bank6'] | random }}"
         retain: "true"
     - service: media_player.volume_set
       data_template:
