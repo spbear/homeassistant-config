@@ -1,11 +1,5 @@
 - name: Welcome
   entities:
-    light.desk_lamp:
-      state: on
-    light.sleep_lamp:
-      state: on
-      xy_color: [0.33, 0.66]
-      brightness: 200
     light.gateway_light:
       state: off
     fan.mi_air_purifier:
@@ -22,3 +16,13 @@
     fan.mi_humidifier: off
     switch.samsung_air_conditioner: off
     media_player.playroom: paused
+- name: Night Welcome
+  entities:
+    light.desk_lamp:
+      state: on
+      kelvin: 2800
+      brightness: 255
+    light.sleep_lamp:
+      state: on
+      kelvin: 2800
+      brightness: 255

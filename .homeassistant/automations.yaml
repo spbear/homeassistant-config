@@ -1,4 +1,42 @@
 ##########################################################
+# Scene Control
+##########################################################
+- alias: Welcome Home
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.yunhan_android
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - service: scene.turn_on
+    entity_id: scene.welcome
+
+- alias: Light Welcome
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.yunhan_android
+    from: 'off'
+    to: 'on'
+  condition:
+  - condition: template
+    value_template: "{{ states('sensor.room_illuminance') | int < 100 }}"
+  action:
+  - service: scene.turn_on
+    entity_id: scene.welcome
+
+- alias: Good Bye
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.yunhan_android
+    from: 'on'
+    to: 'off'
+  condition: []
+  action:
+  - service: scene.turn_on
+    entity_id: scene.good_bye
+
+##########################################################
 # MI Air Purifier
 ##########################################################
 - alias: MI Air Purifier from ST
