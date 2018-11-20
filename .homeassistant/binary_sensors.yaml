@@ -8,7 +8,7 @@
     yunhan_android:
       friendly_name: Yunhan's Android
       icon_template: "mdi:cellphone-android"
-      value_template: "{{ is_state('sensor.yunhans_gs8', 'present') or is_state('device_tracker.yunhan_android', 'home') }}"
+      value_template: "{{ is_state('sensor.yunhans_gs8', 'present') or is_state('device_tracker.yunhan_android', 'home') or is_state('sensor.spbear_bt_presence', 'present') }}"
 
     minjun_android:
       friendly_name: Minjun's Android
@@ -80,7 +80,7 @@
   payload_off: 'off'
 
 - platform: mqtt
-  state_topic: mobile/yunhan/bluetooth/SPBEAR AirPods
+  state_topic: mobile/yunhan/bluetooth/spbear의 AirPods
   name: AirPods
   payload_on: 'on'
   payload_off: 'off'
