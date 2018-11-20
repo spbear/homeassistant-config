@@ -40,10 +40,7 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
     vol.Optional(CONF_MODEL): vol.In([MODEL_FAN_V2, MODEL_FAN_V3, MODEL_FAN_SA1, MODEL_FAN_ZA1]),
 })
 
-#REQUIREMENTS = ['python-miio>=0.4.1']
-REQUIREMENTS = ['https://github.com/rytilahti/python-miio/archive/'
-                '65ee1858c4876f1efc0f1686e98be48b9f5f21c1.zip#'
-                'python-miio']
+REQUIREMENTS = ['python-miio>=0.4.1']
 
 ATTR_MODEL = 'model'
 ATTR_BRIGHTNESS = 'brightness'
@@ -62,7 +59,6 @@ ATTR_BATTERY_STATE = 'battery_state'
 ATTR_AC_POWER = 'ac_power'
 ATTR_DELAY_OFF_COUNTDOWN = 'delay_off_countdown'
 ATTR_ANGLE = 'angle'
-ATTR_ANGLE_ENABLE = 'angle_enable'
 ATTR_DIRECT_SPEED = 'direct_speed'
 ATTR_USE_TIME = 'use_time'
 ATTR_BUTTON_PRESSED = 'button_pressed'
@@ -70,7 +66,6 @@ ATTR_SPEED_LEVEL = 'speed_level'
 
 AVAILABLE_ATTRIBUTES_FAN = {
     ATTR_ANGLE: 'angle',
-#    ATTR_ANGLE_ENABLE: 'angle_enable',
     ATTR_SPEED: 'speed',
     ATTR_DELAY_OFF_COUNTDOWN: 'delay_off_countdown',
 
@@ -414,7 +409,7 @@ class XiaomiFan(XiaomiGenericDevice):
 
         try:
             state = await self.hass.async_add_job(self._device.status)
-            _LOGGER.info("Got new state: %s", state)
+            _LOGGER.debug("Got new state: %s", state)
 
             self._available = True
             self._oscillate = state.oscillate
