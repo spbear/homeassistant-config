@@ -20,11 +20,6 @@
       icon_template: "mdi:cellphone-android"
       value_template: "{{ is_state('device_tracker.hyunjun_android', 'home')}}"
 
-    jiyeon_iphone:
-      friendly_name: Jiyeon's iPhone
-      icon_template: "mdi:cellphone-iphone"
-      value_template: "{{ is_state('device_tracker.jiyeon_iphone', 'home')}}"
-
 - platform: mqtt
   state_topic: smartthings/Main Door/contact
   name: Main Door Status

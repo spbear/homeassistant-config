@@ -53,7 +53,7 @@ xiaomi_alarm_siren:
 
 # LOOP BACK TO START SIREN AGAIN
 xiaomi_alarm_siren_loop:
-  alias: Xiaomi Alarm Siren Loop
+  alias: Loop Xiaomi Alarm Siren
   sequence:
     - delay:
 ### time for siren to start
@@ -96,7 +96,7 @@ xiaomi_alarm_light:
     - service: script.xiaomi_alarm_light_loop
 
 xiaomi_alarm_light_loop:
-  alias: Xiaomi Alarm Light Loop
+  alias: Loop Xiaomi Alarm Light
   sequence:
     - delay:
 ### time for siren to start
@@ -104,7 +104,7 @@ xiaomi_alarm_light_loop:
     - service: script.xiaomi_alarm_light
 
 xiaomi_alarm_light_stop:
-  alias: Stop Xiaomi Alarm Siren
+  alias: Stop Xiaomi Alarm Light
   sequence:
     - delay:
         seconds: 1
@@ -126,12 +126,18 @@ xiaomi_alarm_light_stop:
         entity_id: light.gateway_light
 
 xiaomi_alarm_alert:
-  alias: Xiaomi Alarm Alert
+  alias: Start Xiaomi Alarm Alert
   sequence:
     - service: script.xiaomi_alarm_light
     - service: script.xiaomi_alarm_siren
     - delay:
         seconds: 20
+    - service: script.xiaomi_alarm_light_stop
+    - service: script.xiaomi_alarm_siren_stop
+
+xiaomi_alarm_alert_stop:
+  alias: Stop Xiaomi Alarm Alert
+  sequence:
     - service: script.xiaomi_alarm_siren_stop
     - service: script.xiaomi_alarm_light_stop
 

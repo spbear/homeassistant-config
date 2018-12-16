@@ -1,10 +1,9 @@
 # sudo setcap cap_net_raw,cap_net_admin,cap_net_bind_service+eip /usr/bin/nmap
 - platform: nmap_tracker
   hosts:
-    - 192.168.0.4
-    - 192.168.0.20
-    - 192.168.0.53
-    - 192.168.0.48
+    - !secret minjun_mobile_ip
+    - !secret hyunjun_mobile_ip
+    - !secret spbear_mobile_ip
   interval_seconds: 10
   home_interval: 5
   consider_home: 900
@@ -14,7 +13,7 @@
 # http://hearit.tistory.com/13
 - platform: nmap_tracker
   hosts:
-    - 192.168.0.24
+    - !secret spbear_desktop_ip
   interval_seconds: 30
   home_interval: 1
   scan_options: " --privileged -sP "

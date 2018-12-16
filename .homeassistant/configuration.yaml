@@ -56,7 +56,7 @@ binary_sensor: !include binary_sensors.yaml
 config:
 
 mqtt:
-  broker: 192.168.0.60
+  broker: !secret raspberrypi_ip
   port: 1883
   client_id: home-assistant-1
   username: !secret mqtt_username
@@ -112,43 +112,43 @@ cloud:
 vacuum:
   - platform: xiaomi_miio
     name: "Mi Robot Vacuum"
-    host: 192.168.0.30
+    host: !secret xiaomi_robot_vacuum_ip
     token: !secret vacuum_token
 
 fan:
   - platform: xiaomi_miio
     name: "Mi Air Purifier"
     icon: mdi:weather-windy
-    host: 192.168.0.25
+    host: !secret xiaomi_air_purifier_myroom_ip
     token: !secret air_purifier_token
 
   - platform: xiaomi_miio_fan
     name: "Mi Standing Fan"
-    host: 192.168.0.51
+    host: !secret xiaomi_standing_fan_ip
     token: !secret fan_token
 
   - platform: xiaomi_miio
     name: "Living Room Mi Air Purifier"
     icon: mdi:weather-windy
-    host: 192.168.0.32
+    host: !secret xiaomi_air_purifier_livingroom_ip
     token: !secret air_purifier_livingroom_token
 
   - platform: xiaomi_miio
     name: "Mi Humidifier"
     icon: mdi:weather-windy
-    host: 192.168.0.74
+    host: !secret xiaomi_humidifier_ip
     token: !secret humidifier_token
 
 xiaomi_aqara:
   discovery_retry: 5
   gateways:
-    - mac: 28:6C:07:89:0F:31
+    - mac: !secret xiaomi_gateway_mac
       key: !secret gateway_token
 
 remote:
   - platform: xiaomi_miio
     name: "Mi IR Controller"
-    host: 192.168.0.61
+    host: !secret xiaomi_ir_controller_ip
     token: !secret remote_token
     slot: 1
     timeout: 30
@@ -181,7 +181,7 @@ switch: !include switches.yaml
 
 media_player:
   - platform: samsungtv
-    host: 192.168.0.22
+    host: !secret samsung_tv_ip
     port: 8001
     name: Livingroom TV
     mac: !secret livingroom_tv_mac

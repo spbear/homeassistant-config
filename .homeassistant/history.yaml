@@ -19,7 +19,6 @@ include:
     - binary_sensor.yunhan_android
     - binary_sensor.minjun_android
     - binary_sensor.hyunjun_android
-    - binary_sensor.jiyeon_iphone
     - binary_sensor.yunhan_desktop
     - binary_sensor.desktop_switch
     - light.desk_lamp

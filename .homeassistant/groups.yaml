@@ -70,7 +70,6 @@ people:
     - binary_sensor.yunhan_android
     - binary_sensor.minjun_android
     - binary_sensor.hyunjun_android
-    - binary_sensor.jiyeon_iphone
 
 my_gadget:
   name: My Gadget
