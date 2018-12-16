@@ -6,16 +6,6 @@
     - humidity
     - fog
 
-- platform: mqtt
-  state_topic: smartthings/Yunhan's GS8/presence
-  name: Yunhan's GS8
-  force_update: True
-
-- platform: mqtt
-  state_topic: bt-gateway/bt-presence/SPBEAR
-  name: SPBEAR BT Presence
-  force_update: True
-
 - platform: template
   sensors:
     room_temperature:

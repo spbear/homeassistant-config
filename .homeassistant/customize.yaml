@@ -1,3 +1,7 @@
+binary_sensor.yunhan_bt_presence:
+  device_class: presence
+binary_sensor.yunhan_gps_presence:
+  device_class: presence
 binary_sensor.yunhan_android:
   device_class: presence
 binary_sensor.minjun_android:

@@ -33,6 +33,8 @@ logger:
   default: info
   logs:
     homeassistant.components.device_tracker: error
+    homeassistant.components.xiaomi_aqara: debug
+    homeassistant.event: debug
 
 # Show links to resources in log and frontend
 #introduction:
