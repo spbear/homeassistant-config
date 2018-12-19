@@ -6,6 +6,7 @@
       state: on
     fan.mi_humidifier:
       state: on
+
 - name: Good Bye
   entities:
     light.desk_lamp: off
@@ -16,6 +17,7 @@
     fan.mi_humidifier: off
     switch.samsung_air_conditioner: off
     media_player.playroom: paused
+
 - name: Night Welcome
   entities:
     light.desk_lamp:

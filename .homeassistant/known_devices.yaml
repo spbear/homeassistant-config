@@ -25,11 +25,3 @@ spbear_desktop:
   picture: https://www.home-assistant.io/images/favicon-192x192.png
   track: yes
   hide_if_away: no
-
-64e5993fbab8:
-  hide_if_away: false
-  icon:
-  mac: 64:E5:99:3F:BA:B8
-  name: 64e5993fbab8
-  picture:
-  track: true

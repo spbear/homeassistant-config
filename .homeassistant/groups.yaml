@@ -48,6 +48,7 @@ my_room:
     - binary_sensor.room_door_status
     - binary_sensor.room_door_motion
     - binary_sensor.window_sensor
+    - binary_sensor.security_manual_stop
     - light.gateway_light
 
 my_desk:
