@@ -8,6 +8,10 @@ binary_sensor.minjun_android:
   device_class: presence
 binary_sensor.hyunjun_android:
   device_class: presence
+binary_sensor.mom_iphone:
+  device_class: presence
+binary_sensor.grandma_android:
+  device_class: presence
 binary_sensor.yunhan_desktop:
   device_class: power
 binary_sensor.main_door_status:

@@ -4,6 +4,8 @@
     - !secret minjun_mobile_ip
     - !secret hyunjun_mobile_ip
     - !secret spbear_mobile_ip
+    - !secret mom_mobile_ip
+    - !secret grandma_mobile_ip
   interval_seconds: 10
   home_interval: 5
   consider_home: 900

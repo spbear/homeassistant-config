@@ -28,6 +28,9 @@ homeassistant:
     "switch.*":
       show_last_changed: true
       custom_ui_state_card: state-card-custom-ui
+    "cover.*":
+      show_last_changed: true
+      custom_ui_state_card: state-card-custom-ui
 
 logger:
   default: info

@@ -36,6 +36,16 @@
       icon_template: "mdi:cellphone-android"
       value_template: "{{ is_state('device_tracker.hyunjun_android', 'home')}}"
 
+    mom_iphone:
+      friendly_name: Mom's iPhone
+      icon_template: "mdi:cellphone-iphone"
+      value_template: "{{ is_state('device_tracker.mom_iphone', 'home')}}"
+
+    grandma_android:
+      friendly_name: Grandma's Android
+      icon_template: "mdi:cellphone-android"
+      value_template: "{{ is_state('device_tracker.grandma_android', 'home')}}"
+
 - platform: mqtt
   state_topic: smartthings/Main Door/contact
   name: Main Door Status

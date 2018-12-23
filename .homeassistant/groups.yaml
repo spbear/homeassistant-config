@@ -48,6 +48,8 @@ my_room:
     - binary_sensor.room_door_status
     - binary_sensor.room_door_motion
     - binary_sensor.window_sensor
+    - cover.myroom_curtain
+    - cover.mywindow_curtain
     - binary_sensor.security_manual_stop
     - light.gateway_light
 
@@ -71,6 +73,8 @@ people:
     - binary_sensor.yunhan_android
     - binary_sensor.minjun_android
     - binary_sensor.hyunjun_android
+    - binary_sensor.mom_iphone
+    - binary_sensor.grandma_android
 
 my_gadget:
   name: My Gadget
@@ -91,6 +95,7 @@ speaker:
     - sensor.sonos_playlist
     - binary_sensor.sonos_manual_stop
     - media_player.playroom
+    - media_player.googlehome
 
 livingroom:
   name: Livingroom

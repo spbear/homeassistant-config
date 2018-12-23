@@ -25,3 +25,17 @@ spbear_desktop:
   picture: https://www.home-assistant.io/images/favicon-192x192.png
   track: yes
   hide_if_away: no
+
+mom_iphone:
+  name: Mom's Android
+  mac: !secret mom_mac
+  picture: https://www.home-assistant.io/images/favicon-192x192.png
+  track: yes
+  hide_if_away: no
+
+grandma_android:
+  name: Grandma's Android
+  mac: !secret grandma_mac
+  picture: https://www.home-assistant.io/images/favicon-192x192.png
+  track: yes
+  hide_if_away: no
