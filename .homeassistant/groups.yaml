@@ -65,6 +65,7 @@ my_bed:
   entities:
     - binary_sensor.room_bed_motion
     - binary_sensor.room_bed_sleep
+    - binary_sensor.bed_switch
     - light.sleep_lamp
 
 people:
