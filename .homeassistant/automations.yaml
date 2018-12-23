@@ -397,3 +397,8 @@
       payload: >
         {% if is_state('binary_sensor.security_manual_stop', 'off') %}on{% else %}off{% endif %}
   - service: script.xiaomi_alarm_alert_stop
+  - service: tts.google_say
+    entity_id: media_player.googlehome
+    data_template:
+        message: "{% if is_state('binary_sensor.security_manual_stop', 'off') %}보안 모드를 해제합니다.{% else %}보안 모드를 설정합니다.{% endif %}"
+        language: "ko"
