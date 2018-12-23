@@ -131,9 +131,6 @@
 - alias: Play Sonos when motion is detected
   trigger:
   - platform: state
-    entity_id: binary_sensor.room_door_status
-    to: 'on'
-  - platform: state
     entity_id: binary_sensor.room_door_motion
     to: 'on'
   - platform: state
@@ -168,31 +165,32 @@
   - condition: state
     entity_id: binary_sensor.yunhan_android
     state: 'on'
-  - condition: state
-    entity_id: media_player.playroom
-    state: 'playing'
   - condition: time
     after: '20:00:00'
-    before: '04:30:00'
+    before: '05:00:00'
   action:
-#  - service: script.sonos_say
-#    data:
-#      sonos_entity: media_player.playroom
-#      volume: 0.15
-#      message: '취침모드로 음악을 바꿉니다'
-#      delay: '00:00:05'
-  - service: media_player.media_stop
-    data_template:
-      entity_id: media_player.playroom
-  - wait_template: "{{ is_state('media_player.playroom', 'paused') }}"
-  - service: media_player.volume_set
-    data_template:
-      entity_id: media_player.playroom
-      volume_level: 0.12
   - service: script.sonos_play_sleep_song
 
-# Set volume of Sonos when sleep sensor is cleared
-- alias: Set volume of Sonos when sleep sensor is cleared
+# Close cover when sleep sensor is detected
+- alias: Close cover when sleep sensor is detected
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.room_bed_sleep
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: binary_sensor.yunhan_android
+    state: 'on'
+  - condition: time
+    after: '20:00:00'
+    before: '05:00:00'
+  action:
+  - service: cover.close_cover
+    data:
+        entity_id: cover.myroom_curtain
+
+# Change music when sleep sensor is cleared
+- alias: Change music when sleep sensor is cleared
   trigger:
   - platform: state
     entity_id: binary_sensor.room_bed_sleep
@@ -201,15 +199,49 @@
   - condition: state
     entity_id: binary_sensor.yunhan_android
     state: 'on'
-  - condition: state
-    entity_id: media_player.playroom
-    state: 'playing'
+  - condition: time
+    after: '07:00:00'
+    before: '12:00:00'
   action:
-  - service: media_player.media_stop
-    data_template:
-      entity_id: media_player.playroom
-  - wait_template: "{{ is_state('media_player.playroom', 'paused') }}"
   - service: script.sonos_play_random
+
+# Open cover when sleep sensor is cleared
+- alias: Open cover when sleep sensor is cleared
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.room_bed_sleep
+    to: 'off'
+  condition:
+  - condition: state
+    entity_id: binary_sensor.yunhan_android
+    state: 'on'
+  - condition: time
+    after: '06:30:00'
+    before: '12:00:00'
+  action:
+  - service: cover.open_cover
+    data:
+        entity_id: cover.myroom_curtain
+
+# Ask Clova today's weather when sleep sensor is cleared
+- alias: Ask Clova today's weather when sleep sensor is cleared
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.room_bed_sleep
+    to: 'off'
+  condition:
+  - condition: state
+    entity_id: binary_sensor.yunhan_android
+    state: 'on'
+  - condition: time
+    after: '07:00:00'
+    before: '11:00:00'
+  action:
+  - service: tts.google_say
+    entity_id: media_player.googlehome
+    data_template:
+        message: "클로바...... 오늘 날씨 알려줘"
+        language: "ko"
 
 # Stop Sonos 30 minutes after sleep sensor is detected
 - alias: Stop Sonos 60 minutes after sleep sensor is detected
@@ -250,11 +282,11 @@
     entity_id: media_player.playroom
     to: 'playing'
   - platform: state
-    entity_id: binary_sensor.yunhan_android
+    entity_id: binary_sensor.yunhan_bt_presence
     to: 'off'
   condition:
   - condition: state
-    entity_id: binary_sensor.yunhan_android
+    entity_id: binary_sensor.yunhan_bt_presence
     state: 'off'
   action:
   - service_template: media_player.media_stop
@@ -335,15 +367,15 @@
 
 - alias: Jiyeon's iPhone Presence to ST
   trigger:
-  - entity_id: device_tracker.jiyeon_iphone
+  - entity_id: device_tracker.mom_iphone
     platform: state
   condition: []
   action:
   - service: mqtt.publish
     data_template:
-      topic: smartthings/Jiyeon/presence
+      topic: smartthings/mom/presence
       payload: >
-        {% if is_state('device_tracker.jiyeon_iphone', 'home') %}present{% else %}not present{% endif %}
+        {% if is_state('device_tracker.mom_iphone', 'home') %}present{% else %}not present{% endif %}
 
 - alias: SPBEAR's Desktop Presence to ST
   trigger:
