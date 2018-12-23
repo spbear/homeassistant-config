@@ -1,0 +1,53 @@
+#########
+- alias: Turn on/off bed lamp when I single click the switch
+  trigger:
+    - platform: event
+      event_type: xiaomi_aqara.click
+      event_data:
+        entity_id: binary_sensor.bed_switch
+        click_type: single
+    - platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.bed_switch
+        click_type: single
+  action:
+  - service_template: light.toggle
+    data_template:
+      entity_id: light.sleep_lamp
+
+#########
+- alias: Turn on/off Sonos when I double click the switch
+  trigger:
+    - platform: event
+      event_type: xiaomi_aqara.click
+      event_data:
+        entity_id: binary_sensor.bed_switch
+        click_type: double
+    - platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.bed_switch
+        click_type: double
+  action:
+  - service_template: media_player.media_play{% if is_state('media_player.playroom', 'playing') %}_pause{% endif %}
+    data_template:
+      entity_id: media_player.playroom
+
+#########
+- alias: Open/close window curtain when I double click the switch
+  trigger:
+    - platform: event
+      event_type: xiaomi_aqara.click
+      event_data:
+        entity_id: binary_sensor.bed_switch
+        click_type: long_click_press
+    - platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.bed_switch
+        click_type: long_click_press
+  action:
+  - service_template: cover.{% if is_state('cover.window_curtain', 'open') %}close{% else %}open{% endif %}_cover
+    data_template:
+        entity_id: cover.window_curtain

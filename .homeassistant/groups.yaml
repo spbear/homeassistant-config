@@ -48,8 +48,7 @@ my_room:
     - binary_sensor.room_door_status
     - binary_sensor.room_door_motion
     - binary_sensor.window_sensor
-    - cover.myroom_curtain
-    - cover.mywindow_curtain
+    - cover.window_curtain
     - binary_sensor.security_manual_stop
     - light.gateway_light
 

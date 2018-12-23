@@ -51,3 +51,5 @@ sensor.livingroom_pm25:
   icon: mdi:cloud
 sensor.mi_scale:
   icon: mdi:scale
+cover.curtain_158d0002b337bf:
+  friendly_name: Room Window Curtain

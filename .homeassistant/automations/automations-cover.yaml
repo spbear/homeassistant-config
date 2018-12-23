@@ -14,7 +14,7 @@
   action:
   - service: cover.close_cover
     data:
-        entity_id: cover.myroom_curtain
+        entity_id: cover.window_curtain
 
 # Open cover when sleep sensor is cleared
 - alias: Open cover when sleep sensor is cleared
@@ -32,4 +32,4 @@
   action:
   - service: cover.open_cover
     data:
-        entity_id: cover.myroom_curtain
+        entity_id: cover.window_curtain
