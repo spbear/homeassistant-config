@@ -1,0 +1,80 @@
+##########################################################
+# MI Air Purifier
+##########################################################
+- alias: MI Air Purifier from ST
+  trigger:
+  - platform: mqtt
+    topic: smartthings/Mi Air Purifier/switch
+  condition:
+  - condition: template
+    value_template: "{{ states('binary_sensor.mi_air_purifier') != states('fan.mi_air_purifier') }}"
+  action:
+  - data_template:
+      entity_id: fan.mi_air_purifier
+    service_template:  >
+      fan.turn_{{ trigger.payload }}
+
+- alias: MI Air Purifier from HA
+  trigger:
+  - platform: state
+    entity_id: fan.mi_air_purifier
+    from: 'on'
+    to: 'off'
+  - platform: state
+    entity_id: fan.mi_air_purifier
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - service: mqtt.publish
+    data_template:
+      topic: smartthings/Mi Air Purifier/switch
+      payload: >
+        {% if is_state('fan.mi_air_purifier', 'on') %}on{% else %}off{% endif %}
+
+
+##########################################################
+# MI Stading Fan
+##########################################################
+- alias: MI Stading Fan from ST
+  trigger:
+  - platform: mqtt
+    topic: smartthings/Mi Standing Fan/switch
+  condition:
+  - condition: template
+    value_template: "{{ states('binary_sensor.mi_standing_fan') != states('fan.mi_standing_fan') }}"
+  action:
+  - data_template:
+      entity_id: fan.mi_standing_fan
+    service_template:  >
+      fan.turn_{{ trigger.payload }}
+
+- alias: MI Stading Fan from HA
+  trigger:
+  - platform: state
+    entity_id: fan.mi_standing_fan
+    from: 'on'
+    to: 'off'
+  - platform: state
+    entity_id: fan.mi_standing_fan
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - service: mqtt.publish
+    data_template:
+      topic: smartthings/Mi Standing Fan/switch
+      payload: >
+        {% if is_state('fan.mi_standing_fan', 'on') %}on{% else %}off{% endif %}
+
+##########################################################
+# Samsung Air Conditioner
+##########################################################
+- alias: Samsung Air Conditioner from MQTT
+  trigger:
+  - platform: mqtt
+    topic: smartthings/Samsung Air Conditioner/switch
+  condition: []
+  action:
+  - service_template: >
+      script.script_turn_{% if is_state('switch.samsung_air_conditioner', 'on') %}on{% else %}off{% endif %}_my_room_ac

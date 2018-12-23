@@ -1,0 +1,50 @@
+##########################################################
+# Virtual Presence
+##########################################################
+- alias: Minjun's Android Presence to ST
+  trigger:
+  - entity_id: device_tracker.minjun_android
+    platform: state
+  condition: []
+  action:
+  - service: mqtt.publish
+    data_template:
+      topic: smartthings/Minjun/presence
+      payload: >
+        {% if is_state('device_tracker.minjun_android', 'home') %}present{% else %}not present{% endif %}
+
+- alias: Hyunjun's Android Presence to ST
+  trigger:
+  - entity_id: device_tracker.hyunjun_android
+    platform: state
+  condition: []
+  action:
+  - service: mqtt.publish
+    data_template:
+      topic: smartthings/Hyunjun/presence
+      payload: >
+        {% if is_state('device_tracker.hyunjun_android', 'home') %}present{% else %}not present{% endif %}
+
+- alias: Jiyeon's iPhone Presence to ST
+  trigger:
+  - entity_id: device_tracker.mom_iphone
+    platform: state
+  condition: []
+  action:
+  - service: mqtt.publish
+    data_template:
+      topic: smartthings/mom/presence
+      payload: >
+        {% if is_state('device_tracker.mom_iphone', 'home') %}present{% else %}not present{% endif %}
+
+- alias: SPBEAR's Desktop Presence to ST
+  trigger:
+  - entity_id: device_tracker.spbear_desktop
+    platform: state
+  condition: []
+  action:
+    - service: mqtt.publish
+      data_template:
+        topic: smartthings/Desktop PC/switch
+        payload: >
+          {% if is_state('device_tracker.spbear_desktop', 'home') %}on{% else %}off{% endif %}

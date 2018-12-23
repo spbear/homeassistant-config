@@ -1,0 +1,35 @@
+# Close cover when sleep sensor is detected
+- alias: Close cover when sleep sensor is detected
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.room_bed_sleep
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: binary_sensor.yunhan_android
+    state: 'on'
+  - condition: time
+    after: '20:00:00'
+    before: '05:00:00'
+  action:
+  - service: cover.close_cover
+    data:
+        entity_id: cover.myroom_curtain
+
+# Open cover when sleep sensor is cleared
+- alias: Open cover when sleep sensor is cleared
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.room_bed_sleep
+    to: 'off'
+  condition:
+  - condition: state
+    entity_id: binary_sensor.yunhan_android
+    state: 'on'
+  - condition: time
+    after: '06:30:00'
+    before: '12:00:00'
+  action:
+  - service: cover.open_cover
+    data:
+        entity_id: cover.myroom_curtain

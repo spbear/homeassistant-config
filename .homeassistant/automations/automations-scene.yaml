@@ -1,0 +1,43 @@
+##########################################################
+# Scene Control
+##########################################################
+- alias: Welcome Home
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.yunhan_android
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - service: scene.turn_on
+    entity_id: scene.welcome
+  - service: script.turn_on
+    entity_id: script.xiaomi_alarm_alert_stop
+
+- alias: Light Welcome Dark
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.yunhan_android
+    from: 'off'
+    to: 'on'
+  condition:
+  - condition: template
+    value_template: "{{ states('sensor.room_illuminance') | int < 100 }}"
+  action:
+  - service: scene.turn_on
+    entity_id: scene.welcome
+  - service: scene.turn_on
+    entity_id: scene.night_welcome
+  - service: script.turn_on
+    entity_id: script.xiaomi_alarm_alert_stop
+
+- alias: Good Bye
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.yunhan_android
+    from: 'on'
+    to: 'off'
+  condition: []
+  action:
+  - service: scene.turn_on
+    entity_id: scene.good_bye

@@ -1,0 +1,176 @@
+##########################################################
+# Sonos Automation
+##########################################################
+# Play Sonos when motion is detected
+- alias: Play Sonos when motion is detected
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.room_door_motion
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.room_bed_motion
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: binary_sensor.yunhan_android
+    state: 'on'
+  - condition: state
+    entity_id: media_player.playroom
+    state: 'paused'
+  - condition: state
+    entity_id: binary_sensor.room_bed_sleep
+    state: 'off'
+  - condition: time
+    after: '07:00:00'
+    before: '03:00:00'
+  - condition: state
+    entity_id: binary_sensor.sonos_manual_stop
+    state: 'off'
+  action:
+  - service: script.sonos_play_random
+
+# Play Sonos night song when sleep sensor is detected
+- alias: Play Sonos night song when sleep sensor is detected
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.room_bed_sleep
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: binary_sensor.yunhan_android
+    state: 'on'
+  - condition: time
+    after: '20:00:00'
+    before: '05:00:00'
+  action:
+  - service: script.sonos_play_sleep_song
+
+# Change music when sleep sensor is cleared
+- alias: Change music when sleep sensor is cleared
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.room_bed_sleep
+    to: 'off'
+  condition:
+  - condition: state
+    entity_id: binary_sensor.yunhan_android
+    state: 'on'
+  - condition: time
+    after: '07:00:00'
+    before: '12:00:00'
+  action:
+  - service: script.sonos_play_random
+
+# Ask Clova today's weather when sleep sensor is cleared
+- alias: Ask Clova today's weather when sleep sensor is cleared
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.room_bed_sleep
+    to: 'off'
+  condition:
+  - condition: state
+    entity_id: binary_sensor.yunhan_android
+    state: 'on'
+  - condition: time
+    after: '07:00:00'
+    before: '11:00:00'
+  action:
+  - service: tts.google_say
+    entity_id: media_player.googlehome
+    data_template:
+        message: "클로바...... 오늘 날씨 알려줘"
+        language: "ko"
+
+# Stop Sonos 30 minutes after sleep sensor is detected
+- alias: Stop Sonos 30 minutes after sleep sensor is detected
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.room_bed_sleep
+    to: 'on'
+    for:
+      minutes: 30
+  - platform: state
+    entity_id: media_player.playroom
+    to: 'playing'
+    for:
+      minutes: 30
+  condition:
+  - condition: state
+    entity_id: binary_sensor.yunhan_android
+    state: 'on'
+  - condition: state
+    entity_id: binary_sensor.room_bed_sleep
+    state: 'on'
+  - condition: state
+    entity_id: media_player.playroom
+    state: 'playing'
+  action:
+  - service: media_player.media_stop
+    data_template:
+      entity_id: media_player.playroom
+  - service: mqtt.publish
+    data_template:
+      topic: sonos/manual_stop
+      payload: "off"
+
+# Stop Sonos when I am away
+- alias: Stop Sonos when I am away
+  trigger:
+  - platform: state
+    entity_id: media_player.playroom
+    to: 'playing'
+  - platform: state
+    entity_id: binary_sensor.yunhan_bt_presence
+    to: 'off'
+  condition:
+  - condition: state
+    entity_id: binary_sensor.yunhan_bt_presence
+    state: 'off'
+  action:
+  - service_template: media_player.media_stop
+    data_template:
+      entity_id: media_player.playroom
+  - service: mqtt.publish
+    data_template:
+      topic: sonos/manual_stop
+      payload: "off"
+
+# Play / Stop Sonos when I click the switch
+- alias: Play / Stop Sonos when I click the switch
+  trigger:
+    - platform: event
+      event_type: xiaomi_aqara.click
+      event_data:
+        entity_id: binary_sensor.desktop_switch
+        click_type: single
+    - platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.desktop_switch
+        click_type: single
+  action:
+  - service: mqtt.publish
+    data_template:
+      topic: sonos/manual_stop
+      payload: >
+        {% if is_state('media_player.playroom', 'playing') %}on{% else %}off{% endif %}
+  - service_template: media_player.media_play_pause
+    data_template:
+      entity_id: media_player.playroom
+  - service: script.xiaomi_alarm_alert_stop
+
+# Play next song of Sonos when I double click the switch
+- alias: Play next song of Sonos when I double click the switch
+  trigger:
+    - platform: event
+      event_type: xiaomi_aqara.click
+      event_data:
+        entity_id: binary_sensor.desktop_switch
+        click_type: double
+    - platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.desktop_switch
+        click_type: double
+  action:
+  - service: script.sonos_play_random

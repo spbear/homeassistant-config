@@ -1,0 +1,45 @@
+##########################################################
+# Security
+##########################################################
+- alias: Alert Intruder!
+  trigger:
+    - entity_id: binary_sensor.room_door_motion
+      platform: state
+      to: 'on'
+    - entity_id: binary_sensor.room_bed_motion
+      platform: state
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: binary_sensor.yunhan_android
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.security_manual_stop
+      state: 'off'
+  action:
+    - service: script.xiaomi_alarm_alert
+
+- alias: Start/Stop Security when I click the switch
+  trigger:
+    - platform: event
+      event_type: xiaomi_aqara.click
+      event_data:
+        entity_id: binary_sensor.desktop_switch
+        click_type: long_click_press
+    - platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.desktop_switch
+        click_type: long_click_press
+  action:
+  - service: mqtt.publish
+    data_template:
+      topic: security/manual_stop
+      payload: >
+        {% if is_state('binary_sensor.security_manual_stop', 'off') %}on{% else %}off{% endif %}
+  - service: script.xiaomi_alarm_alert_stop
+  - service: tts.google_say
+    entity_id: media_player.googlehome
+    data_template:
+        message: "{% if is_state('binary_sensor.security_manual_stop', 'off') %}보안 모드를 해제합니다.{% else %}보안 모드를 설정합니다.{% endif %}"
+        language: "ko"

@@ -207,8 +207,9 @@ history_graph:
     hours_to_show: 24
     refresh: 60
 
-automation: !include automations.yaml
 script: !include scripts.yaml
 
 group: !include groups.yaml
 scene: !include scene.yaml
+
+automation: !include_dir_merge_list automations/
