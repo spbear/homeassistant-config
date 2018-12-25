@@ -38,12 +38,18 @@ logger:
     homeassistant.components.device_tracker: error
     homeassistant.components.xiaomi_aqara: debug
     homeassistant.event: debug
+    homeassistant.components.alexa: debug
+    homeassistant.components.intent_script: debug
 
 # Show links to resources in log and frontend
 #introduction:
 
 # Enables the frontend
 frontend:
+
+alexa:
+
+intent_script: !include alexa.yaml
 
 customizer:
   custom_ui: local
@@ -207,9 +213,9 @@ history_graph:
     hours_to_show: 24
     refresh: 60
 
-script: !include scripts.yaml
 
 group: !include groups.yaml
 scene: !include scene.yaml
 
+script: !include_dir_merge_named scripts/
 automation: !include_dir_merge_list automations/

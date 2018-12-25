@@ -1,0 +1,56 @@
+TurnOnIntent:
+  action:
+    service: light.turn_on
+    data_template:
+      entity_id: light.{{ device | replace(" ", "_") }}
+  speech:
+    type: plain
+    text: OK
+TurnOffIntent:
+  action:
+    service: light.turn_off
+    data_template:
+      entity_id: light.{{ device | replace(" ", "_") }}
+  speech:
+    type: plain
+    text: OK
+ActivateIntent:
+  action:
+    service: scene.turn_on
+    data_template:
+      entity_id: scene.{{ scene | replace(" ", "_") }}
+  speech:
+    type: plain
+    text: OK
+OpenCurtainIntent:
+  action:
+    service: cover.open_cover
+    data_template:
+      entity_id: cover.window_curtain
+  speech:
+    type: plain
+    text: OK
+CloseCurtainIntent:
+  action:
+    service: cover.close_cover
+    data_template:
+      entity_id: cover.window_curtain
+  speech:
+    type: plain
+    text: OK
+StopMusicIntent:
+  action:
+    service: script.sonos_stop
+  speech:
+    type: plain
+    text: OK
+StartMusicIntent:
+  action:
+    service: script.sonos_play_random
+  speech:
+    type: plain
+    text: OK
+AMAZON.FallbackIntent:
+  speech:
+    type: plain
+    text: I don't know what should I do for your command.
