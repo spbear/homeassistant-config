@@ -4,9 +4,9 @@ Wants=home-assistant.service
 After=home-assistant.service
 
 [Service]
-ExecStart=/usr/bin/ssh -N -R 8123:127.0.0.1:8123 spbear@spbear.com
-Restart=Always
-RestartSec=2
+ExecStart=/usr/bin/autossh -M 20000 -f -N -R 8123:127.0.0.1:8123 -R 2200:127.0.0.1:22 spbear@spbear.com
+Restart=always
+RestartSec=60
 StandardOutput=syslog
 StandardError=syslog
 User=homeassistant
