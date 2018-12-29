@@ -40,6 +40,10 @@ sonos_play_random:
         topic: "sonos/playlist"
         payload: "{{ ['bank0', 'bank1','bank2', 'bank3','bank4', 'bank5', 'bank6'] | random }}"
         retain: "true"
+    - service: mqtt.publish
+      data_template:
+        topic: sonos/manual_stop
+        payload: off
     - service: media_player.volume_set
       data_template:
         entity_id: media_player.playroom
@@ -65,6 +69,10 @@ sonos_play_sleep_song:
         topic: "sonos/playlist"
         payload: "{{ ['sleep'] | random }}"
         retain: "true"
+    - service: mqtt.publish
+      data_template:
+        topic: sonos/manual_stop
+        payload: off
     - service: media_player.volume_set
       data_template:
         entity_id: media_player.playroom
