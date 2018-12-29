@@ -23,3 +23,29 @@
         service: media_player.turn_off
         data:
           entity_id: media_player.livingroom_tv
+
+- platform: mqtt
+  name: music_auto_play
+  friendly_name: "Music Auto Play"
+  state_topic: "switch/music_auto_play"
+  command_topic: "switch/music_auto_play"
+  payload_on: "on"
+  payload_off: "off"
+  state_on: "on"
+  state_off: "off"
+  icon: mdi:music
+  optimistic: false
+  retain: true
+
+- platform: mqtt
+  name: security_mode
+  friendly_name: "Security Mode"
+  state_topic: "switch/security_mode"
+  command_topic: "switch/security_mode"
+  payload_on: "on"
+  payload_off: "off"
+  state_on: "on"
+  state_off: "off"
+  icon: mdi:security
+  optimistic: false
+  retain: true

@@ -23,10 +23,9 @@ sonos_say:
 sonos_stop:
   alias: "Stop Sonos"
   sequence:
-  - service: mqtt.publish
-    data_template:
-      topic: sonos/manual_stop
-      payload: on
+  - service: switch.turn_off
+    data:
+      entity_id: switch.music_auto_play
   - service_template: media_player.media_play_pause
     data_template:
       entity_id: media_player.playroom
@@ -40,10 +39,9 @@ sonos_play_random:
         topic: "sonos/playlist"
         payload: "{{ ['bank0', 'bank1','bank2', 'bank3','bank4', 'bank5', 'bank6'] | random }}"
         retain: "true"
-    - service: mqtt.publish
-      data_template:
-        topic: sonos/manual_stop
-        payload: off
+    - service: switch.turn_on
+      data:
+        entity_id: switch.music_auto_play
     - service: media_player.volume_set
       data_template:
         entity_id: media_player.playroom
@@ -69,10 +67,9 @@ sonos_play_sleep_song:
         topic: "sonos/playlist"
         payload: "{{ ['sleep'] | random }}"
         retain: "true"
-    - service: mqtt.publish
-      data_template:
-        topic: sonos/manual_stop
-        payload: off
+    - service: switch.turn_on
+      data:
+        entity_id: switch.music_auto_play
     - service: media_player.volume_set
       data_template:
         entity_id: media_player.playroom

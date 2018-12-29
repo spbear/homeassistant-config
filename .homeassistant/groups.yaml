@@ -49,7 +49,7 @@ my_room:
     - binary_sensor.room_door_motion
     - binary_sensor.window_sensor
     - cover.window_curtain
-    - binary_sensor.security_manual_stop
+    - switch.security_mode
     - light.gateway_light
 
 my_desk:
@@ -93,7 +93,7 @@ speaker:
   name: Speaker
   entities:
     - sensor.sonos_playlist
-    - binary_sensor.sonos_manual_stop
+    - switch.music_auto_play
     - media_player.playroom
     - media_player.googlehome
 

@@ -40,6 +40,7 @@ logger:
     homeassistant.event: debug
     homeassistant.components.alexa: debug
     homeassistant.components.intent_script: debug
+    custom_components.fan.xiaomi_miio_fan: debug
 
 # Show links to resources in log and frontend
 #introduction:
@@ -108,6 +109,9 @@ history: !include history.yaml
 
 # View all events in a logbook
 logbook:
+  exclude:
+    entities:
+      - fan.mi_standing_fan
 
 # Enables a map showing the location of tracked devices
 map:

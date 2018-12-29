@@ -14,8 +14,8 @@
       entity_id: binary_sensor.yunhan_android
       state: 'off'
     - condition: state
-      entity_id: binary_sensor.security_manual_stop
-      state: 'off'
+      entity_id: switch.security_mode
+      state: 'on'
   action:
     - service: script.xiaomi_alarm_alert
 
@@ -32,14 +32,12 @@
         entity_id: binary_sensor.desktop_switch
         click_type: long_click_press
   action:
-  - service: mqtt.publish
-    data_template:
-      topic: security/manual_stop
-      payload: >
-        {% if is_state('binary_sensor.security_manual_stop', 'off') %}on{% else %}off{% endif %}
+  - service: switch.toggle
+    data:
+      entity_id: switch.security_mode
   - service: script.xiaomi_alarm_alert_stop
   - service: tts.google_say
     entity_id: media_player.googlehome
     data_template:
-        message: "{% if is_state('binary_sensor.security_manual_stop', 'off') %}보안 모드를 해제합니다.{% else %}보안 모드를 설정합니다.{% endif %}"
+        message: "{% if is_state('switch.security_mode', 'off') %}보안 모드를 해제합니다.{% else %}보안 모드를 설정합니다.{% endif %}"
         language: "ko"
