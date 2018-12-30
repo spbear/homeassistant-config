@@ -112,6 +112,8 @@ logbook:
   exclude:
     entities:
       - fan.mi_standing_fan
+    domains:
+      - group
 
 # Enables a map showing the location of tracked devices
 map:
@@ -223,3 +225,12 @@ scene: !include scene.yaml
 
 script: !include_dir_merge_named scripts/
 automation: !include_dir_merge_list automations/
+rest_command: !include rest_command.yaml
+
+input_select:
+  sonos_playlist:
+    name: What music do you want to play?
+    options:
+     - None
+    initial: None
+    icon: mdi:music

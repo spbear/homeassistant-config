@@ -29,6 +29,25 @@
   action:
   - service: script.sonos_play_random
 
+# Update Sonos Playlist from Favorite
+- alias: Update Sonos Playlist
+  trigger:
+  - platform: homeassistant
+    event: start
+  action:
+  - service: rest_command.update_sonos_playlist
+
+# Select source from playlist
+- alias: Select Source from Playlist
+  trigger:
+  - platform: event
+    event_type: call_service
+    event_data:
+      domain: input_select
+      service: select_option
+  action:
+  - service: script.sonos_play_specific_song
+
 # Play Sonos night song when sleep sensor is detected
 - alias: Play Sonos night song when sleep sensor is detected
   trigger:

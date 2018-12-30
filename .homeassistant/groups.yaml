@@ -92,7 +92,7 @@ my_car:
 speaker:
   name: Speaker
   entities:
-    - sensor.sonos_playlist
+    - input_select.sonos_playlist
     - switch.music_auto_play
     - media_player.playroom
     - media_player.googlehome

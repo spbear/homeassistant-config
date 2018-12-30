@@ -25,8 +25,7 @@
           entity_id: media_player.livingroom_tv
 
 - platform: mqtt
-  name: music_auto_play
-  friendly_name: "Music Auto Play"
+  name: "Music Auto Play"
   state_topic: "switch/music_auto_play"
   command_topic: "switch/music_auto_play"
   payload_on: "on"
@@ -38,8 +37,7 @@
   retain: true
 
 - platform: mqtt
-  name: security_mode
-  friendly_name: "Security Mode"
+  name: "Security Mode"
   state_topic: "switch/security_mode"
   command_topic: "switch/security_mode"
   payload_on: "on"

@@ -29,8 +29,6 @@ binary_sensor.window_sensor:
   device_class: window
 binary_sensor.room_door_status:
   device_class: door
-sensor.sonos_playlist:
-  icon: mdi:music
 binary_sensor.bmw:
   icon: mdi:car
 binary_sensor.airpods:

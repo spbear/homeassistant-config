@@ -1,7 +1,8 @@
 ##########################################################
 # MI Air Purifier
 ##########################################################
-- alias: MI Air Purifier from ST
+- alias: mqtt_mi_air_purifier_st
+  hide_entity: true
   trigger:
   - platform: mqtt
     topic: smartthings/Mi Air Purifier/switch
@@ -14,7 +15,8 @@
     service_template:  >
       fan.turn_{{ trigger.payload }}
 
-- alias: MI Air Purifier from HA
+- alias: mqtt_mi_air_purifier_ha
+  hide_entity: true
   trigger:
   - platform: state
     entity_id: fan.mi_air_purifier
@@ -36,7 +38,8 @@
 ##########################################################
 # MI Stading Fan
 ##########################################################
-- alias: MI Stading Fan from ST
+- alias: mqtt_mi_standing_fan_st
+  hide_entity: true
   trigger:
   - platform: mqtt
     topic: smartthings/Mi Standing Fan/switch
@@ -49,7 +52,8 @@
     service_template:  >
       fan.turn_{{ trigger.payload }}
 
-- alias: MI Stading Fan from HA
+- alias: mqtt_mi_standing_fan_ha
+  hide_entity: true
   trigger:
   - platform: state
     entity_id: fan.mi_standing_fan
@@ -70,7 +74,8 @@
 ##########################################################
 # Samsung Air Conditioner
 ##########################################################
-- alias: Samsung Air Conditioner from MQTT
+- alias: mqtt_samsung_air_conditioner_st
+  hide_entity: true
   trigger:
   - platform: mqtt
     topic: smartthings/Samsung Air Conditioner/switch

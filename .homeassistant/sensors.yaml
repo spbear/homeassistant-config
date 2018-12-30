@@ -56,10 +56,6 @@
 
 
 - platform: mqtt
-  state_topic: sonos/playlist
-  name: Sonos Playlist
-
-- platform: mqtt
   name: "Mi Scale"
   state_topic: "bt-gateway/miscale/weight/kg"
   value_template: "{{ '%.1f'|format(value | float) }}"

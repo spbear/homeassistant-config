@@ -1,0 +1,16 @@
+update_sonos_playlist:
+  url: "http://localhost:8123/api/services/input_select/set_options"
+  method: POST
+  headers:
+    content-type: application/json
+    x-ha-access: !secret http_password
+  content_type: application/json
+  payload: >-
+    {
+      "entity_id": "input_select.sonos_playlist",
+      "options": [
+    {%- for item in states.media_player.playroom.attributes.source_list %}
+        "{{ item }}"{% if not loop.last %}, {% endif %}
+    {%- endfor %}
+      ]
+    }

@@ -1,6 +1,12 @@
 use_include_order: true
 include:
   entities:
+    - binary_sensor.yunhan_android
+    - binary_sensor.yunhan_bt_presence
+    - binary_sensor.minjun_android
+    - binary_sensor.hyunjun_android
+    - binary_sensor.mom_iphone
+    - binary_sensor.grandma_android
     - sun.sun
     - sensor.weather_symbol
     - sensor.weather_temperature
@@ -16,11 +22,7 @@ include:
     - binary_sensor.room_bed_sleep
     - binary_sensor.window_sensor
     - binary_sensor.room_door_status
-    - binary_sensor.yunhan_android
-    - binary_sensor.minjun_android
-    - binary_sensor.hyunjun_android
     - binary_sensor.yunhan_desktop
-    - binary_sensor.desktop_switch
     - light.desk_lamp
     - light.sleep_lamp
     - light.gateway_light
