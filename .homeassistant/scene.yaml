@@ -1,11 +1,8 @@
 - name: Welcome
   entities:
-    light.gateway_light:
-      state: off
-    fan.mi_air_purifier:
-      state: on
-    fan.mi_humidifier:
-      state: on
+    light.gateway_light: off
+    fan.mi_air_purifier: on
+    fan.mi_humidifier: on
 
 - name: Good Bye
   entities:
@@ -20,6 +17,9 @@
 
 - name: Night Welcome
   entities:
+    light.gateway_light: off
+    fan.mi_air_purifier: on
+    fan.mi_humidifier: on
     light.desk_lamp:
       state: on
       kelvin: 2800
@@ -27,4 +27,4 @@
     light.sleep_lamp:
       state: on
       kelvin: 2800
-      brightness: 255
+      brightness: 100

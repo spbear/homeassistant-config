@@ -21,11 +21,14 @@
     from: 'off'
     to: 'on'
   condition:
-  - condition: template
-    value_template: "{{ states('sensor.room_illuminance') | int < 100 }}"
+  - condition: or
+    conditions:
+    - condition: template
+      value_template: "{{ states('sensor.room_illuminance') | int < 100 }}"
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
   action:
-  - service: scene.turn_on
-    entity_id: scene.welcome
   - service: scene.turn_on
     entity_id: scene.night_welcome
   - service: script.turn_on
@@ -41,3 +44,29 @@
   action:
   - service: scene.turn_on
     entity_id: scene.good_bye
+
+- alias: Sun Below Horizon
+  trigger:
+    platform: state
+    entity_id: sun.sun
+    to: 'below_horizon'
+  condition:
+  - condition: state
+    entity_id: binary_sensor.yunhan_android
+    state: 'off'
+  action:
+  - service: scene.turn_on
+    entity_id: scene.sun_below_horizon
+
+- alias: Sun Above Horizon
+  trigger:
+    platform: state
+    entity_id: sun.sun
+    to: 'above_horizon'
+  condition:
+  - condition: state
+    entity_id: binary_sensor.yunhan_android
+    state: 'off'
+  action:
+  - service: scene.turn_on
+    entity_id: scene.sun_above_horizon
