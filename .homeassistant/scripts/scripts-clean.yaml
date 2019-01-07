@@ -1,0 +1,17 @@
+clean_myroom:
+  alias: clean_myroom
+  sequence:
+  - service: vacuum.send_command
+    data:
+      entity_id: 'vacuum.mi_robot_vacuum'
+      command: 'app_zoned_clean'
+      params: [[29500,21000,32000,25700,1]]
+
+clean_kitchen:
+  alias: clean_kitchen
+  sequence:
+  - service: vacuum.send_command
+    data:
+      entity_id: 'vacuum.mi_robot_vacuum'
+      command: 'app_zoned_clean'
+      params: [[22000,27085,25500,29000,1],[23800,29000,25500,31575,1]]

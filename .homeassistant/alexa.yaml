@@ -50,7 +50,19 @@ StartMusicIntent:
   speech:
     type: plain
     text: OK
+CleanMyroomIntent:
+  action:
+    service: script.clean_myroom
+  speech:
+    type: plain
+    text: OK
+CleanKitchenIntent:
+  action:
+    service: script.clean_kitchen
+  speech:
+    type: plain
+    text: OK
 AMAZON.FallbackIntent:
   speech:
     type: plain
-    text: I don't know what should I do for your command.
+    text: I don't know what should I do.
