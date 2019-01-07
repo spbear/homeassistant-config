@@ -33,3 +33,45 @@
   - service: cover.open_cover
     data:
         entity_id: cover.window_curtain
+
+# Open
+- alias: cover_open_0730
+  trigger:
+  - platform: time
+    at: '07:30:00'
+  condition:
+  - condition: state
+    entity_id: binary_sensor.yunhan_android
+    state: 'on'
+  action:
+  - service: cover.open_cover
+    data:
+        entity_id: cover.window_curtain
+
+- alias: cover_close_sun_below_horizon
+  trigger:
+    platform: state
+    entity_id: sun.sun
+    to: 'below_horizon'
+  condition:
+  - condition: state
+    entity_id: binary_sensor.yunhan_android
+    state: 'off'
+  action:
+  - service: cover.close_cover
+    data:
+        entity_id: cover.window_curtain
+
+- alias: cover_close_sun_above_horizon
+  trigger:
+    platform: state
+    entity_id: sun.sun
+    to: 'above_horizon'
+  condition:
+  - condition: state
+    entity_id: binary_sensor.yunhan_android
+    state: 'off'
+  action:
+  - service: cover.open_cover
+    data:
+        entity_id: cover.window_curtain
