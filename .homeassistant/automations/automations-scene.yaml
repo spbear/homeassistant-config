@@ -44,29 +44,3 @@
   action:
   - service: scene.turn_on
     entity_id: scene.good_bye
-
-- alias: Sun Below Horizon
-  trigger:
-    platform: state
-    entity_id: sun.sun
-    to: 'below_horizon'
-  condition:
-  - condition: state
-    entity_id: binary_sensor.yunhan_android
-    state: 'off'
-  action:
-  - service: scene.turn_on
-    entity_id: scene.sun_below_horizon
-
-- alias: Sun Above Horizon
-  trigger:
-    platform: state
-    entity_id: sun.sun
-    to: 'above_horizon'
-  condition:
-  - condition: state
-    entity_id: binary_sensor.yunhan_android
-    state: 'off'
-  action:
-  - service: scene.turn_on
-    entity_id: scene.sun_above_horizon
