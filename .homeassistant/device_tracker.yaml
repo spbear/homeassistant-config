@@ -16,6 +16,7 @@
 - platform: nmap_tracker
   hosts:
     - !secret spbear_desktop_ip
-  interval_seconds: 30
+  interval_seconds: 12
+  consider_home: 30
   home_interval: 1
   scan_options: " --privileged -sP "

@@ -12,6 +12,46 @@
 
 - platform: template
   switches:
+    screen_projector:
+      friendly_name: "Screen Projector"
+      value_template: "{{ is_state('binary_sensor.screen_projector', 'on')}}"
+      turn_on:
+        service: script.script_power_gs1
+      turn_off:
+        service: script.script_power_gs1
+
+- platform: template
+  switches:
+    mibox:
+      friendly_name: "MIBOX"
+      value_template: "{{ is_state('media_player.mibox', 'playing')}}"
+      turn_on:
+        service: androidtv.adb_command
+        data:
+            entity_id: media_player.mibox
+            command: "POWER"
+      turn_off:
+        service: androidtv.adb_command
+        data:
+            entity_id: media_player.mibox
+            command: "SLEEP"
+
+- platform: template
+  switches:
+    roll_screen:
+      friendly_name: "Roll Screen"
+      value_template: "{{ not is_state('cover.roll_screen', 'open')}}"
+      turn_on:
+        service: cover.close_cover
+        data:
+            entity_id: cover.roll_screen
+      turn_off:
+        service: cover.open_cover
+        data:
+            entity_id: cover.roll_screen
+
+- platform: template
+  switches:
     livingroom_tv:
       friendly_name: "Living Room TV"
       value_template: "{{ is_state('media_player.livingroom_tv', 'on')}}"

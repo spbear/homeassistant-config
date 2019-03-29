@@ -63,7 +63,6 @@ device_tracker: !include device_tracker.yaml
 sensor: !include sensors.yaml
 binary_sensor: !include binary_sensors.yaml
 
-
 # Enables configuration UI
 config:
 
@@ -135,7 +134,7 @@ vacuum:
 fan:
   - platform: xiaomi_miio
     name: "Mi Air Purifier"
-    icon: mdi:weather-windy
+    #icon: mdi:weather-windy
     host: !secret xiaomi_air_purifier_myroom_ip
     token: !secret air_purifier_token
 
@@ -146,15 +145,20 @@ fan:
 
   - platform: xiaomi_miio
     name: "Living Room Mi Air Purifier"
-    icon: mdi:weather-windy
+    #icon: mdi:weather-windy
     host: !secret xiaomi_air_purifier_livingroom_ip
     token: !secret air_purifier_livingroom_token
 
   - platform: xiaomi_miio
     name: "Mi Humidifier"
-    icon: mdi:weather-windy
+    #icon: mdi:weather-windy
     host: !secret xiaomi_humidifier_ip
     token: !secret humidifier_token
+
+cover:
+  - platform: brunt
+    username: !secret brunt_username
+    password: !secret brunt_password
 
 xiaomi_aqara:
   discovery_retry: 5
@@ -174,6 +178,7 @@ remote:
       turn_on_my_room_ac:
         command:
           - raw:Z6XTACkCAACWBgAAZREAADkjAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAjEBAAAAAAEBAQEBAAAAAAEAAAAAAAEBAQAAAAAAAAAAAAAAAAABAAEAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAABAAAAAAAAAAEBAAEAAAAAAA
+
       turn_off_my_room_ac:
         command:
            - raw:Z6XTACkCAACWBgAAmhEAAAEjAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAjEBAAAAAAEBAQEBAAAAAAEAAAAAAAEBAQAAAAAAAAAAAAAAAAABAAEAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAEAAAAAAAEBAQEAAQEBAA
@@ -194,6 +199,10 @@ remote:
         command:
           - raw:Z6XTACoCAACUBgAAfxEAAB4jAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAjEBAAAAAAEBAQEBAQEAAAEAAAAAAAEBAQAAAAAAAAAAAAAAAAABAAEAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAQAAAA
 
+      power_gs1:
+        command:
+          - raw:Z6VHACQCAABLAgAAjwYAAL8IAACOEQAAYCMAAEyzAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABFAQEBAQEBAQEBAQEBISEBAQEhAQEBAQEBIQEhISEhISFhNQEAAAAAAAAAAAAAZ6VHACQCAABLAgAAjwYAAL8IAACOEQAAYCMAAEyzAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABFAQEBAQEBAQEBAQEBISEBAQEhAQEBAQEBIQEhISEhISFhNQE=
+
 switch: !include switches.yaml
 
 media_player:
@@ -202,6 +211,13 @@ media_player:
     port: 8001
     name: Livingroom TV
     mac: !secret livingroom_tv_mac
+  - platform: androidtv
+    host: !secret mibox_ip
+    adb_server_ip: 127.0.0.1
+    name: MIBOX
+    apps:
+      "netflix": "Netflix"
+      "youtube": "Youtube"
 
 history_graph:
   gr1:

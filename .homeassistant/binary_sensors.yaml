@@ -1,16 +1,16 @@
 - platform: mqtt
   state_topic: bt-gateway/bt-presence/SPBEAR
   name: yunhan_bt_presence
-  friendly_name: Yunhan's BT Presence
-  icon_template: "mdi:cellphone-android"
+  #friendly_name: Yunhan's BT Presence
+  #icon_template: "mdi:cellphone-android"
   payload_on: 'present'
   payload_off: 'not present'
 
 - platform: mqtt
   state_topic: smartthings/Yunhan's GS8/presence
   name: yunhan_gps_presence
-  friendly_name: Yunhan's GPS Presence
-  icon_template: "mdi:cellphone-android"
+  #friendly_name: Yunhan's GPS Presence
+  #icon_template: "mdi:cellphone-android"
   payload_on: 'present'
   payload_off: 'not present'
 
@@ -45,6 +45,12 @@
       friendly_name: Grandma's Android
       icon_template: "mdi:cellphone-android"
       value_template: "{{ is_state('device_tracker.grandma_android', 'home')}}"
+
+- platform: mqtt
+  state_topic: bt-gateway/projector/presence
+  name: screen_projector
+  payload_on: 'True'
+  payload_off: 'False'
 
 - platform: mqtt
   state_topic: smartthings/Main Door/contact

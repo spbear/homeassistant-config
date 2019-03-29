@@ -11,6 +11,7 @@ default_view:
     - group.my_desk
     - group.my_bed
     - group.my_door
+    - group.my_projection_tv
     - group.my_car
     - group.my_gadget
     - group.speaker
@@ -66,6 +67,13 @@ my_bed:
     - binary_sensor.room_bed_sleep
     - binary_sensor.bed_switch
     - light.sleep_lamp
+
+my_projection_tv:
+  name: My Projection TV
+  entities:
+    - switch.roll_screen
+    - switch.screen_projector
+    - switch.mibox
 
 people:
   name: People

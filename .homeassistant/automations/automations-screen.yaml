@@ -1,0 +1,50 @@
+# Close cover when projector is turned on
+- alias: Close cover when MIBOX is turned on
+  trigger:
+  - platform: state
+    entity_id: switch.mibox
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: binary_sensor.yunhan_android
+    state: 'on'
+  action:
+  - service: cover.close_cover
+    data:
+        entity_id: cover.window_curtain
+  - service: cover.close_cover
+    data:
+        entity_id: cover.roll_screen
+  - service: switch.turn_on
+    data:
+        entity_id: switch.screen_projector
+  - service: switch.turn_off
+    data:
+        entity_id: switch.music_auto_play
+  - service: media_player.media_stop
+    data:
+        entity_id: media_player.playroom
+
+# Open cover when projector is turned off
+- alias: Open cover when  projector is turned off
+  trigger:
+  - platform: state
+    entity_id: switch.mibox
+    to: 'off'
+  condition:
+  - condition: state
+    entity_id: binary_sensor.yunhan_android
+    state: 'on'
+  action:
+  - service: cover.open_cover
+    data:
+        entity_id: cover.window_curtain
+  - service: cover.open_cover
+    data:
+        entity_id: cover.roll_screen
+  - service: switch.turn_off
+    data:
+        entity_id: switch.screen_projector
+  - service: switch.turn_on
+    data:
+        entity_id: switch.music_auto_play
