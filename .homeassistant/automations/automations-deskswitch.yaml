@@ -1,0 +1,55 @@
+# Play / Stop Sonos when I click the switch
+- alias: Play / Stop Sonos when I click the switch
+  trigger:
+    - platform: event
+      event_type: xiaomi_aqara.click
+      event_data:
+        entity_id: binary_sensor.desktop_switch
+        click_type: single
+    - platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.desktop_switch
+        click_type: single
+  action:
+  - service_template: switch.turn_{% if is_state('media_player.playroom', 'playing') %}off{% else %}on{% endif %}
+    data:
+      entity_id: switch.music_auto_play
+  - service_template: media_player.media_play_pause
+    data_template:
+      entity_id: media_player.playroom
+  - service: script.xiaomi_alarm_alert_stop
+
+# Play next song of Sonos when I double click the switch
+- alias: Play next song of Sonos when I double click the switch
+  trigger:
+    - platform: event
+      event_type: xiaomi_aqara.click
+      event_data:
+        entity_id: binary_sensor.desktop_switch
+        click_type: double
+    - platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.desktop_switch
+        click_type: double
+  action:
+  - service: script.sonos_play_random
+
+#########
+- alias: Open/close window curtain when I double click the switch
+  trigger:
+    - platform: event
+      event_type: xiaomi_aqara.click
+      event_data:
+        entity_id: binary_sensor.desktop_switch
+        click_type: long_click_press
+    - platform: event
+      event_type: click
+      event_data:
+        entity_id: binary_sensor.desktop_switch
+        click_type: long_click_press
+  action:
+  - service_template: cover.{% if is_state('cover.window_curtain', 'open') %}close{% else %}open{% endif %}_cover
+    data_template:
+        entity_id: cover.window_curtain
