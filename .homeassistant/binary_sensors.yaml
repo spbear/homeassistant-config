@@ -7,7 +7,7 @@
   payload_off: 'not present'
 
 - platform: mqtt
-  state_topic: smartthings/Yunhan's GS8/presence
+  state_topic: smartthings/Yunhan's GS10/presence
   name: yunhan_gps_presence
   #friendly_name: Yunhan's GPS Presence
   #icon_template: "mdi:cellphone-android"

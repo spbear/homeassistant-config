@@ -39,3 +39,11 @@ grandma_android:
   picture: https://www.home-assistant.io/images/favicon-192x192.png
   track: yes
   hide_if_away: no
+
+spbear_s10:
+  hide_if_away: false
+  icon:
+  mac: A8:2B:B9:DF:EA:48
+  name: SPBEAR-S10
+  picture:
+  track: true
