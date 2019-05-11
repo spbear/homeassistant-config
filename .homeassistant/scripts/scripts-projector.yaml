@@ -6,7 +6,7 @@ script_power_gs1:
     data:
       command: 'power_gs1'
   - delay:
-      seconds: 3
+      seconds: 2
   - service: remote.send_command
     entity_id: 'remote.mi_ir_controller'
     data:
