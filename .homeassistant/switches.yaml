@@ -87,3 +87,15 @@
   icon: mdi:security
   optimistic: false
   retain: true
+
+- platform: mqtt
+  name: "Curtain Auto Control"
+  state_topic: "switch/curtain_auto_control"
+  command_topic: "switch/curtain_auto_control"
+  payload_on: "on"
+  payload_off: "off"
+  state_on: "on"
+  state_off: "off"
+  icon: mdi:animation
+  optimistic: false
+  retain: true

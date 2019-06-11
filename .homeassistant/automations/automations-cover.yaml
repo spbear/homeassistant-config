@@ -11,6 +11,9 @@
   - condition: time
     after: '20:00:00'
     before: '05:00:00'
+  - condition: state
+    entity_id: switch.curtain_auto_control
+    state: 'on'
   action:
   - service: cover.close_cover
     data:
@@ -29,6 +32,9 @@
   - condition: time
     after: '06:30:00'
     before: '12:00:00'
+  - condition: state
+    entity_id: switch.curtain_auto_control
+    state: 'on'
   action:
   - service: cover.open_cover
     data:
@@ -46,7 +52,10 @@
   action:
   - service: cover.open_cover
     data:
-        entity_id: cover.window_curtain
+      entity_id: cover.window_curtain
+  - service: switch.turn_on
+    data:
+      entity_id: switch.curtain_auto_control
 
 - alias: cover_close_sun_below_horizon
   trigger:
@@ -61,8 +70,11 @@
   - service: cover.close_cover
     data:
         entity_id: cover.window_curtain
+  - service: switch.turn_on
+    data:
+      entity_id: switch.curtain_auto_control
 
-- alias: cover_close_sun_above_horizon
+- alias: cover_open_sun_above_horizon
   trigger:
     platform: state
     entity_id: sun.sun
@@ -75,3 +87,23 @@
   - service: cover.open_cover
     data:
         entity_id: cover.window_curtain
+  - service: switch.turn_on
+    data:
+      entity_id: switch.curtain_auto_control
+
+- alias: cover_close_sun_above_horizon
+  trigger:
+    platform: state
+    entity_id: sun.sun
+    to: 'above_horizon'
+  condition:
+  - condition: state
+    entity_id: binary_sensor.yunhan_android
+    state: 'on'
+  action:
+  - service: cover.close_cover
+    data:
+        entity_id: cover.window_curtain
+  - service: switch.turn_on
+    data:
+      entity_id: switch.curtain_auto_control

@@ -1,0 +1,107 @@
+- alias: Welcome Lamp ON with BT
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.yunhan_bt_presence
+      from: 'off'
+      to: 'on'
+  condition:
+    - condition: template
+      value_template: "{{ states('sensor.gateway_illumination') < '300' }}"
+  action:
+    - service: scene.turn_on
+      data:
+        entity_id: scene.lightwelcome
+
+- alias: Welcome Lamp ON with Illuminance
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.gateway_illumination
+      below: 300
+  condition:
+    - condition: state
+      entity_id: binary_sensor.yunhan_bt_presence
+      state: 'on'
+  action:
+    - service: scene.turn_on
+      data:
+        entity_id: scene.lightwelcome
+
+- alias: Door Motion Lamp ON
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.room_door_motion
+      from: 'off'
+      to: 'on'
+  condition:
+    - condition: template
+      value_template: "{{ states('sensor.gateway_illumination') < '300' }}"
+  action:
+    - service: scene.turn_on
+      data:
+        entity_id: scene.lightdeskmotion
+
+- alias: Bed Motion Lamp ON
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.room_bed_motion
+      from: 'off'
+      to: 'on'
+  condition:
+    - condition: template
+      value_template: "{{ states('sensor.gateway_illumination') < '300' }}"
+  action:
+    - service: scene.turn_on
+      data:
+        entity_id: scene.lightbedmotion
+
+- alias: Before Sleep ON
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.room_bed_sleep
+      from: 'off'
+      to: 'on'
+  condition:
+    - condition: template
+      value_template: "{{ states('sensor.gateway_illumination') < '300' }}"
+  action:
+    - service: scene.turn_on
+      data:
+        entity_id: scene.lightbeforesleep
+
+- alias: Sleep ON
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.room_bed_sleep
+      to: 'on'
+      for:
+        minutes: 1
+  condition:
+    - condition: template
+      value_template: "{{ states('sensor.gateway_illumination') < '300' }}"
+  action:
+    - service: scene.turn_on
+      data:
+        entity_id: scene.lightoff
+
+- alias: Welcome Lamp OFF with Illuminance
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.gateway_illumination
+      above: 300
+  condition: []
+  action:
+    - service: scene.turn_on
+      data:
+        entity_id: scene.lightoff
+
+- alias: Welcome Lamp OFF with BT
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.yunhan_bt_presence
+      from: 'on'
+      to: 'off'
+  condition: []
+  action:
+    - service: scene.turn_on
+      data:
+        entity_id: scene.lightoff

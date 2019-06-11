@@ -53,3 +53,6 @@
   - service_template: cover.{% if is_state('cover.window_curtain', 'open') %}close{% else %}open{% endif %}_cover
     data_template:
         entity_id: cover.window_curtain
+  - service: switch.turn_off
+    data:
+      entity_id: switch.curtain_auto_control

@@ -50,6 +50,7 @@ my_room:
     - binary_sensor.room_door_motion
     - binary_sensor.window_sensor
     - cover.window_curtain
+    - switch.curtain_auto_control
     - switch.security_mode
     - light.gateway_light
 

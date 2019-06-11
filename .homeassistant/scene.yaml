@@ -28,3 +28,61 @@
       state: on
       kelvin: 2800
       brightness: 100
+
+- name: LightWelcome
+  entities:
+    light.desk_lamp:
+      state: on
+      kelvin: 3250
+      brightness: 255
+    light.sleep_lamp:
+      state: on
+      kelvin: 2700
+      brightness: 255
+
+- name: LightDeskMotion
+  entities:
+    light.desk_lamp:
+      state: on
+      kelvin: 3250
+      brightness: 255
+    light.sleep_lamp:
+      state: on
+      kelvin: 2700
+      brightness: 100
+
+- name: LightBedMotion
+  entities:
+    light.desk_lamp:
+      state: on
+      kelvin: 3250
+      brightness: 100
+    light.sleep_lamp:
+      state: on
+      kelvin: 2700
+      brightness: 255
+
+- name: LightBeforeSleep
+  entities:
+    light.desk_lamp:
+      state: off
+    light.sleep_lamp:
+      state: on
+      kelvin: 2700
+      brightness: 60
+
+- name: LightReader
+  entities:
+    light.desk_lamp:
+      state: off
+    light.sleep_lamp:
+      state: on
+      kelvin: 3250
+      brightness: 255
+
+- name: LightOff
+  entities:
+    light.desk_lamp:
+      state: off
+    light.sleep_lamp:
+      state: off
