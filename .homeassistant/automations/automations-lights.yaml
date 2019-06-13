@@ -5,8 +5,21 @@
       from: 'off'
       to: 'on'
   condition:
-    - condition: template
-      value_template: "{{ states('sensor.gateway_illumination') < '300' }}"
+    - condition: or
+      conditions:
+      - condition: template
+        value_template: "{{ states('sensor.room_illuminance') | int < 100 }}"
+      - condition: state
+        entity_id: sun.sun
+        state: 'below_horizon'
+      - condition: template
+        value_template: "{{ states('sensor.gateway_illumination') < '300' }}"
+      - condition: state
+        entity_id: cover.window_curtain
+        state: 'closed'
+    - condition: state
+      entity_id: binary_sensor.room_bed_sleep
+      state: 'off'
   action:
     - service: scene.turn_on
       data:
@@ -21,6 +34,9 @@
     - condition: state
       entity_id: binary_sensor.yunhan_bt_presence
       state: 'on'
+    - condition: state
+      entity_id: binary_sensor.room_bed_sleep
+      state: 'off'
   action:
     - service: scene.turn_on
       data:
@@ -35,6 +51,9 @@
   condition:
     - condition: template
       value_template: "{{ states('sensor.gateway_illumination') < '300' }}"
+    - condition: state
+      entity_id: binary_sensor.room_bed_sleep
+      state: 'off'
   action:
     - service: scene.turn_on
       data:
@@ -49,10 +68,33 @@
   condition:
     - condition: template
       value_template: "{{ states('sensor.gateway_illumination') < '300' }}"
+    - condition: state
+      entity_id: binary_sensor.room_bed_sleep
+      state: 'off'
   action:
     - service: scene.turn_on
       data:
         entity_id: scene.lightbedmotion
+
+- alias: Bed Motion Lamp OFF
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.room_bed_motion
+      from: 'on'
+      to: 'ff'
+  condition:
+    - condition: template
+      value_template: "{{ states('sensor.gateway_illumination') < '300' }}"
+    - condition: state
+      entity_id: binary_sensor.room_door_motion
+      state: 'on'
+    - condition: state
+      entity_id: binary_sensor.room_bed_sleep
+      state: 'off'
+  action:
+    - service: scene.turn_on
+      data:
+        entity_id: scene.lightdeskmotion
 
 - alias: Before Sleep ON
   trigger:
@@ -74,7 +116,7 @@
       entity_id: binary_sensor.room_bed_sleep
       to: 'on'
       for:
-        minutes: 1
+        minutes: 20
   condition:
     - condition: template
       value_template: "{{ states('sensor.gateway_illumination') < '300' }}"
@@ -105,3 +147,18 @@
     - service: scene.turn_on
       data:
         entity_id: scene.lightoff
+
+- alias: Heartbeat on Gateway
+  trigger:
+    platform: time_pattern
+    seconds: '/10'
+  condition: []
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.gateway_light
+        brightness: 10
+        color_name: "blue"
+    - service: light.turn_off
+      data:
+        entity_id: light.gateway_light
