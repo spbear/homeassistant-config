@@ -81,7 +81,7 @@
     - platform: state
       entity_id: binary_sensor.room_bed_motion
       from: 'on'
-      to: 'ff'
+      to: 'off'
   condition:
     - condition: template
       value_template: "{{ states('sensor.gateway_illumination') < '300' }}"
@@ -148,17 +148,17 @@
       data:
         entity_id: scene.lightoff
 
-- alias: Heartbeat on Gateway
-  trigger:
-    platform: time_pattern
-    seconds: '/10'
-  condition: []
-  action:
-    - service: light.turn_on
-      data:
-        entity_id: light.gateway_light
-        brightness: 10
-        color_name: "blue"
-    - service: light.turn_off
-      data:
-        entity_id: light.gateway_light
+#- alias: Heartbeat on Gateway
+#  trigger:
+#    platform: time_pattern
+#    seconds: '/10'
+#  condition: []
+#  action:
+#    - service: light.turn_on
+#      data:
+#        entity_id: light.gateway_light
+#        brightness: 10
+#        color_name: "blue"
+#    - service: light.turn_off
+#      data:
+#        entity_id: light.gateway_light

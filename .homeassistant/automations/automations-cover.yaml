@@ -4,6 +4,9 @@
   - platform: state
     entity_id: binary_sensor.room_bed_sleep
     to: 'on'
+  - platform: state
+    entity_id: binary_sensor.window_sensor
+    to: 'off'
   condition:
   - condition: state
     entity_id: binary_sensor.yunhan_android
@@ -14,6 +17,12 @@
   - condition: state
     entity_id: switch.curtain_auto_control
     state: 'on'
+  - condition: state
+    entity_id: binary_sensor.room_bed_sleep
+    state: 'on'
+  - condition: state
+    entity_id: binary_sensor.window_sensor
+    state: 'off'
   action:
   - service: cover.close_cover
     data:
@@ -45,10 +54,7 @@
   trigger:
   - platform: time
     at: '07:30:00'
-  condition:
-  - condition: state
-    entity_id: binary_sensor.yunhan_android
-    state: 'on'
+  condition: []
   action:
   - service: cover.open_cover
     data:
@@ -59,12 +65,11 @@
 
 - alias: cover_close_sun_below_horizon
   trigger:
-    platform: state
-    entity_id: sun.sun
-    to: 'below_horizon'
+    platform: sun
+    event: sunset
   condition:
   - condition: state
-    entity_id: binary_sensor.yunhan_android
+    entity_id: binary_sensor.window_sensor
     state: 'off'
   action:
   - service: cover.close_cover
@@ -74,32 +79,15 @@
     data:
       entity_id: switch.curtain_auto_control
 
-- alias: cover_open_sun_above_horizon
-  trigger:
-    platform: state
-    entity_id: sun.sun
-    to: 'above_horizon'
-  condition:
-  - condition: state
-    entity_id: binary_sensor.yunhan_android
-    state: 'off'
-  action:
-  - service: cover.open_cover
-    data:
-        entity_id: cover.window_curtain
-  - service: switch.turn_on
-    data:
-      entity_id: switch.curtain_auto_control
-
 - alias: cover_close_sun_above_horizon
   trigger:
-    platform: state
-    entity_id: sun.sun
-    to: 'above_horizon'
+    platform: sun
+    event: sunrise
+    offset: '-01:00:00'
   condition:
   - condition: state
-    entity_id: binary_sensor.yunhan_android
-    state: 'on'
+    entity_id: binary_sensor.window_sensor
+    state: 'off'
   action:
   - service: cover.close_cover
     data:

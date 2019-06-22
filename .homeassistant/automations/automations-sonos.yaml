@@ -45,6 +45,10 @@
     event_data:
       domain: input_select
       service: select_option
+  condition:
+  - condition: state
+    entity_id: switch.music_auto_play
+    state: 'on'
   action:
   - service: script.sonos_play_specific_song
 
@@ -64,6 +68,9 @@
   - condition: state
     entity_id: switch.mibox
     state: 'off'
+  - condition: state
+    entity_id: switch.music_auto_play
+    state: 'on'
   action:
   - service: script.sonos_play_sleep_song
 
@@ -80,9 +87,12 @@
   - condition: state
     entity_id: media_player.playroom
     state: 'paused'
-  - condition: time
-    after: '07:00:00'
-    before: '12:00:00'
+  - condition: state
+    entity_id: switch.mibox
+    state: 'off'
+  - condition: state
+    entity_id: switch.music_auto_play
+    state: 'on'
   action:
   - service: script.sonos_play_random
 
@@ -96,15 +106,19 @@
   - condition: state
     entity_id: binary_sensor.yunhan_bt_presence
     state: 'on'
-  - condition: time
-    after: '07:00:00'
-    before: '11:00:00'
+  - condition: state
+    entity_id: switch.music_auto_play
+    state: 'on'
   action:
-  - service: tts.google_say
-    entity_id: media_player.googlehome
+  - service: input_select.select_option
     data_template:
-        message: "클로바...... 오늘 날씨 알려줘"
-        language: "ko"
+      entity_id: input_select.sonos_playlist
+      option: "{{ states.media_player.playroom.attributes.source_list | random }}"
+#  - service: tts.google_say
+#    entity_id: media_player.googlehome
+#    data_template:
+#        message: "클로바...... 오늘 날씨 알려줘"
+#        language: "ko"
 
 # Stop Sonos 30 minutes after sleep sensor is detected
 - alias: Stop Sonos 30 minutes after sleep sensor is detected
@@ -133,6 +147,17 @@
   - service: media_player.media_stop
     data_template:
       entity_id: media_player.playroom
+  - service: switch.turn_off
+    data:
+      entity_id: switch.music_auto_play
+
+# Turn on Music Auto Play every 7AM
+- alias: Turn on Music Auto Play every 7AM
+  trigger:
+  - platform: time
+    at: "07:00:00"
+  condition: []
+  action:
   - service: switch.turn_on
     data:
       entity_id: switch.music_auto_play
@@ -160,4 +185,3 @@
   - service: switch.turn_on
     data:
       entity_id: switch.music_auto_play
-

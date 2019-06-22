@@ -9,9 +9,9 @@
     entity_id: binary_sensor.yunhan_android
     state: 'on'
   action:
-  - service: cover.close_cover
+  - service: media_player.media_stop
     data:
-        entity_id: cover.window_curtain
+        entity_id: media_player.playroom
   - service: cover.close_cover
     data:
         entity_id: cover.roll_screen
@@ -21,9 +21,11 @@
   - service: switch.turn_off
     data:
         entity_id: switch.music_auto_play
-  - service: media_player.media_stop
+  - condition: template
+    value_template: "{{ states.sun.sun.state == 'above_horizon'  }}"
+  - service: cover.close_cover
     data:
-        entity_id: media_player.playroom
+        entity_id: cover.window_curtain
 
 # Open cover when projector is turned off
 - alias: Open cover when  projector is turned off
@@ -48,3 +50,15 @@
   - service: switch.turn_on
     data:
         entity_id: switch.music_auto_play
+
+- alias: Turn off when it is over 3 hour
+  trigger:
+  - platform: state
+    entity_id: switch.mibox
+    to: 'on'
+    for:
+      hours: 3
+  action:
+  - service: switch.turn_off
+    data:
+      entity_id: switch.mibox
