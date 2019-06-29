@@ -5,6 +5,7 @@ default_view:
   entities:
     - group.weather
     - group.sensor
+    - group.me
     - group.people
     - group.main_door
     - group.my_room
@@ -76,10 +77,17 @@ my_projection_tv:
     - switch.screen_projector
     - switch.mibox
 
+me:
+  name: Me
+  entities:
+    - binary_sensor.yunhan_android
+    - binary_sensor.yunhan_bt_presence
+    - binary_sensor.yunhan_wifi_presence
+    - binary_sensor.yunhan_gps_presence
+
 people:
   name: People
   entities:
-    - binary_sensor.yunhan_android
     - binary_sensor.minjun_android
     - binary_sensor.hyunjun_android
     - binary_sensor.mom_iphone

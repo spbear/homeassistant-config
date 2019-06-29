@@ -4,13 +4,25 @@
       entity_id: binary_sensor.room_bed_sleep
       from: 'off'
       to: 'on'
-      for:
-        minutes: 3
   condition: []
   action:
     - service: script.turn_on
       data:
         entity_id: script.fan_to_bed
+
+- alias: Fan to sleep
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.room_bed_sleep
+      from: 'off'
+      to: 'on'
+      for:
+        minutes: 60
+  condition: []
+  action:
+    - service: fan.turn_off
+      data:
+        entity_id: fan.mi_standing_fan
 
 - alias: Fan to Desk
   trigger:
@@ -19,9 +31,9 @@
       from: 'on'
       to: 'off'
       for:
-        minutes: 3
+        minutes: 1
   condition: []
   action:
-    - service: scene.turn_on
+    - service: script.turn_on
       data:
-        entity_id: scene.fan_to_desk
+        entity_id: script.fan_to_desk

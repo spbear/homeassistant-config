@@ -1,7 +1,3 @@
-binary_sensor.yunhan_bt_presence:
-  device_class: presence
-binary_sensor.yunhan_gps_presence:
-  device_class: presence
 binary_sensor.yunhan_android:
   device_class: presence
 binary_sensor.minjun_android:
@@ -54,6 +50,17 @@ switch.screen_projector:
   icon: mdi:projector
 switch.mibox:
   icon: mdi:television-box
+binary_sensor.yunhan_bt_presence:
+  icon: mdi:bluetooth
+  device_class: presence
+  friendly_name: Yunhan's Bluetooth
+binary_sensor.yunhan_gps_presence:
+  icon: mdi:crosshairs-gps
+  device_class: presence
+  friendly_name: Yunhan's GPS
+binary_sensor.yunhan_wifi_presence:
+  device_class: presence
+  friendly_name: Yunhan's WiFi
 
 #  icon: mdi:weather-windy
 
