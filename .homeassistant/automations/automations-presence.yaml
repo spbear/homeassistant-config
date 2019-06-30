@@ -48,3 +48,15 @@
         topic: smartthings/Desktop PC/switch
         payload: >
           {% if is_state('device_tracker.spbear_desktop', 'home') %}on{% else %}off{% endif %}
+
+- alias: SPBEAR's WiFi to ST
+  trigger:
+  - entity_id: device_tracker.yunhan_android
+    platform: state
+  condition: []
+  action:
+    - service: mqtt.publish
+      data_template:
+        topic: smartthings/Yunhan's WiFi/presence
+        payload: >
+          {% if is_state('device_tracker.yunhan_android', 'home') %}present{% else %}not present{% endif %}

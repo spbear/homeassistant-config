@@ -59,6 +59,7 @@ binary_sensor.yunhan_gps_presence:
   device_class: presence
   friendly_name: Yunhan's GPS
 binary_sensor.yunhan_wifi_presence:
+  icon: mdi:wifi
   device_class: presence
   friendly_name: Yunhan's WiFi
 
