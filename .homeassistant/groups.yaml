@@ -112,7 +112,6 @@ speaker:
     - input_select.sonos_playlist
     - switch.music_auto_play
     - media_player.playroom
-    - media_player.googlehome
 
 livingroom:
   name: Livingroom

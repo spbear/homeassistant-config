@@ -20,21 +20,30 @@
       turn_off:
         service: script.script_power_gs1
 
-- platform: template
-  switches:
-    mibox:
-      friendly_name: "MIBOX"
-      value_template: "{{ is_state('media_player.mibox', 'playing')}}"
-      turn_on:
-        service: androidtv.adb_command
-        data:
-            entity_id: media_player.mibox
-            command: "POWER"
-      turn_off:
-        service: androidtv.adb_command
-        data:
-            entity_id: media_player.mibox
-            command: "SLEEP"
+- platform: mqtt
+  name: "MiBox"
+  state_topic: "smartthings/MiBox/switch"
+  command_topic: "smartthings/MiBox/switch"
+  payload_on: "on"
+  payload_off: "off"
+  state_on: "on"
+  state_off: "off"
+  optimistic: false
+  retain: true
+#  switches:
+#    mibox:
+#      friendly_name: "MIBOX"
+#      value_template: "{{ is_state('media_player.mibox', 'playing')}}"
+#      turn_on:
+#        service: androidtv.adb_command
+#        data:
+#            entity_id: media_player.mibox
+#            command: "POWER"
+#      turn_off:
+#        service: androidtv.adb_command
+#        data:
+#            entity_id: media_player.mibox
+#            command: "HOME"
 
 - platform: template
   switches:

@@ -51,6 +51,17 @@
     data:
         entity_id: switch.music_auto_play
 
+- alias: Go Home when MiBox is turned off
+  trigger:
+  - platform: state
+    entity_id: switch.mibox
+    to: 'off'
+  action:
+  - service: androidtv.adb_command
+    data:
+      entity_id: media_player.mibox
+      command: "HOME"
+
 - alias: Turn off when it is over 3 hour
   trigger:
   - platform: state

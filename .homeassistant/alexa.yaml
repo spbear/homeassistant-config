@@ -1,16 +1,16 @@
 TurnOnIntent:
   action:
-    service: light.turn_on
+    service_template: "{% if (device == (device | replace('switch', ''))) -%}light{%- else -%}switch{%- endif %}.turn_on"
     data_template:
-      entity_id: light.{{ device | replace(" ", "_") }}
+      entity_id: "{{ device }}"
   speech:
     type: plain
     text: OK
 TurnOffIntent:
   action:
-    service: light.turn_off
+    service_template: "{% if (device == (device | replace('switch', ''))) -%}light{%- else -%}switch{%- endif %}.turn_off"
     data_template:
-      entity_id: light.{{ device | replace(" ", "_") }}
+      entity_id: "{{ device }}"
   speech:
     type: plain
     text: OK
