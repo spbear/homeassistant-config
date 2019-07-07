@@ -7,13 +7,11 @@
   condition:
     - condition: or
       conditions:
-      - condition: template
-        value_template: "{{ states('sensor.room_illuminance') | int < 100 }}"
       - condition: state
         entity_id: sun.sun
         state: 'below_horizon'
       - condition: template
-        value_template: "{{ states('sensor.gateway_illumination') < '300' }}"
+        value_template: "{{ states('sensor.light_sensor') < '10' }}"
       - condition: state
         entity_id: cover.window_curtain
         state: 'closed'
@@ -50,7 +48,7 @@
       to: 'on'
   condition:
     - condition: template
-      value_template: "{{ states('sensor.gateway_illumination') < '300' }}"
+      value_template: "{{ states('sensor.light_sensor') < '10' }}"
     - condition: state
       entity_id: binary_sensor.room_bed_sleep
       state: 'off'
@@ -67,7 +65,7 @@
       to: 'on'
   condition:
     - condition: template
-      value_template: "{{ states('sensor.gateway_illumination') < '300' }}"
+      value_template: "{{ states('sensor.light_sensor') < '10' }}"
     - condition: state
       entity_id: binary_sensor.room_bed_sleep
       state: 'off'
@@ -84,7 +82,7 @@
       to: 'off'
   condition:
     - condition: template
-      value_template: "{{ states('sensor.gateway_illumination') < '300' }}"
+      value_template: "{{ states('sensor.light_sensor') < '10' }}"
     - condition: state
       entity_id: binary_sensor.room_door_motion
       state: 'on'
@@ -104,7 +102,7 @@
       to: 'on'
   condition:
     - condition: template
-      value_template: "{{ states('sensor.gateway_illumination') < '300' }}"
+      value_template: "{{ states('sensor.light_sensor') < '10' }}"
   action:
     - service: scene.turn_on
       data:
@@ -119,7 +117,7 @@
         minutes: 20
   condition:
     - condition: template
-      value_template: "{{ states('sensor.gateway_illumination') < '300' }}"
+      value_template: "{{ states('sensor.light_sensor') < '10' }}"
   action:
     - service: scene.turn_on
       data:
@@ -128,8 +126,8 @@
 - alias: Welcome Lamp OFF with Illuminance
   trigger:
     - platform: numeric_state
-      entity_id: sensor.gateway_illumination
-      above: 300
+      entity_id: sensor.light_sensor
+      above: 10
   condition: []
   action:
     - service: scene.turn_on
@@ -147,18 +145,3 @@
     - service: scene.turn_on
       data:
         entity_id: scene.lightoff
-
-#- alias: Heartbeat on Gateway
-#  trigger:
-#    platform: time_pattern
-#    seconds: '/10'
-#  condition: []
-#  action:
-#    - service: light.turn_on
-#      data:
-#        entity_id: light.gateway_light
-#        brightness: 10
-#        color_name: "blue"
-#    - service: light.turn_off
-#      data:
-#        entity_id: light.gateway_light

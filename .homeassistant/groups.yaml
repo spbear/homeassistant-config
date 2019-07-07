@@ -4,11 +4,13 @@ default_view:
   icon: mdi:home
   entities:
     - group.weather
-    - group.sensor
+    - group.my_room
+    - group.livingroom
     - group.me
     - group.people
+    - group.my_room_status
+    - group.my_room_control
     - group.main_door
-    - group.my_room
     - group.my_desk
     - group.my_bed
     - group.my_door
@@ -16,27 +18,41 @@ default_view:
     - group.my_car
     - group.my_gadget
     - group.speaker
-    - group.livingroom
 
 weather:
   name: Outside Weather
   entities:
-    - sensor.weather_temperature
-    - sensor.weather_humidity_with_icon
+    - sensor.weather_sensor_temperature
+    - sensor.weather_sensor_humidity
     - sun.sun
     - sensor.weather_symbol
 
-sensor:
-  name: My Room Condition
+my_room:
+  name: My Room
   entities:
     - sensor.room_temperature
     - sensor.room_humidity
     - sensor.room_pm25
     - sensor.room_illuminance
+
+livingroom:
+  name: Livingroom
+  entities:
+    - sensor.livingroom_temperature
+    - sensor.livingroom_humidity
+    - sensor.livingroom_pm25
+
+my_room_control:
+  name: My Room Control
+  entities:
     - fan.mi_air_purifier
     - fan.mi_humidifier
     - fan.mi_standing_fan
     - switch.samsung_air_conditioner
+    - cover.window_curtain
+    - switch.curtain_auto_control
+    - switch.security_mode
+    - light.gateway_light
 
 main_door:
   name: Main Door
@@ -44,16 +60,12 @@ main_door:
     - binary_sensor.main_door_status
     - binary_sensor.passage_motion
 
-my_room:
+my_room_status:
   name: My Room
   entities:
     - binary_sensor.room_door_status
-    - binary_sensor.room_door_motion
     - binary_sensor.window_sensor
-    - cover.window_curtain
-    - switch.curtain_auto_control
-    - switch.security_mode
-    - light.gateway_light
+    - binary_sensor.room_door_motion
 
 my_desk:
   name: My Desk
@@ -113,12 +125,9 @@ speaker:
     - switch.music_auto_play
     - media_player.playroom
 
-livingroom:
-  name: Livingroom
+livingroom_control:
+  name: Livingroom Control
   entities:
-    - sensor.livingroom_temperature
-    - sensor.livingroom_humidity
-    - sensor.livingroom_pm25
     - fan.mi_air_purifier_livingroom
     - switch.livingroom_tv
     - vacuum.mi_robot_vacuum

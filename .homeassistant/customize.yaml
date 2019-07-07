@@ -67,3 +67,9 @@ binary_sensor.yunhan_wifi_presence:
 
 cover.window_curtain:
   friendly_name: Room Window Curtain
+sensor.weather_sensor_temperature:
+  friendly_name: Outside Temperature
+  device_class: temperature
+sensor.weather_sensor_humidity:
+  friendly_name: Outside Humidity
+  device_class: humidity

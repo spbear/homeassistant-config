@@ -83,11 +83,8 @@
   trigger:
     platform: sun
     event: sunrise
-    offset: '-01:00:00'
-  condition:
-  - condition: state
-    entity_id: binary_sensor.window_sensor
-    state: 'off'
+    offset: '-00:30:00'
+  condition: []
   action:
   - service: cover.close_cover
     data:

@@ -60,3 +60,15 @@
         topic: smartthings/Yunhan's WiFi/presence
         payload: >
           {% if is_state('device_tracker.yunhan_android', 'home') %}present{% else %}not present{% endif %}
+
+- alias: Yunhan's HA to ST
+  trigger:
+  - entity_id: binary_sensor.yunhan_android
+    platform: state
+  condition: []
+  action:
+    - service: mqtt.publish
+      data_template:
+        topic: smartthings/Yunhan's HA/presence
+        payload: >
+          {% if is_state('binary_sensor.yunhan_android', 'on') %}present{% else %}not present{% endif %}

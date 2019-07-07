@@ -11,6 +11,12 @@
   payload_off: 'not present'
 
 - platform: mqtt
+  state_topic: smartthings/Yunhan's HA/presence
+  name: yunhan_ha_presence
+  payload_on: 'present'
+  payload_off: 'not present'
+
+- platform: mqtt
   state_topic: smartthings/Yunhan's S10/presence
   name: yunhan_gps_presence
   payload_on: 'present'

@@ -24,18 +24,12 @@
       friendly_name: Room Illuminance
       unit_of_measurement: "lux"
       device_class: illuminance
-      value_template: "{{ '%d' | format((states.sensor.gateway_illumination.state | float) * 0.2152782) }}"
+      value_template: "{{ '%.1f' | format((states.sensor.light_sensor.state | float)) }}"
 
     room_pm25:
       friendly_name: Room PM2.5
       unit_of_measurement: "㎍/m³"
       value_template: "{{ states.fan.mi_air_purifier.attributes.aqi | int }}"
-
-    weather_humidity_with_icon:
-      friendly_name: Weather Humidity
-      unit_of_measurement: "%"
-      device_class: humidity
-      value_template: "{{ states.sensor.weather_humidity.state }}"
 
     livingroom_temperature:
       friendly_name: Living Room Temperature
@@ -60,3 +54,21 @@
   state_topic: "bt-gateway/miscale/weight/kg"
   value_template: "{{ '%.1f'|format(value | float) }}"
   unit_of_measurement: "kg"
+
+- platform: mqtt
+  name: "Light Sensor"
+  state_topic: "smartthings/Light Sensor/illuminance"
+  value_template: "{{ '%.1f'|format(value | float) }}"
+  unit_of_measurement: "lux"
+
+- platform: mqtt
+  name: "Weather Sensor Temperature"
+  state_topic: "smartthings/Weather Sensor/temperature"
+  value_template: "{{ '%.1f'|format(value | float) }}"
+  unit_of_measurement: "°C"
+
+- platform: mqtt
+  name: "Weather Sensor Humidity"
+  state_topic: "smartthings/Weather Sensor/humidity"
+  value_template: "{{ '%.1f'|format(value | float) }}"
+  unit_of_measurement: "%"
