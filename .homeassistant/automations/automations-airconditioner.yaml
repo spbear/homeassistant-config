@@ -1,0 +1,143 @@
+- alias: Set Temparature 25c After Go to bed in 20 min
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.room_bed_sleep
+      to: 'on'
+      for:
+        minutes: 20
+  condition:
+    - condition: state
+      entity_id: switch.samsung_air_conditioner
+      state: 'on'
+  action:
+    - service: remote.send_command
+      data:
+        entity_id: remote.mi_ir_controller
+        command: set_my_room_25c
+
+- alias: Set Temparature 26c After Go to bed in 40 min
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.room_bed_sleep
+      to: 'on'
+      for:
+        minutes: 40
+  condition:
+    - condition: state
+      entity_id: switch.samsung_air_conditioner
+      state: 'on'
+  action:
+    - service: remote.send_command
+      data:
+        entity_id: remote.mi_ir_controller
+        command: set_my_room_26c
+
+- alias: Turn Off After Sleep 60 min
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.room_bed_sleep
+      to: 'on'
+      for:
+        minutes: 60
+  condition:
+    - condition: template
+      value_template: "{{ states('sensor.weather_sensor_temperature') < '26.0' }}"
+    - condition: state
+      entity_id: switch.samsung_air_conditioner
+      state: 'on'
+    - condition: state
+      entity_id: switch.mibox
+      state: 'off'
+  action:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.samsung_air_conditioner
+
+- alias: Turn Off After Sleep 120 min
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.room_bed_sleep
+      to: 'on'
+      for:
+        minutes: 120
+  condition:
+    - condition: template
+      value_template: "{{ states('sensor.weather_sensor_temperature') < '26.0' }}"
+    - condition: state
+      entity_id: switch.samsung_air_conditioner
+      state: 'on'
+    - condition: state
+      entity_id: switch.mibox
+      state: 'off'
+  action:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.samsung_air_conditioner
+
+- alias: Turn Off After Sleep 160 min
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.room_bed_sleep
+      to: 'on'
+      for:
+        minutes: 160
+  condition:
+    - condition: template
+      value_template: "{{ states('sensor.weather_sensor_temperature') < '26.0' }}"
+    - condition: state
+      entity_id: switch.samsung_air_conditioner
+      state: 'on'
+    - condition: state
+      entity_id: switch.mibox
+      state: 'off'
+  action:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.samsung_air_conditioner
+
+- alias: Turn Off After Sleep 210 min
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.room_bed_sleep
+      to: 'on'
+      for:
+        minutes: 210
+  condition:
+    - condition: template
+      value_template: "{{ states('sensor.weather_sensor_temperature') < '26.0' }}"
+    - condition: state
+      entity_id: switch.samsung_air_conditioner
+      state: 'on'
+    - condition: state
+      entity_id: switch.mibox
+      state: 'off'
+  action:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.samsung_air_conditioner
+
+- alias: Turn On Air Conditioner Above 27.5c
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.room_temperature
+      above: 27.5
+  condition:
+    - condition: state
+      entity_id: binary_sensor.room_bed_sleep
+      state: 'on'
+    - condition: state
+      entity_id: binary_sensor.window_sensor
+      state: 'off'
+  action:
+    - service: switch.turn_on
+      data:
+        entity_id: switch.samsung_air_conditioner
+    - service: remote.send_command
+      data:
+        entity_id: remote.mi_ir_controller
+        command: set_my_room_26c
+    - delay:
+        minutes: 10
+    - service: switch.turn_off
+      data:
+        entity_id: switch.samsung_air_conditioner

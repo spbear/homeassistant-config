@@ -1,10 +1,6 @@
 fan_to_desk:
   alias: Fan Left!
   sequence:
-  - service: fan.set_direction
-    data:
-      entity_id: 'fan.mi_standing_fan'
-      direction: 'left'
   - service: fan.xiaomi_miio_set_buzzer_off
     data:
       entity_id: 'fan.mi_standing_fan'
@@ -72,6 +68,18 @@ fan_to_desk:
     data:
       entity_id: 'fan.mi_standing_fan'
       direction: 'left'
+  - service: fan.set_direction
+    data:
+      entity_id: 'fan.mi_standing_fan'
+      direction: 'left'
+  - service: fan.set_direction
+    data:
+      entity_id: 'fan.mi_standing_fan'
+      direction: 'right'
+  - service: fan.set_direction
+    data:
+      entity_id: 'fan.mi_standing_fan'
+      direction: 'right'
   - service: fan.set_speed
     data:
       entity_id: 'fan.mi_standing_fan'
@@ -86,10 +94,6 @@ fan_to_desk:
 fan_to_bed:
   alias: Fan Right!
   sequence:
-  - service: fan.set_direction
-    data:
-      entity_id: 'fan.mi_standing_fan'
-      direction: 'right'
   - service: fan.xiaomi_miio_set_buzzer_off
     data:
       entity_id: 'fan.mi_standing_fan'
@@ -157,6 +161,18 @@ fan_to_bed:
     data:
       entity_id: 'fan.mi_standing_fan'
       direction: 'right'
+  - service: fan.set_direction
+    data:
+      entity_id: 'fan.mi_standing_fan'
+      direction: 'right'
+  - service: fan.set_direction
+    data:
+      entity_id: 'fan.mi_standing_fan'
+      direction: 'left'
+  - service: fan.set_direction
+    data:
+      entity_id: 'fan.mi_standing_fan'
+      direction: 'left'
   - service: fan.set_speed
     data:
       entity_id: 'fan.mi_standing_fan'

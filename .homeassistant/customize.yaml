@@ -73,3 +73,9 @@ sensor.weather_sensor_temperature:
 sensor.weather_sensor_humidity:
   friendly_name: Outside Humidity
   device_class: humidity
+sensor.air_quality_pm25value:
+  icon: mdi:cloud
+  friendly_name: Outside PM2.5
+sensor.air_quality_pm10value:
+  icon: mdi:cloud
+  friendly_name: Outside PM10

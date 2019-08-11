@@ -18,12 +18,15 @@ default_view:
     - group.my_car
     - group.my_gadget
     - group.speaker
+    - group.livingroom_control
 
 weather:
   name: Outside Weather
   entities:
     - sensor.weather_sensor_temperature
     - sensor.weather_sensor_humidity
+    - sensor.air_quality_pm25value
+    - sensor.air_quality_pm10value
     - sun.sun
     - sensor.weather_symbol
 
@@ -33,6 +36,9 @@ my_room:
     - sensor.room_temperature
     - sensor.room_humidity
     - sensor.room_pm25
+    - sensor.awair_co2
+    - sensor.awair_voc
+    - sensor.awair_score
     - sensor.room_illuminance
 
 livingroom:
@@ -47,6 +53,7 @@ my_room_control:
   entities:
     - fan.mi_air_purifier
     - fan.mi_humidifier
+    - fan.mi_dehumidifier
     - fan.mi_standing_fan
     - switch.samsung_air_conditioner
     - cover.window_curtain

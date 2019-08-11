@@ -119,8 +119,12 @@ map:
 
 # Text to speech
 tts:
-  platform: google
-  language: 'ko'
+  - platform: google_translate
+    cache: true
+    cache_dir: /tmp/tts
+    time_memory: 300
+    base_url: http://192.168.0.10:8123
+    service_name: google_say
 
 # Cloud
 cloud:
@@ -155,6 +159,11 @@ fan:
     host: !secret xiaomi_humidifier_ip
     token: !secret humidifier_token
 
+  - platform: xiaomi_miio
+    name: "Mi Dehumidifier"
+    host: !secret xiaomi_dehumidifier_ip
+    token: !secret dehumidifier_token
+
 cover:
   - platform: brunt
     username: !secret brunt_username
@@ -167,6 +176,14 @@ xiaomi_aqara:
       key: !secret gateway_token
 
 remote:
+  - platform: xiaomi_miio
+    name: "Mi IR Remote Livingroom"
+    host: !secret xiaomi_ir_remote_livingroom_ip
+    token: !secret ir_remote_livingroom_token
+    slot: 1
+    timeout: 30
+    hidden: true
+    
   - platform: xiaomi_miio
     name: "Mi IR Controller"
     host: !secret xiaomi_ir_controller_ip

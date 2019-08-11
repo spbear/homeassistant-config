@@ -6,6 +6,9 @@
     - humidity
     - fog
 
+- platform: awair
+  access_token: !secret awair_token
+
 - platform: template
   sensors:
     room_temperature:
@@ -72,3 +75,72 @@
   state_topic: "smartthings/Weather Sensor/humidity"
   value_template: "{{ '%.1f'|format(value | float) }}"
   unit_of_measurement: "%"
+
+# sensors.yaml
+# 한국환경공단 검단 관측소 실시간 정보
+- platform: rest
+  name: air_quality_time
+  scan_interval: 900. # 900초(15분)마다 반복, 매 정시에 정보가 갱신되지만 지연이 있는 경우가 있으므로
+  json_attributes:
+    - list
+  value_template: '{{ value_json["list"][0]["dataTime"] }}'
+  resource: !secret air_quality_api
+
+- platform: template
+  sensors:
+    air_quality_khaivalue:    #통합대기환경수치
+      value_template: '{{ states.sensor.air_quality_time.attributes["list"][0]["khaiValue"] }}'
+    air_quality_pm25value:    #초미세먼지 농도
+      value_template: '{{ states.sensor.air_quality_time.attributes.list[0]["pm25Value"] }}'
+      unit_of_measurement: "㎍/m³"
+      entity_id: sensor.air_quality_time
+    air_quality_pm10value:    #미세먼지 농도
+      value_template: '{{ states.sensor.air_quality_time.attributes.list[0]["pm10Value"] }}'
+      unit_of_measurement: "㎍/m³"
+    air_quality_o3value:    #오존 농도
+      value_template: '{{ states.sensor.air_quality_time.attributes.list[0]["o3Value"] }}'
+      unit_of_measurement: "ppm"
+    air_quality_covalue:    #일산화탄소 농도
+      value_template: '{{ states.sensor.air_quality_time.attributes.list[0]["coValue"] }}'
+      unit_of_measurement: "ppm"
+    air_quality_no2value:    #이산화질소 농도
+      value_template: '{{ states.sensor.air_quality_time.attributes.list[0]["no2Value"] }}'
+      unit_of_measurement: "ppm"
+    air_quality_so2value:    #아황산화탄소 농도
+      value_template: '{{ states.sensor.air_quality_time.attributes.list[0]["so2Value"] }}'
+      unit_of_measurement: "ppm"
+    air_quality_khaigrade:    #통합대기환경지수
+      value_template: '{% if states.sensor.air_quality_time.attributes.list[0]["khaiGrade"] == "1" %}좋음
+                       {% elif states.sensor.air_quality_time.attributes.list[0]["khaiGrade"] == "2" %}보통
+                       {% elif states.sensor.air_quality_time.attributes.list[0]["khaiGrade"] == "3" %}나쁨
+                       {% elif states.sensor.air_quality_time.attributes.list[0]["khaiGrade"] == "4" %}매우 나쁨
+                       {% else %}N/A
+                       {% endif %}'
+    air_quality_pm25grade:    #초미세먼지 등급
+      value_template: '{% if states.sensor.air_quality_time.attributes.list[0]["pm25Grade1h"]  == "1" %}좋음
+                       {% elif states.sensor.air_quality_time.attributes.list[0]["pm25Grade1h"] == "2" %}보통
+                       {% elif states.sensor.air_quality_time.attributes.list[0]["pm25Grade1h"] == "3" %}나쁨
+                       {% elif states.sensor.air_quality_time.attributes.list[0]["pm25Grade1h"] == "4" %}매우 나쁨
+                       {% else %}N/A
+                       {% endif %}'
+    air_quality_pm10grade:    #미세먼지 등급
+      value_template: '{% if states.sensor.air_quality_time.attributes.list[0]["pm10Grade1h"] == "1" %}좋음
+                       {% elif states.sensor.air_quality_time.attributes.list[0]["pm10Grade1h"] == "2" %}보통
+                       {% elif states.sensor.air_quality_time.attributes.list[0]["pm10Grade1h"] == "3" %}나쁨
+                       {% elif states.sensor.air_quality_time.attributes.list[0]["pm10Grade1h"] == "4" %}매우 나쁨
+                       {% else %}N/A
+                       {% endif %}'
+    air_quality_o3grade:  #오존 지수
+      value_template: '{% if states.sensor.air_quality_time.attributes.list[0]["o3Grade"] == "1" %}좋음
+                       {% elif states.sensor.air_quality_time.attributes.list[0]["o3Grade"] == "2" %}보통
+                       {% elif states.sensor.air_quality_time.attributes.list[0]["o3Grade"] == "3" %}나쁨
+                       {% elif states.sensor.air_quality_time.attributes.list[0]["o3Grade"] == "4" %}매우 나쁨
+                       {% else %}N/A
+                       {% endif %}'
+    air_quality_cograde:  #일산화탄소 지수
+      value_template: '{% if states.sensor.air_quality_time.attributes.list[0]["coGrade"] == "1" %}좋음
+                       {% elif states.sensor.air_quality_time.attributes.list[0]["coGrade"] == "2" %}보통
+                       {% elif states.sensor.air_quality_time.attributes.list[0]["coGrade"] == "3" %}나쁨
+                       {% elif states.sensor.air_quality_time.attributes.list[0]["coGrade"] == "4" %}매우 나쁨
+                       {% else %}N/A
+                       {% endif %}'

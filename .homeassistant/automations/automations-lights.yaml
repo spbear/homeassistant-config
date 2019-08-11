@@ -114,10 +114,8 @@
       entity_id: binary_sensor.room_bed_sleep
       to: 'on'
       for:
-        minutes: 20
-  condition:
-    - condition: template
-      value_template: "{{ states('sensor.light_sensor') < '10' }}"
+        minutes: 5
+  condition: []
   action:
     - service: scene.turn_on
       data:
