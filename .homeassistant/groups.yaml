@@ -53,7 +53,7 @@ my_room_control:
   entities:
     - fan.mi_air_purifier
     - fan.mi_humidifier
-    - fan.mi_dehumidifier
+    - switch.mi_dehumidifier
     - fan.mi_standing_fan
     - switch.samsung_air_conditioner
     - cover.window_curtain

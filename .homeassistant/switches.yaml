@@ -74,6 +74,18 @@
           entity_id: media_player.livingroom_tv
 
 - platform: mqtt
+  name: "Mi Dehumidifier"
+  state_topic: "switch/mi_dehumidifier"
+  command_topic: "switch/mi_dehumidifier"
+  payload_on: "on"
+  payload_off: "off"
+  state_on: "on"
+  state_off: "off"
+  icon: mdi:fan
+  optimistic: false
+  retain: true
+
+- platform: mqtt
   name: "Music Auto Play"
   state_topic: "switch/music_auto_play"
   command_topic: "switch/music_auto_play"

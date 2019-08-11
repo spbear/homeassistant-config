@@ -1,27 +1,10 @@
-- alias: Set Temparature 25c After Go to bed in 20 min
+- alias: Set Temparature 26c After Go to bed in 20 min
   trigger:
     - platform: state
       entity_id: binary_sensor.room_bed_sleep
       to: 'on'
       for:
         minutes: 20
-  condition:
-    - condition: state
-      entity_id: switch.samsung_air_conditioner
-      state: 'on'
-  action:
-    - service: remote.send_command
-      data:
-        entity_id: remote.mi_ir_controller
-        command: set_my_room_25c
-
-- alias: Set Temparature 26c After Go to bed in 40 min
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.room_bed_sleep
-      to: 'on'
-      for:
-        minutes: 40
   condition:
     - condition: state
       entity_id: switch.samsung_air_conditioner

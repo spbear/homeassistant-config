@@ -51,6 +51,12 @@
       unit_of_measurement: "㎍/m³"
       value_template: "{{ states.fan.mi_air_purifier_livingroom.attributes.aqi | int }}"
 
+    dehumidifier_ip:
+      value_template: !secret xiaomi_dehumidifier_ip
+
+    dehumidifier_token:
+      value_template: !secret dehumidifier_token
+
 
 - platform: mqtt
   name: "Mi Scale"

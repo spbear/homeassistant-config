@@ -1,0 +1,7 @@
+- alias: Dehumidifier Control
+  trigger:
+    - platform: state
+      entity_id: switch.mi_dehumidifier
+  condition: []
+  action:
+    - service_template: shell_command.dehumidifier_{{ states('switch.mi_dehumidifier') }}
