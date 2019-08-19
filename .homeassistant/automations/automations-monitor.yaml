@@ -1,0 +1,10 @@
+- alias: Turn On/Off Monitor
+  trigger:
+    - platform: state
+      entity_id: switch.monitor
+  condition: []
+  action:
+    - service: remote.send_command
+      data:
+        entity_id: remote.mi_ir_controller
+        command: power_monitor

@@ -10,6 +10,7 @@ binary_sensor.grandma_android:
   device_class: presence
 binary_sensor.yunhan_desktop:
   device_class: power
+  icon: mdi:desktop-tower
 binary_sensor.screen_projector:
   device_class: power
   icon: mdi:projector
@@ -28,6 +29,9 @@ binary_sensor.window_sensor:
   device_class: window
 binary_sensor.room_door_status:
   device_class: door
+binary_sensor.desk_chair:
+  device_class: occupancy
+  icon: mdi:seat
 binary_sensor.bmw:
   icon: mdi:car
 binary_sensor.airpods:
@@ -48,6 +52,8 @@ switch.roll_screen:
   icon: mdi:projector-screen
 switch.screen_projector:
   icon: mdi:projector
+switch.monitor:
+  icon: mdi:monitor
 switch.mibox:
   icon: mdi:television-box
 binary_sensor.yunhan_bt_presence:
@@ -62,9 +68,6 @@ binary_sensor.yunhan_wifi_presence:
   icon: mdi:wifi
   device_class: presence
   friendly_name: Yunhan's WiFi
-
-#  icon: mdi:weather-windy
-
 cover.window_curtain:
   friendly_name: Room Window Curtain
 sensor.weather_sensor_temperature:

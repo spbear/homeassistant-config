@@ -21,6 +21,17 @@
         service: script.script_power_gs1
 
 - platform: mqtt
+  name: "Monitor"
+  state_topic: "smartthings/Monitor/switch"
+  command_topic: "smartthings/Monitor/switch"
+  payload_on: "on"
+  payload_off: "off"
+  state_on: "on"
+  state_off: "off"
+  optimistic: false
+  retain: true
+
+- platform: mqtt
   name: "MiBox"
   state_topic: "smartthings/MiBox/switch"
   command_topic: "smartthings/MiBox/switch"

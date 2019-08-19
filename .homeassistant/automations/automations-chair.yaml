@@ -1,0 +1,9 @@
+- alias: Turn On/Off Monitor After Seating
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.desk_chair
+  condition: []
+  action:
+    - service_template: switch.turn_{{ states('binary_sensor.desk_chair') }}
+      data:
+        entity_id: switch.monitor
