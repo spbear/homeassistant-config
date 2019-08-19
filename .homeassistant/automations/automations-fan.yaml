@@ -1,16 +1,52 @@
-- alias: Fan to Bed
+- alias: Fan To Bed
+  trigger:
+    - platform: state
+      entity_id: switch.fan_direction_to_desk
+      from: 'on'
+      to: 'off'
+      for:
+        seconds: 20
+  action:
+    - service: script.turn_on
+      data:
+        entity_id: script.fan_to_bed
+
+- alias: Fan To Desk
+  trigger:
+    - platform: state
+      entity_id: switch.fan_direction_to_desk
+      from: 'off'
+      to: 'on'
+      for:
+        seconds: 20
+  action:
+    - service: script.turn_on
+      data:
+        entity_id: script.fan_to_desk
+
+- alias: Fan to Bed When Bed Is Occupied
   trigger:
     - platform: state
       entity_id: binary_sensor.room_bed_sleep
       from: 'off'
       to: 'on'
-      for:
-        minutes: 1
   condition: []
   action:
-    - service: script.turn_on
+    - service: switch.turn_off
       data:
-        entity_id: script.fan_to_bed
+        entity_id: switch.fan_direction_to_desk
+
+- alias: Fan to Desk When Chair Is Occupied
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.desk_chair
+      from: 'off'
+      to: 'on'
+  condition: []
+  action:
+    - service_template: switch.turn_on
+      data:
+        entity_id: switch.fan_direction_to_desk
 
 - alias: Fan to Sleep
   trigger:
@@ -19,23 +55,9 @@
       from: 'off'
       to: 'on'
       for:
-        minutes: 60
+        minutes: 120
   condition: []
   action:
     - service: fan.turn_off
       data:
         entity_id: fan.mi_standing_fan
-
-- alias: Fan to Desk
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.room_bed_sleep
-      from: 'on'
-      to: 'off'
-      for:
-        minutes: 1
-  condition: []
-  action:
-    - service: script.turn_on
-      data:
-        entity_id: script.fan_to_desk

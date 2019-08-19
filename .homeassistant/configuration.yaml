@@ -273,3 +273,18 @@ input_select:
 recorder:
   purge_keep_days: 10
   db_url: !secret db_url
+  exclude:
+    entities:
+      - automation.mqtt_mi_air_purifier_ha
+      - automation.mqtt_mi_air_purifier_st
+      - automation.mqtt_mi_standing_fan_ha
+      - automation.mqtt_mi_standing_fan_st
+      - automation.mqtt_samsung_air_conditioner_st
+      - automation.spbear_s_wifi_to_st
+      - automation.spbear_s_desktop_presence_to_st
+      - automation.hyunjun_s_android_presence_to_st
+      - automation.jiyeon_s_iphone_presence_to_st
+      - automation.minjun_s_android_presence_to_st
+      - automation.yunhan_s_ha_to_st
+      - media_player.mibox_2
+      - media_player.mibox4

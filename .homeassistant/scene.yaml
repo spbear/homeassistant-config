@@ -2,7 +2,8 @@
   entities:
     light.gateway_light: off
     fan.mi_air_purifier: on
-    fan.mi_humidifier: on
+    switch.music_auto_play: on
+    switch.security_mode: off
 
 - name: Good Bye
   entities:
@@ -15,12 +16,16 @@
     fan.mi_dehumidifier: off
     switch.samsung_air_conditioner: off
     media_player.playroom: paused
+    switch.music_auto_play: on
+    switch.security_mode: on
+    switch.curtain_auto_control: on
 
 - name: Night Welcome
   entities:
     light.gateway_light: off
     fan.mi_air_purifier: on
-    fan.mi_humidifier: on
+    switch.music_auto_play: on
+    switch.security_mode: off
     light.desk_lamp:
       state: on
       kelvin: 2800

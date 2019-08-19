@@ -109,6 +109,18 @@
   retain: true
 
 - platform: mqtt
+  name: "Fan Direction To Desk"
+  state_topic: switch/fan_direction_to_desk
+  command_topic: "switch/fan_direction_to_desk"
+  payload_on: 'on'
+  payload_off: 'off'
+  state_on: "on"
+  state_off: "off"
+  icon: mdi:fan
+  optimistic: false
+  retain: true
+
+- platform: mqtt
   name: "Security Mode"
   state_topic: "switch/security_mode"
   command_topic: "switch/security_mode"
