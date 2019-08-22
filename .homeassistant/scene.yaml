@@ -13,7 +13,7 @@
     fan.mi_air_purifier: off
     fan.mi_standing_fan: off
     fan.mi_humidifier: off
-    fan.mi_dehumidifier: off
+    switch.mi_dehumidifier: off
     switch.samsung_air_conditioner: off
     media_player.playroom: paused
     switch.music_auto_play: on

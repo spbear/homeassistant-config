@@ -13,6 +13,8 @@
     entity_id: scene.welcome
   - service: script.turn_on
     entity_id: script.xiaomi_alarm_alert_stop
+  - service: script.turn_on
+    entity_id: script.welcome_scene
 
 - alias: Light Welcome Dark
   trigger:
@@ -33,6 +35,8 @@
     entity_id: scene.night_welcome
   - service: script.turn_on
     entity_id: script.xiaomi_alarm_alert_stop
+  - service: script.turn_on
+    entity_id: script.welcome_scene
 
 - alias: Good Bye
   trigger:
@@ -44,31 +48,3 @@
   action:
   - service: scene.turn_on
     entity_id: scene.good_bye
-
-- alias: Welcome Triggered
-  trigger:
-  - platform: event
-    event_type: call_service
-    event_data:
-      service_data:
-        entity_id: scene.welcome
-      domain: scene
-      service: turn_on
-  - platform: event
-    event_type: call_service
-    event_data:
-      service_data:
-        entity_id: scene.night_welcome
-      domain: scene
-      service: turn_on
-  condition: []
-  action:
-  - service_template: "{% if states('sensor.room_humidity') | int < 40 %}fan.turn_on{% elif states('sensor.room_humidity') | int > 50 %}fan.turn_on{% else %}fan.turn_off{% endif %}"
-    data_template:
-      entity_id: "{% if states('sensor.room_humidity') | int < 40 %}fan.mi_humidifier{% elif states('sensor.room_humidity') | int > 50 %}fan.mi_dehumidifier{% else %}fan.mi_humidifier{% endif %}"
-  - service: switch.turn_on
-    data:
-      entity_id: switch.fan_direction_to_desk
-  - service: cover.open_cover
-    data:
-      entity_id: cover.window_curtain
