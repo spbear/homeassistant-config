@@ -174,14 +174,6 @@ xiaomi_aqara:
 
 remote:
   - platform: xiaomi_miio
-    name: "Mi IR Remote Livingroom"
-    host: !secret xiaomi_ir_remote_livingroom_ip
-    token: !secret ir_remote_livingroom_token
-    slot: 1
-    timeout: 30
-    hidden: true
-
-  - platform: xiaomi_miio
     name: "Mi IR Controller"
     host: !secret xiaomi_ir_controller_ip
     token: !secret remote_token
