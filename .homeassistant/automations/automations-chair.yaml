@@ -2,8 +2,16 @@
   trigger:
     - platform: state
       entity_id: binary_sensor.desk_chair
-  condition: []
+    - platform: state
+      entity_id: binary_sensor.yunhan_desktop
+  condition:
+    - condition: state
+      entity_id: binary_sensor.desk_chair
+      state: 'on'
+    - condition: state
+      entity_id: binary_sensor.yunhan_desktop
+      state: 'on'
   action:
-    - service_template: switch.turn_{{ states('binary_sensor.desk_chair') }}
+    - service_template: switch.turn_{{ states('binary_sensor.desk_chair') and states('binary_sensor.yunhan_desktop') }}
       data:
         entity_id: switch.monitor
