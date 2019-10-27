@@ -15,3 +15,47 @@ clean_kitchen:
       entity_id: 'vacuum.mi_robot_vacuum'
       command: 'app_zoned_clean'
       params: [[22000,27085,25500,29000,1],[23800,29000,25500,31575,1]]
+
+warm_up:
+  alias: Warm up Vacuum Sensor
+  sequence:
+  - service: vacuum.xiaomi_remote_control_start
+    data:
+      entity_id: vacuum.mi_robot_vacuum
+  - delay:
+      seconds: 10
+  - service: vacuum.xiaomi_remote_control_move
+    data:
+      entity_id: vacuum.mi_robot_vacuum
+      velocity: 0.1
+      rotation: -30
+      duration: 6000
+  - delay:
+      seconds: 10
+  - service: vacuum.xiaomi_remote_control_move
+    data:
+      entity_id: vacuum.mi_robot_vacuum
+      velocity: 0.2
+      rotation: 0
+      duration: 60000
+  - delay:
+      seconds: 10
+  - service: vacuum.xiaomi_remote_control_move
+    data:
+      entity_id: vacuum.mi_robot_vacuum
+      velocity: 0.2
+      rotation: 0
+      duration: 60000
+  - delay:
+      seconds: 10
+  - service: vacuum.xiaomi_remote_control_move
+    data:
+      entity_id: vacuum.mi_robot_vacuum
+      velocity: 0.2
+      rotation: 0
+      duration: 60000
+  - delay:
+      seconds: 10
+  - service: vacuum.return_to_base
+    data:
+      entity_id: vacuum.mi_robot_vacuum

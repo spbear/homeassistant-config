@@ -11,14 +11,32 @@
   payload_off: 'not present'
 
 - platform: mqtt
-  state_topic: smartthings/Yunhan's HA/presence
+  state_topic: smartthings/Yunhan's Presence/presence
   name: yunhan_ha_presence
   payload_on: 'present'
   payload_off: 'not present'
 
 - platform: mqtt
-  state_topic: smartthings/Yunhan's S10/presence
-  name: yunhan_gps_presence
+  state_topic: smartthings/Minjun's Presence/presence
+  name: minjun_android
+  payload_on: 'present'
+  payload_off: 'not present'
+
+- platform: mqtt
+  state_topic: smartthings/Minjun's Presence/presence
+  name: hyunjun_android
+  payload_on: 'present'
+  payload_off: 'not present'
+
+- platform: mqtt
+  state_topic: smartthings/Mom's Presence/presence
+  name: mom_iphone
+  payload_on: 'present'
+  payload_off: 'not present'
+
+- platform: mqtt
+  state_topic: smartthings/Grandma's Presence/presence
+  name: grandma_android
   payload_on: 'present'
   payload_off: 'not present'
 
@@ -32,27 +50,7 @@
     yunhan_android:
       friendly_name: Yunhan's Android
       icon_template: "mdi:cellphone-android"
-      value_template: "{{ is_state('binary_sensor.yunhan_gps_presence', 'on') or is_state('device_tracker.yunhan_android', 'home') or is_state('binary_sensor.yunhan_bt_presence', 'on') }}"
-
-    minjun_android:
-      friendly_name: Minjun's Android
-      icon_template: "mdi:cellphone-android"
-      value_template: "{{ is_state('device_tracker.minjun_android', 'home')}}"
-
-    hyunjun_android:
-      friendly_name: Hyunjun's Android
-      icon_template: "mdi:cellphone-android"
-      value_template: "{{ is_state('device_tracker.hyunjun_android', 'home')}}"
-
-    mom_iphone:
-      friendly_name: Mom's iPhone
-      icon_template: "mdi:cellphone-iphone"
-      value_template: "{{ is_state('device_tracker.mom_iphone', 'home')}}"
-
-    grandma_android:
-      friendly_name: Grandma's Android
-      icon_template: "mdi:cellphone-android"
-      value_template: "{{ is_state('device_tracker.grandma_android', 'home')}}"
+      value_template: "is_state('device_tracker.yunhan_android', 'home') or is_state('binary_sensor.yunhan_bt_presence', 'on') }}"
 
 - platform: mqtt
   state_topic: bt-gateway/projector/presence
@@ -67,14 +65,8 @@
   payload_off: 'closed'
 
 - platform: mqtt
-  state_topic: smartthings/Daddy's Room Door Sensor/motion
+  state_topic: smartthings/My Room Motion Sensor/motion
   name: Room Door Motion
-  payload_on: 'active'
-  payload_off: 'inactive'
-
-- platform: mqtt
-  state_topic: smartthings/Daddy's Room Bed Sensor/motion
-  name: Room Bed Motion
   payload_on: 'active'
   payload_off: 'inactive'
 
@@ -85,7 +77,7 @@
   payload_off: 'inactive'
 
 - platform: mqtt
-  state_topic: smartthings/Nokia Sleep/switch
+  state_topic: smartthings/Sleep Sensor/switch
   name: Room Bed Sleep
   payload_on: 'on'
   payload_off: 'off'

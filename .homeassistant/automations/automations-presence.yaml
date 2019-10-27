@@ -3,13 +3,15 @@
 ##########################################################
 - alias: Minjun's Android Presence to ST
   trigger:
-  - entity_id: device_tracker.minjun_android
-    platform: state
+  - platform: state
+    entity_id: device_tracker.minjun_android
+  - platform: time_pattern
+    minutes: "/5"
   condition: []
   action:
   - service: mqtt.publish
     data_template:
-      topic: smartthings/Minjun/presence
+      topic: smartthings/Minjun's Presence/presence
       payload: >
         {% if is_state('device_tracker.minjun_android', 'home') %}present{% else %}not present{% endif %}
 
@@ -17,11 +19,13 @@
   trigger:
   - entity_id: device_tracker.hyunjun_android
     platform: state
+  - platform: time_pattern
+    minutes: "/5"
   condition: []
   action:
   - service: mqtt.publish
     data_template:
-      topic: smartthings/Hyunjun/presence
+      topic: smartthings/Hyunjun's Presence/presence
       payload: >
         {% if is_state('device_tracker.hyunjun_android', 'home') %}present{% else %}not present{% endif %}
 
@@ -29,18 +33,36 @@
   trigger:
   - entity_id: device_tracker.mom_iphone
     platform: state
+  - platform: time_pattern
+    minutes: "/5"
   condition: []
   action:
   - service: mqtt.publish
     data_template:
-      topic: smartthings/mom/presence
+      topic: smartthings/Mom's Presence/presence
       payload: >
         {% if is_state('device_tracker.mom_iphone', 'home') %}present{% else %}not present{% endif %}
+
+- alias: Granma's Android Presence to ST
+  trigger:
+  - entity_id: device_tracker.hyunjun_android
+    platform: state
+  - platform: time_pattern
+    minutes: "/5"
+  condition: []
+  action:
+  - service: mqtt.publish
+    data_template:
+      topic: smartthings/Granma's Presence/presence
+      payload: >
+        {% if is_state('device_tracker.grandma_android', 'home') %}present{% else %}not present{% endif %}
 
 - alias: SPBEAR's Desktop Presence to ST
   trigger:
   - entity_id: device_tracker.spbear_desktop
     platform: state
+  - platform: time_pattern
+    minutes: "/5"
   condition: []
   action:
     - service: mqtt.publish
@@ -65,10 +87,12 @@
   trigger:
   - entity_id: binary_sensor.yunhan_android
     platform: state
+  - entity_id: binary_sensor.room_door_motion
+    platform: state
   condition: []
   action:
     - service: mqtt.publish
       data_template:
-        topic: smartthings/Yunhan's HA/presence
+        topic: smartthings/Yunhan's Presence/presence
         payload: >
           {% if is_state('binary_sensor.yunhan_android', 'on') %}present{% else %}not present{% endif %}

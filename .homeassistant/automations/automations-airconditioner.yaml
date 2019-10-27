@@ -23,8 +23,9 @@
       for:
         minutes: 60
   condition:
-    - condition: template
-      value_template: "{{ states('sensor.weather_sensor_temperature') < '26.0' }}"
+    - condition: numeric_state
+      entity_id: sensor.weather_sensor_temperature
+      below: 26.0
     - condition: state
       entity_id: switch.samsung_air_conditioner
       state: 'on'
@@ -44,8 +45,9 @@
       for:
         minutes: 120
   condition:
-    - condition: template
-      value_template: "{{ states('sensor.weather_sensor_temperature') < '26.0' }}"
+    - condition: numeric_state
+      entity_id: sensor.weather_sensor_temperature
+      below: 26.0
     - condition: state
       entity_id: switch.samsung_air_conditioner
       state: 'on'
@@ -65,8 +67,9 @@
       for:
         minutes: 160
   condition:
-    - condition: template
-      value_template: "{{ states('sensor.weather_sensor_temperature') < '26.0' }}"
+    - condition: numeric_state
+      entity_id: sensor.weather_sensor_temperature
+      below: 26.0
     - condition: state
       entity_id: switch.samsung_air_conditioner
       state: 'on'
@@ -86,8 +89,9 @@
       for:
         minutes: 210
   condition:
-    - condition: template
-      value_template: "{{ states('sensor.weather_sensor_temperature') < '26.0' }}"
+    - condition: numeric_state
+      entity_id: sensor.weather_sensor_temperature
+      below: 26.0
     - condition: state
       entity_id: switch.samsung_air_conditioner
       state: 'on'
@@ -99,11 +103,11 @@
       data:
         entity_id: switch.samsung_air_conditioner
 
-- alias: Turn On Air Conditioner Above 27.5c
+- alias: Turn On Air Conditioner Above 27.0c
   trigger:
     - platform: numeric_state
       entity_id: sensor.room_temperature
-      above: 27.5
+      above: 27.0
   condition:
     - condition: state
       entity_id: binary_sensor.room_bed_sleep
@@ -115,12 +119,107 @@
     - service: switch.turn_on
       data:
         entity_id: switch.samsung_air_conditioner
+
+- alias: Temparature Control below 22.0c
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.room_temperature
+      below: 22.0
+      for:
+        minutes: 1
+    - platform: state
+      entity_id: switch.samsung_air_conditioner
+      to: 'on'
+      for:
+        minutes: 1
+  condition:
+    - condition: state
+      entity_id: switch.samsung_air_conditioner
+      state: 'on'
+    - condition: numeric_state
+      entity_id: sensor.room_temperature
+      below: 22.0
+  action:
+    - service: remote.send_command
+      data:
+        entity_id: remote.mi_ir_controller
+        command: turn_off_my_room_ac
+
+- alias: Temparature Control from 22.0c to 25.0c
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.room_temperature
+      above: 22.0
+      below: 25.0
+      for:
+        minutes: 5
+    - platform: state
+      entity_id: switch.samsung_air_conditioner
+      to: 'on'
+      for:
+        minutes: 1
+  condition:
+    - condition: state
+      entity_id: switch.samsung_air_conditioner
+      state: 'on'
+    - condition: numeric_state
+      entity_id: sensor.room_temperature
+      above: 22.0
+      below: 25.0
+  action:
     - service: remote.send_command
       data:
         entity_id: remote.mi_ir_controller
         command: set_my_room_26c
-    - delay:
-        minutes: 10
-    - service: switch.turn_off
+
+- alias: Temparature Control from 25.0c to 27.0c
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.room_temperature
+      above: 25.0
+      below: 27.0
+      for:
+        minutes: 5
+    - platform: state
+      entity_id: switch.samsung_air_conditioner
+      to: 'on'
+      for:
+        minutes: 1
+  condition:
+    - condition: state
+      entity_id: switch.samsung_air_conditioner
+      state: 'on'
+    - condition: numeric_state
+      entity_id: sensor.room_temperature
+      above: 25.0
+      below: 27.0
+  action:
+    - service: remote.send_command
       data:
-        entity_id: switch.samsung_air_conditioner
+        entity_id: remote.mi_ir_controller
+        command: set_my_room_25c
+
+- alias: Temparature Control above 27.0c
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.room_temperature
+      above: 27.0
+      for:
+        minutes: 1
+    - platform: state
+      entity_id: switch.samsung_air_conditioner
+      to: 'on'
+      for:
+        minutes: 1
+  condition:
+    - condition: state
+      entity_id: switch.samsung_air_conditioner
+      state: 'on'
+    - condition: numeric_state
+      entity_id: sensor.room_temperature
+      above: 27.0
+  action:
+    - service: remote.send_command
+      data:
+        entity_id: remote.mi_ir_controller
+        command: set_my_room_24c

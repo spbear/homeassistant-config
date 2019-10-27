@@ -73,6 +73,7 @@ my_room_status:
     - binary_sensor.room_door_status
     - binary_sensor.window_sensor
     - binary_sensor.room_door_motion
+    - switch.my_room_light
 
 my_desk:
   name: My Desk

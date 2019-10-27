@@ -143,3 +143,47 @@
   icon: mdi:animation
   optimistic: false
   retain: true
+
+- platform: mqtt
+  name: "Restroom Fan"
+  state_topic: "smartthings/Restroom Fan/switch"
+  command_topic: "smartthings/Restroom Fan/switch"
+  payload_on: "on"
+  payload_off: "off"
+  state_on: "on"
+  state_off: "off"
+  optimistic: false
+  retain: true
+
+- platform: mqtt
+  name: "Restroom Light"
+  state_topic: "smartthings/Restroom Light/switch"
+  command_topic: "smartthings/Restroom Light/switch"
+  payload_on: "on"
+  payload_off: "off"
+  state_on: "on"
+  state_off: "off"
+  optimistic: false
+  retain: true
+
+- platform: mqtt
+  name: "Restroom Sub Light"
+  state_topic: "smartthings/Restroom Sub Light/switch"
+  command_topic: "smartthings/Restroom Sub Light/switch"
+  payload_on: "on"
+  payload_off: "off"
+  state_on: "on"
+  state_off: "off"
+  optimistic: false
+  retain: true
+
+- platform: mqtt
+  name: "My Room Light"
+  state_topic: "smartthings/My Room Light/switch"
+  command_topic: "smartthings/My Room Light/switch"
+  payload_on: "on"
+  payload_off: "off"
+  state_on: "on"
+  state_off: "off"
+  optimistic: false
+  retain: true

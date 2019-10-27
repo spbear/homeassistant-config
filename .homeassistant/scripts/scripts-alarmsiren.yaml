@@ -5,7 +5,7 @@ xiaomi_alarm_siren:
     - service: xiaomi_aqara.play_ringtone
       data_template:
         ringtone_id: 2
-        ringtone_vol: 10
+        ringtone_vol: 3
         gw_mac: !secret gateway_mac
     - delay:
         seconds: 6.5

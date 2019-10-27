@@ -1,21 +1,34 @@
 binary_sensor.yunhan_android:
+  icon: mdi:cellphone-android
   device_class: presence
+  friendly_name: Yunhan's Android
 binary_sensor.minjun_android:
+  icon: mdi:cellphone-android
   device_class: presence
+  friendly_name: Minjun's Android
 binary_sensor.hyunjun_android:
+  icon: mdi:cellphone-android
   device_class: presence
+  friendly_name: Hyunjun's Android
 binary_sensor.mom_iphone:
   device_class: presence
+  icon: mdi:cellphone-iphone
+  friendly_name: Mom's iPhone
 binary_sensor.grandma_android:
   device_class: presence
+  icon: mdi:cellphone-android
+  friendly_name: Grandma's Android
 binary_sensor.yunhan_desktop:
   device_class: power
   icon: mdi:desktop-tower
+  friendly_name: Yunhan's Desktop
 binary_sensor.screen_projector:
   device_class: power
   icon: mdi:projector
+  friendly_name: Screen Projector
 binary_sensor.main_door_status:
   device_class: door
+  friendly_name: Entrance Door
 binary_sensor.passage_motion:
   device_class: motion
 binary_sensor.room_door_motion:
@@ -82,3 +95,13 @@ sensor.air_quality_pm25value:
 sensor.air_quality_pm10value:
   icon: mdi:cloud
   friendly_name: Outside PM10
+switch.restroom_fan:
+  icon: mdi:fan
+switch.restroom_light:
+  icon: mdi:lightbulb
+switch.restroom_sub_light:
+  icon: mdi:lightbulb
+switch.my_room_light:
+  icon: mdi:lightbulb
+binary_sensor.restroom_door_status:
+  device_class: door

@@ -10,8 +10,9 @@
       - condition: state
         entity_id: sun.sun
         state: 'below_horizon'
-      - condition: template
-        value_template: "{{ states('sensor.light_sensor') < '10' }}"
+      - condition: numeric_state
+        entity_id: sensor.light_sensor
+        below: 10
       - condition: state
         entity_id: cover.window_curtain
         state: 'closed'
@@ -26,8 +27,8 @@
 - alias: Welcome Lamp ON with Illuminance
   trigger:
     - platform: numeric_state
-      entity_id: sensor.gateway_illumination
-      below: 300
+      entity_id: sensor.light_sensor
+      below: 10
   condition:
     - condition: state
       entity_id: binary_sensor.yunhan_bt_presence
@@ -47,8 +48,9 @@
       from: 'off'
       to: 'on'
   condition:
-    - condition: template
-      value_template: "{{ states('sensor.light_sensor') < '10' }}"
+    - condition: numeric_state
+      entity_id: sensor.light_sensor
+      below: 10
     - condition: state
       entity_id: binary_sensor.room_bed_sleep
       state: 'off'
@@ -64,8 +66,9 @@
       from: 'off'
       to: 'on'
   condition:
-    - condition: template
-      value_template: "{{ states('sensor.light_sensor') < '10' }}"
+    - condition: numeric_state
+      entity_id: sensor.light_sensor
+      below: 10
     - condition: state
       entity_id: binary_sensor.room_bed_sleep
       state: 'off'
@@ -81,8 +84,9 @@
       from: 'on'
       to: 'off'
   condition:
-    - condition: template
-      value_template: "{{ states('sensor.light_sensor') < '10' }}"
+    - condition: numeric_state
+      entity_id: sensor.light_sensor
+      below: 10
     - condition: state
       entity_id: binary_sensor.room_door_motion
       state: 'on'
@@ -101,8 +105,9 @@
       from: 'off'
       to: 'on'
   condition:
-    - condition: template
-      value_template: "{{ states('sensor.light_sensor') < '10' }}"
+    - condition: numeric_state
+      entity_id: sensor.light_sensor
+      below: 10
   action:
     - service: scene.turn_on
       data:
@@ -126,7 +131,12 @@
     - platform: numeric_state
       entity_id: sensor.light_sensor
       above: 10
-  condition: []
+      for:
+        minutes: 3
+  condition:
+    - condition: state
+      entity_id: binary_sensor.desk_chair
+      state: 'off'
   action:
     - service: scene.turn_on
       data:

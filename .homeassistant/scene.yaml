@@ -19,6 +19,7 @@
     switch.music_auto_play: on
     switch.security_mode: on
     switch.curtain_auto_control: on
+    switch.my_room_light: off
 
 - name: Night Welcome
   entities:
@@ -62,7 +63,7 @@
     light.desk_lamp:
       state: on
       kelvin: 3250
-      brightness: 100
+      brightness: 255
     light.sleep_lamp:
       state: on
       kelvin: 2700
