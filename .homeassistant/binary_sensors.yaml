@@ -50,7 +50,7 @@
     yunhan_android:
       friendly_name: Yunhan's Android
       icon_template: "mdi:cellphone-android"
-      value_template: "is_state('device_tracker.yunhan_android', 'home') or is_state('binary_sensor.yunhan_bt_presence', 'on') }}"
+      value_template: "{{is_state('device_tracker.yunhan_android', 'home') or is_state('binary_sensor.yunhan_bt_presence', 'on') }}"
 
 - platform: mqtt
   state_topic: bt-gateway/projector/presence
@@ -67,6 +67,12 @@
 - platform: mqtt
   state_topic: smartthings/My Room Motion Sensor/motion
   name: Room Door Motion
+  payload_on: 'active'
+  payload_off: 'inactive'
+
+- platform: mqtt
+  state_topic: smartthings/Restroom Multi Sensor/motion
+  name: Restroom Motion
   payload_on: 'active'
   payload_off: 'inactive'
 

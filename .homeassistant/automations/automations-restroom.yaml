@@ -4,6 +4,10 @@
       entity_id: binary_sensor.restroom_door_status
       from: 'off'
       to: 'on'
+    - platform: state
+      entity_id: binary_sensor.restroom_motion
+      from: 'off'
+      to: 'on'
   condition: []
   action:
     - service: switch.turn_on
@@ -12,12 +16,19 @@
     - service: switch.turn_on
       data:
         entity_id: switch.restroom_fan
+    - service: switch.turn_on
+      data:
+        entity_id: switch.restroom_sub_light
 
 - alias: Restroom Fan ON
   trigger:
     - platform: numeric_state
       entity_id: sensor.restroom_humidity
       above: 55.0
+    - platform: state
+      entity_id: binary_sensor.restroom_motion
+      from: 'off'
+      to: 'on'
   condition: []
   action:
     - service: switch.turn_on
@@ -27,11 +38,11 @@
 - alias: Restroom Light OFF
   trigger:
     - platform: state
-      entity_id: switch.restroom_light
-      from: 'off'
-      to: 'on'
+      entity_id: binary_sensor.restroom_motion
+      from: 'on'
+      to: 'off'
       for:
-          minutes: 20
+          minutes: 10
   condition:
     - condition: state
       entity_id: switch.restroom_light
@@ -40,15 +51,18 @@
     - service: switch.turn_off
       data:
         entity_id: switch.restroom_light
+    - service: switch.turn_off
+      data:
+        entity_id: switch.restroom_sub_light
 
 - alias: Restroom Fan OFF
   trigger:
     - platform: state
-      entity_id: switch.restroom_fan
-      from: 'off'
-      to: 'on'
+      entity_id: binary_sensor.restroom_motion
+      from: 'on'
+      to: 'off'
       for:
-          minutes: 1
+          minutes: 10
     - platform: numeric_state
       entity_id: sensor.restroom_humidity
       below: 55.0
