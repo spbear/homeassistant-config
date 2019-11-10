@@ -53,7 +53,7 @@
   action:
   - service: mqtt.publish
     data_template:
-      topic: smartthings/Granma's Presence/presence
+      topic: smartthings/Grandma's Presence/presence
       payload: >
         {% if is_state('device_tracker.grandma_android', 'home') %}present{% else %}not present{% endif %}
 

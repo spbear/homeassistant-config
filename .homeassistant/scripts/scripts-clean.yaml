@@ -5,7 +5,7 @@ clean_myroom:
     data:
       entity_id: 'vacuum.mi_robot_vacuum'
       command: 'app_zoned_clean'
-      params: [[29500,21000,32000,25700,1]]
+      params: [[25030,24139,25930,26589,1],[20716,24093,25066,25393,1],[19491,27372,20041,29022,1],[19487,28414,21937,30114,1],[19499,25351,21949,28151,1]]
 
 clean_kitchen:
   alias: clean_kitchen
@@ -14,7 +14,25 @@ clean_kitchen:
     data:
       entity_id: 'vacuum.mi_robot_vacuum'
       command: 'app_zoned_clean'
-      params: [[22000,27085,25500,29000,1],[23800,29000,25500,31575,1]]
+      params: [[25350,24110,26450,26560,1],[26098,24115,31498,25565,1],[26711,22273,29511,24123,1],[26106,19683,27706,22333,1],[27037,22188,29537,24838,1]]
+
+clean_livingroom:
+  alias: clean_livingroom
+  sequence:
+  - service: vacuum.send_command
+    data:
+      entity_id: 'vacuum.mi_robot_vacuum'
+      command: 'app_zoned_clean'
+      params: [[29222,25295,30222,30695,1],[25515,29282,30215,30932,1],[29222,25295,30222,30695,1],[25360,24093,30160,26093,1],[26283,24154,26783,29204,1]]
+
+clean_kidsroom:
+  alias: clean_kidsroom
+  sequence:
+  - service: vacuum.send_command
+    data:
+      entity_id: 'vacuum.mi_robot_vacuum'
+      command: 'app_zoned_clean'
+      params: [[22910,25280,25060,28830,1]]
 
 warm_up:
   alias: Warm up Vacuum Sensor

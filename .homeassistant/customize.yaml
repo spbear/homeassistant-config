@@ -33,8 +33,6 @@ binary_sensor.passage_motion:
   device_class: motion
 binary_sensor.room_door_motion:
   device_class: motion
-binary_sensor.room_door_motion:
-  device_class: motion
 binary_sensor.restroom_motion:
   device_class: motion
 binary_sensor.room_bed_sleep:
