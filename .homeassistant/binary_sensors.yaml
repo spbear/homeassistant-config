@@ -23,7 +23,7 @@
   payload_off: 'not present'
 
 - platform: mqtt
-  state_topic: smartthings/Minjun's Presence/presence
+  state_topic: smartthings/Hyunjun's Presence/presence
   name: hyunjun_android
   payload_on: 'present'
   payload_off: 'not present'
@@ -59,8 +59,8 @@
   payload_off: 'False'
 
 - platform: mqtt
-  state_topic: smartthings/Main Door/contact
-  name: Main Door Status
+  state_topic: smartthings/Entrance Door/contact
+  name: Entrance Door
   payload_on: 'open'
   payload_off: 'closed'
 
@@ -121,5 +121,11 @@
 - platform: mqtt
   state_topic: mobile/yunhan/bluetooth/Gear Fit2 Pro (6C25)
   name: Gear Fit2 Pro
+  payload_on: 'on'
+  payload_off: 'off'
+
+- platform: mqtt
+  state_topic: mobile/yunhan/bluetooth/Galaxy Watch Active2(CCA7)
+  name: Watch Active2
   payload_on: 'on'
   payload_off: 'off'
