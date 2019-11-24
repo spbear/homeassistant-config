@@ -26,7 +26,7 @@ binary_sensor.screen_projector:
   device_class: power
   icon: mdi:projector
   friendly_name: Screen Projector
-binary_sensor.main_door_status:
+binary_sensor.entrace_door:
   device_class: door
   friendly_name: Entrance Door
 binary_sensor.passage_motion:
@@ -53,10 +53,22 @@ binary_sensor.gear_s3:
   icon: mdi:watch
 binary_sensor.gear_fit2_pro:
   icon: mdi:watch
+binary_sensor.watch_active2:
+  icon: mdi:watch
 sensor.room_pm25:
   icon: mdi:cloud
 switch.livingroom_tv:
   icon: mdi:television
+switch.passage_light:
+  icon: mdi:lightbulb
+switch.heating_control:
+  icon: mdi:fire
+switch.passage_light_switchbot:
+  assumed_state: false
+  icon: mdi:lightbulb
+switch.heating_control_switchbot:
+  assumed_state: false
+  icon: mdi:fire
 sensor.livingroom_pm25:
   icon: mdi:cloud
 sensor.mi_scale:
