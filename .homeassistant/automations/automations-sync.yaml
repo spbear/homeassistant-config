@@ -1,0 +1,69 @@
+- alias: Sync Minjun's Presence
+  trigger:
+  - platform: time_pattern
+    minutes: "/5"
+  condition:
+  - condition: template
+    value_template: "{{ not ((states('device_tracker.minjun_android') == 'home') and (states('binary_sensor.minjun_android') == 'on')) }}"
+  action:
+  - service: mqtt.publish
+    data_template:
+      topic: smartthings/Minjun's Presence/presence
+      payload: >
+          {% if states("device_tracker.minjun_android") == 'home' %}present{% else %}not present{% endif %}
+
+- alias: Sync Hyunjun's Presence
+  trigger:
+  - platform: time_pattern
+    minutes: "/5"
+  condition:
+  - condition: template
+    value_template: "{{ not ((states('device_tracker.hyunjun_android') == 'home') and (states('binary_sensor.hyunjun_android') == 'on')) }}"
+  action:
+  - service: mqtt.publish
+    data_template:
+      topic: smartthings/Hyunjun's Presence/presence
+      payload: >
+          {% if states("device_tracker.hyunjun_android") == 'home' %}present{% else %}not present{% endif %}
+
+- alias: Sync Mom's Presence
+  trigger:
+  - platform: time_pattern
+    minutes: "/5"
+  condition:
+  - condition: template
+    value_template: "{{ not ((states('device_tracker.mom_iphone') == 'home') and (states('binary_sensor.mom_iphone') == 'on')) }}"
+  action:
+  - service: mqtt.publish
+    data_template:
+      topic: smartthings/Mom's Presence/presence
+      payload: >
+          {% if states("device_tracker.mom_iphone") == 'home' %}present{% else %}not present{% endif %}
+
+- alias: Sync Grandma's Presence
+  trigger:
+  - platform: time_pattern
+    minutes: "/5"
+  condition:
+  - condition: template
+    value_template: "{{ not ((states('device_tracker.grandma_android') == 'home') and (states('binary_sensor.grandma_android') == 'on')) }}"
+  action:
+  - service: mqtt.publish
+    data_template:
+      topic: smartthings/Grandma's Presence/presence
+      payload: >
+          {% if states("device_tracker.grandma_android") == 'home' %}present{% else %}not present{% endif %}
+
+- alias: Sync Desktop's Presence
+  trigger:
+  - platform: time_pattern
+    minutes: "/5"
+  condition:
+  - condition: template
+    value_template: "{{ not ((states('device_tracker.spbear_desktop') == 'home') and (states('binary_sensor.yunhan_desktop') == 'on')) }}"
+  action:
+  - service: mqtt.publish
+    data_template:
+      topic: smartthings/Desktop PC/switch
+      payload: >
+          {% if states("device_tracker.spbear_desktop") == 'home' %}present{% else %}not present{% endif %}

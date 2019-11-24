@@ -1,21 +1,6 @@
-- platform: mqtt
-  state_topic: smartthings/Yunhan's Bluetooth/presence
-  name: yunhan_bt_presence
-  payload_on: 'present'
-  payload_off: 'not present'
-
-- platform: mqtt
-  state_topic: smartthings/Yunhan's WiFi/presence
-  name: yunhan_wifi_presence
-  payload_on: 'present'
-  payload_off: 'not present'
-
-- platform: mqtt
-  state_topic: smartthings/Yunhan's Presence/presence
-  name: yunhan_ha_presence
-  payload_on: 'present'
-  payload_off: 'not present'
-
+##########################################################
+# Virtual Presence
+##########################################################
 - platform: mqtt
   state_topic: smartthings/Minjun's Presence/presence
   name: minjun_android
@@ -40,17 +25,36 @@
   payload_on: 'present'
   payload_off: 'not present'
 
+##########################################################
+# Yunhan's Presence
+##########################################################
+- platform: mqtt
+  state_topic: smartthings/Yunhan's Bluetooth/presence
+  name: yunhan_bt_presence
+  payload_on: 'present'
+  payload_off: 'not present'
+
+- platform: mqtt
+  state_topic: smartthings/Yunhan's WiFi/presence
+  name: yunhan_wifi_presence
+  payload_on: 'present'
+  payload_off: 'not present'
+
 - platform: template
   sensors:
-    yunhan_desktop:
-      friendly_name: Yunhan's Desktop PC
-      icon_template: "mdi:monitor"
-      value_template: "{{ is_state('device_tracker.spbear_desktop', 'home')}}"
-
     yunhan_android:
       friendly_name: Yunhan's Android
       icon_template: "mdi:cellphone-android"
       value_template: "{{is_state('device_tracker.yunhan_android', 'home') or is_state('binary_sensor.yunhan_bt_presence', 'on') }}"
+
+##########################################################
+# Desktop
+##########################################################
+- platform: mqtt
+  state_topic: smartthings/Desktop PC/switch
+  name: yunhan_desktop
+  payload_on: 'present'
+  payload_off: 'not present'
 
 - platform: mqtt
   state_topic: bt-gateway/projector/presence
