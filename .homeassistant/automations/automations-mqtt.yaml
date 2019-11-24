@@ -71,3 +71,36 @@
   action:
   - service_template: >
       script.script_turn_{% if is_state('switch.samsung_air_conditioner', 'on') %}on{% else %}off{% endif %}_my_room_ac
+
+##########################################################
+# Passage Light
+##########################################################
+- alias: mqtt_passage_light_ha
+  hide_entity: true
+  trigger:
+  - platform: state
+    entity_id: switch.passage_light_switchbot
+  condition: []
+  action:
+  - service: mqtt.publish
+    data_template:
+      topic: smartthings/Passage Light/switch
+      payload: >
+        {% if is_state('switch.passage_light_switchbot', 'on') %}on{% else %}off{% endif %}
+
+
+##########################################################
+# Heating Control
+##########################################################
+- alias: mqtt_heating_control_ha
+  hide_entity: true
+  trigger:
+  - platform: state
+    entity_id: switch.heating_control_switchbot
+  condition: []
+  action:
+  - service: mqtt.publish
+    data_template:
+      topic: smartthings/Heating Control/switch
+      payload: >
+        {% if is_state('switch.heating_control_switchbot', 'on') %}on{% else %}off{% endif %}
