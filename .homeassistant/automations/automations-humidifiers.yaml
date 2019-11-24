@@ -1,0 +1,41 @@
+- alias: Dehumidifier Control
+  trigger:
+    - platform: state
+      entity_id: switch.mi_dehumidifier
+  condition: []
+  action:
+    - service_template: shell_command.dehumidifier_{{ states('switch.mi_dehumidifier') }}
+
+- alias: Turn On Humidifier
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.room_humidify
+      below: 40
+  condition:
+    - condition: state
+      entity_id: binary_sensor.yunhan_desktop
+      state: 'on'
+  action:
+    - service: fan.turn_on
+      data:
+        entity_id: fan.mi_humidifier
+    - service: switch.turn_off
+      data:
+        entity_id: switch.mi_dehumidifier
+
+- alias: Turn On Dehumidifier
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.room_humidify
+      above: 55
+  condition:
+    - condition: state
+      entity_id: binary_sensor.yunhan_desktop
+      state: 'on'
+  action:
+    - service: fan.turn_off
+      data:
+        entity_id: fan.mi_humidifier
+    - service: switch.turn_on
+      data:
+        entity_id: switch.mi_dehumidifier
