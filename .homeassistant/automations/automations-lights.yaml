@@ -153,3 +153,46 @@
     - service: scene.turn_on
       data:
         entity_id: scene.lightoff
+
+- alias: Passage Motion Lamp ON
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.passage_motion
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: switch.passage_light_switchbot
+      state: 'off'
+  action:
+    - service: switch.turn_on
+      data:
+        entity_id: switch.passage_light_switchbot
+
+- alias: Passage Motion Lamp OFF
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.passage_motion
+      to: 'off'
+      for:
+        minutes: 5
+    - platform: state
+      entity_id: switch.passage_light_switchbot
+      to: 'on'
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: switch.passage_light_switchbot
+      to: 'on'
+      for:
+        minutes: 15
+  condition:
+    - condition: state
+      entity_id: switch.passage_light_switchbot
+      state: 'on'
+    - condition: state
+      entity_id: binary_sensor.passage_motion
+      state: 'off'
+  action:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.passage_light_switchbot
