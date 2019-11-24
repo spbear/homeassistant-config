@@ -1,26 +1,11 @@
-- alias: Clean my room
+- alias: Clean all rooms after a vacancy
   trigger:
   - entity_id: binary_sensor.yunhan_android
     platform: state
     to: 'off'
     for:
       minutes: 20
-  - entity_id: binary_sensor.minjun_android
-    platform: state
-    to: 'off'
-    for:
-      minutes: 20
-  - entity_id: binary_sensor.hyunjun_android
-    platform: state
-    to: 'off'
-    for:
-      minutes: 20
-  - entity_id: binary_sensor.mom_iphone
-    platform: state
-    to: 'off'
-    for:
-      minutes: 20
-  - entity_id: binary_sensor.grandma_android
+  - entity_id: group.people
     platform: state
     to: 'off'
     for:
@@ -30,18 +15,27 @@
     entity_id: binary_sensor.yunhan_android
     state: 'off'
   - condition: state
-    entity_id: binary_sensor.minjun_android
-    state: 'off'
-  - condition: state
-    entity_id: binary_sensor.hyunjun_android
-    state: 'off'
-  - condition: state
-    entity_id: binary_sensor.mom_iphone
-    state: 'off'
-  - condition: state
-    entity_id: binary_sensor.grandma_android
+    entity_id: group.people
     state: 'off'
   action:
   - service: script.turn_on
     data:
-      entity_id: script.clean_myroom
+      entity_id: script.clean_all
+
+
+- alias: Clean all rooms on weekend
+  trigger:
+  - platform: time
+    at: "09:05:00"
+  condition:
+  - condition: state
+    entity_id: binary_sensor.yunhan_android
+    state: 'on'
+  - condition: time
+    weekday:
+      - sat
+      - sun
+  action:
+  - service: script.turn_on
+    data:
+      entity_id: script.clean_all

@@ -62,6 +62,24 @@ CleanKitchenIntent:
   speech:
     type: plain
     text: OK
+CleanLivingroomIntent:
+  action:
+    service: script.clean_livingroom
+  speech:
+    type: plain
+    text: OK
+CleanKidsroomIntent:
+  action:
+    service: script.clean_kidsroom
+  speech:
+    type: plain
+    text: OK
+CleanAllIntent:
+  action:
+    service: script.clean_all
+  speech:
+    type: plain
+    text: OK
 AMAZON.FallbackIntent:
   speech:
     type: plain

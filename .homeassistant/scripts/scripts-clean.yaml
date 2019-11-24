@@ -1,20 +1,40 @@
 clean_myroom:
   alias: clean_myroom
   sequence:
+  - service: vacuum.start
+    data:
+      entity_id: 'vacuum.mi_robot_vacuum'
+  - delay:
+      seconds: 7
+  - service: vacuum.return_to_base
+    data:
+      entity_id: 'vacuum.mi_robot_vacuum'
+  - delay:
+      seconds: 10
   - service: vacuum.send_command
     data:
       entity_id: 'vacuum.mi_robot_vacuum'
       command: 'app_zoned_clean'
-      params: [[25030,24139,25930,26589,1],[20716,24093,25066,25393,1],[19491,27372,20041,29022,1],[19487,28414,21937,30114,1],[19499,25351,21949,28151,1]]
+      params: [[25030,24139,25930,26589,1],[20916,24093,25066,25393,1],[19491,27372,20041,29022,1],[19487,28414,21937,30114,1],[19499,25351,21949,28151,1]]
 
 clean_kitchen:
   alias: clean_kitchen
   sequence:
+  - service: vacuum.start
+    data:
+      entity_id: 'vacuum.mi_robot_vacuum'
+  - delay:
+      seconds: 7
+  - service: vacuum.return_to_base
+    data:
+      entity_id: 'vacuum.mi_robot_vacuum'
+  - delay:
+      seconds: 10
   - service: vacuum.send_command
     data:
       entity_id: 'vacuum.mi_robot_vacuum'
       command: 'app_zoned_clean'
-      params: [[25350,24110,26450,26560,1],[26098,24115,31498,25565,1],[26711,22273,29511,24123,1],[26106,19683,27706,22333,1],[27037,22188,29537,24838,1]]
+      params: [[25030,24139,25930,26589,1],[26098,24115,31498,25565,1],[26711,22273,29511,24123,1],[26106,19683,27706,22333,1],[27037,22188,29537,24838,1]]
 
 clean_livingroom:
   alias: clean_livingroom
@@ -28,52 +48,38 @@ clean_livingroom:
 clean_kidsroom:
   alias: clean_kidsroom
   sequence:
+  - service: vacuum.start
+    data:
+      entity_id: 'vacuum.mi_robot_vacuum'
+  - delay:
+      seconds: 7
+  - service: vacuum.return_to_base
+    data:
+      entity_id: 'vacuum.mi_robot_vacuum'
+  - delay:
+      seconds: 10
   - service: vacuum.send_command
     data:
       entity_id: 'vacuum.mi_robot_vacuum'
       command: 'app_zoned_clean'
-      params: [[22910,25280,25060,28830,1]]
+      params: [[25030,24139,25930,26589,1],[22910,25280,25060,28830,1]]
 
-warm_up:
-  alias: Warm up Vacuum Sensor
+
+clean_all:
+  alias: clean_all
   sequence:
-  - service: vacuum.xiaomi_remote_control_start
-    data:
-      entity_id: vacuum.mi_robot_vacuum
+  - service: script.clean_myroom
   - delay:
-      seconds: 10
-  - service: vacuum.xiaomi_remote_control_move
+      minutes: 3
+  - wait_template: "{{  is_state('vacuum.mi_robot_vacuum', 'docked') }}"
+  - service: script.turn_on
     data:
-      entity_id: vacuum.mi_robot_vacuum
-      velocity: 0.1
-      rotation: -30
-      duration: 6000
+      entity_id: script.clean_kidsroom
   - delay:
-      seconds: 10
-  - service: vacuum.xiaomi_remote_control_move
-    data:
-      entity_id: vacuum.mi_robot_vacuum
-      velocity: 0.2
-      rotation: 0
-      duration: 60000
+      minutes: 3
+  - wait_template: "{{  is_state('vacuum.mi_robot_vacuum', 'docked') }}"
+  - service: script.clean_kitchen
   - delay:
-      seconds: 10
-  - service: vacuum.xiaomi_remote_control_move
-    data:
-      entity_id: vacuum.mi_robot_vacuum
-      velocity: 0.2
-      rotation: 0
-      duration: 60000
-  - delay:
-      seconds: 10
-  - service: vacuum.xiaomi_remote_control_move
-    data:
-      entity_id: vacuum.mi_robot_vacuum
-      velocity: 0.2
-      rotation: 0
-      duration: 60000
-  - delay:
-      seconds: 10
-  - service: vacuum.return_to_base
-    data:
-      entity_id: vacuum.mi_robot_vacuum
+      minutes: 3
+  - wait_template: "{{  is_state('vacuum.mi_robot_vacuum', 'docked') }}"
+  - service: script.clean_livingroom
