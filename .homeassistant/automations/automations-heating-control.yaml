@@ -5,6 +5,8 @@
       below: 22.0
       for:
         minutes: 10
+    - platform: state
+      entity_id: binary_sensor.yunhan_android
   condition:
     - condition: state
       entity_id: switch.heating_control_switchbot
@@ -17,13 +19,63 @@
       data:
         entity_id: switch.heating_control_switchbot
 
-- alias: Turn On Heating Control Above 22.0c
+- alias: Turn On Heating Control Below 18.0c
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.room_temperature
+      below: 18.0
+      for:
+        minutes: 10
+  condition:
+    - condition: state
+      entity_id: switch.heating_control_switchbot
+      state: 'off'
+  action:
+    - service: switch.turn_on
+      data:
+        entity_id: switch.heating_control_switchbot
+
+- alias: Turn On Heating Control Above 18.0c
   trigger:
     - platform: numeric_state
       entity_id: sensor.room_temperature
       above: 22.0
       for:
         minutes: 10
+  condition:
+    - condition: state
+      entity_id: switch.heating_control_switchbot
+      state: 'on'
+  action:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.heating_control_switchbot
+
+- alias: Turn On Heating Control Above 20.0c
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.room_temperature
+      above: 20.0
+      for:
+        minutes: 10
+  condition:
+    - condition: state
+      entity_id: switch.heating_control_switchbot
+      state: 'on'
+    - condition: state
+      entity_id: binary_sensor.yunhan_android
+      state: 'off'
+  action:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.heating_control_switchbot
+
+
+- alias: Turn Off When Leaving
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.yunhan_android
+      to: 'off'
   condition:
     - condition: state
       entity_id: switch.heating_control_switchbot
