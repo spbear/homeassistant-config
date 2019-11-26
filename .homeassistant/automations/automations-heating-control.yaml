@@ -7,6 +7,7 @@
         minutes: 10
     - platform: state
       entity_id: binary_sensor.yunhan_android
+      to: 'on'
   condition:
     - condition: state
       entity_id: switch.heating_control_switchbot
@@ -14,6 +15,9 @@
     - condition: state
       entity_id: binary_sensor.yunhan_android
       state: 'on'
+    - condition: numeric_state
+      entity_id: sensor.room_temperature
+      below: 22.0
   action:
     - service: switch.turn_on
       data:
@@ -35,7 +39,7 @@
       data:
         entity_id: switch.heating_control_switchbot
 
-- alias: Turn On Heating Control Above 18.0c
+- alias: Turn On Heating Control Above 22.0c
   trigger:
     - platform: numeric_state
       entity_id: sensor.room_temperature
