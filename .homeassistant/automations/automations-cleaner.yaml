@@ -1,40 +1,41 @@
 - alias: Clean all rooms after a vacancy
   trigger:
-  - entity_id: binary_sensor.yunhan_android
-    platform: state
-    to: 'off'
-    for:
-      minutes: 20
-  - entity_id: group.people
-    platform: state
-    to: 'off'
-    for:
-      minutes: 20
+  - platform: time
+    at: '11:00:00'
   condition:
   - condition: state
     entity_id: binary_sensor.yunhan_android
     state: 'off'
+  - condition: state
+    entity_id: binary_sensor.room_door_status
+    state: 'on'
+  action:
+  - service: script.turn_on
+    data:
+      entity_id: script.clean_myroom
+
+- alias: Clean all rooms after a vacancy
+  trigger:
+  - platform: time
+    at: '12:30:00'
+  condition:
   - condition: state
     entity_id: group.people
     state: 'off'
   action:
   - service: script.turn_on
     data:
-      entity_id: script.clean_all
+      entity_id: script.clean_kitchen
 
 
-- alias: Clean all rooms on weekend
+- alias: Clean all rooms everyday
   trigger:
   - platform: time
-    at: "09:05:00"
+    at: '09:00:00'
   condition:
   - condition: state
     entity_id: binary_sensor.yunhan_android
     state: 'on'
-  - condition: time
-    weekday:
-      - sat
-      - sun
   action:
   - service: script.turn_on
     data:
