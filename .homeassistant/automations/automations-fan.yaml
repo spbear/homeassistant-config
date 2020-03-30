@@ -28,6 +28,9 @@
     - condition: state
       entity_id: fan.mi_standing_fan
       state: 'on'
+    - condition: numeric_state
+      entity_id: sensor.room_temperature
+      above: 22.0
   action:
     - service: script.turn_on
       data:
