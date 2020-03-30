@@ -40,9 +40,6 @@
   action:
   - service: cover.open_cover
     data:
-        entity_id: cover.window_curtain
-  - service: cover.open_cover
-    data:
         entity_id: cover.roll_screen
   - service: switch.turn_off
     data:
@@ -50,6 +47,12 @@
   - service: switch.turn_on
     data:
         entity_id: switch.music_auto_play
+  - condition: template
+    value_template: "{{ states.sun.sun.state == 'above_horizon'  }}"
+  - service: cover.open_cover
+    data:
+        entity_id: cover.window_curtain
+
 
 - alias: Go Home when MiBox is turned off
   trigger:
