@@ -1,0 +1,12 @@
+.gitignore
+.uuid
+.storage
+.HA_VERSION
+*.log
+__pycache__
+*.db*
+tts
+entity_registry.yaml
+secrets.yaml
+.cloud
+*.DS_Store
