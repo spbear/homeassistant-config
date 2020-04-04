@@ -1,8 +1,8 @@
-- alias: Turn On Heating Control Below 22.0c
+- alias: Turn On Heating Control Below 21.5c
   trigger:
     - platform: numeric_state
       entity_id: sensor.room_temperature
-      below: 22.0
+      below: 21.5
       for:
         minutes: 10
     - platform: state
@@ -17,17 +17,17 @@
       state: 'on'
     - condition: numeric_state
       entity_id: sensor.room_temperature
-      below: 22.0
+      below: 21.5
   action:
     - service: switch.turn_on
       data:
         entity_id: switch.heating_control_switchbot
 
-- alias: Turn On Heating Control Below 18.0c
+- alias: Turn On Heating Control Below 19.0c
   trigger:
     - platform: numeric_state
       entity_id: sensor.room_temperature
-      below: 18.0
+      below: 19.0
       for:
         minutes: 10
   condition:
@@ -39,11 +39,11 @@
       data:
         entity_id: switch.heating_control_switchbot
 
-- alias: Turn On Heating Control Above 22.0c
+- alias: Turn Off Heating Control Above 21.5c
   trigger:
     - platform: numeric_state
       entity_id: sensor.room_temperature
-      above: 22.0
+      above: 21.5
       for:
         minutes: 10
   condition:
@@ -84,6 +84,9 @@
     - condition: state
       entity_id: switch.heating_control_switchbot
       state: 'on'
+    - condition: numeric_state
+      entity_id: sensor.room_temperature
+      above: 19.0
   action:
     - service: switch.turn_off
       data:
