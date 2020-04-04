@@ -6,6 +6,12 @@
   - condition: template
     value_template: "{{ trigger.to_state.state != trigger.from_state.state }}"
   action:
+#  - service: remote.send_command
+#    data:
+#      entity_id: remote.mi_ir_controller
+#      command: power_monitor
+#  - delay:
+#      milliseconds: 300
   - service: remote.send_command
     data:
       entity_id: remote.mi_ir_controller
@@ -37,6 +43,23 @@
       data:
         entity_id: switch.monitor
 
+- alias: Turn On Monitor When Motion Is Detected
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.room_door_motion
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: switch.monitor
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.yunhan_desktop
+      state: 'on'
+  action:
+    - service_template: switch.turn_on
+      data:
+        entity_id: switch.monitor
+
 - alias: Turn Off Monitor After Leaving
   trigger:
     - platform: state
@@ -44,6 +67,22 @@
       to: 'off'
       for:
         minutes: 10
+  condition:
+    - condition: state
+      entity_id: switch.monitor
+      state: 'on'
+  action:
+    - service_template: switch.turn_off
+      data:
+        entity_id: switch.monitor
+
+- alias: Turn Off Monitor After I Go To Bed
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.bed_switch
+      to: 'on'
+      for:
+        minutes: 1
   condition:
     - condition: state
       entity_id: switch.monitor
