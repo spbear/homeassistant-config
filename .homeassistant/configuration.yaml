@@ -41,6 +41,8 @@ logger:
     homeassistant.components.alexa: debug
     homeassistant.components.intent_script: debug
     custom_components.fan.xiaomi_miio_fan: debug
+    custom_components.new_ha_connector: debug
+
 
 # Show links to resources in log and frontend
 #introduction:
@@ -54,6 +56,11 @@ intent_script: !include alexa.yaml
 
 customizer:
   custom_ui: local
+
+new_ha_connector:
+  app_url: https://graph-ap02-apnortheast2.api.smartthings.com:443/api/smartapps/installations/
+  app_id: !secret ha_app_id
+  access_token: !secret ha_access_token
 
 # Track the sun
 sun:
