@@ -1,0 +1,10 @@
+{
+  "domain": "connector",
+  "name": "HAConnector",
+  "documentation": "https://www.home-assistant.io/integrations/awair",
+  "requirements": [],
+  "dependencies": [],
+  "codeowners": [
+    "@spbear"
+  ]
+}
