@@ -1,33 +1,11 @@
-- alias: Turn On/Off Monitor
-  trigger:
-  - platform: state
-    entity_id: switch.monitor
-  condition:
-  - condition: template
-    value_template: "{{ trigger.to_state.state != trigger.from_state.state }}"
-  action:
-#  - service: remote.send_command
-#    data:
-#      entity_id: remote.mi_ir_controller
-#      command: power_monitor
-#  - delay:
-#      milliseconds: 300
-  - service: remote.send_command
-    data:
-      entity_id: remote.mi_ir_controller
-      command: power_monitor
-
 - alias: Turn On/Off Monitor When Desktop Is Turned ON/OFF
   trigger:
   - platform: state
     entity_id: binary_sensor.yunhan_desktop
-  condition:
-  - condition: template
-    value_template: "{{ trigger.to_state.state != trigger.from_state.state }}"
   action:
   - service_template: switch.turn_{{ trigger.to_state.state }}
     data:
-      entity_id: switch.monitor
+      entity_id: switch.pc_monitor
 
 - alias: Turn On Monitor After Seating
   trigger:
@@ -36,12 +14,12 @@
       to: 'on'
   condition:
     - condition: state
-      entity_id: switch.monitor
+      entity_id: switch.pc_monitor
       state: 'off'
   action:
     - service_template: switch.turn_on
       data:
-        entity_id: switch.monitor
+        entity_id: switch.pc_monitor
 
 - alias: Turn On Monitor When Motion Is Detected
   trigger:
@@ -50,7 +28,7 @@
       to: 'on'
   condition:
     - condition: state
-      entity_id: switch.monitor
+      entity_id: switch.pc_monitor
       state: 'off'
     - condition: state
       entity_id: binary_sensor.yunhan_desktop
@@ -58,7 +36,7 @@
   action:
     - service_template: switch.turn_on
       data:
-        entity_id: switch.monitor
+        entity_id: switch.pc_monitor
 
 - alias: Turn Off Monitor After Leaving
   trigger:
@@ -69,12 +47,12 @@
         minutes: 10
   condition:
     - condition: state
-      entity_id: switch.monitor
+      entity_id: switch.pc_monitor
       state: 'on'
   action:
     - service_template: switch.turn_off
       data:
-        entity_id: switch.monitor
+        entity_id: switch.pc_monitor
 
 - alias: Turn Off Monitor After I Go To Bed
   trigger:
@@ -85,9 +63,9 @@
         minutes: 1
   condition:
     - condition: state
-      entity_id: switch.monitor
+      entity_id: switch.pc_monitor
       state: 'on'
   action:
     - service_template: switch.turn_off
       data:
-        entity_id: switch.monitor
+        entity_id: switch.pc_monitor
