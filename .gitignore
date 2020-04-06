@@ -8,5 +8,6 @@ __pycache__
 tts
 entity_registry.yaml
 secrets.yaml
+known_devices.yaml
 .cloud
 *.DS_Store
