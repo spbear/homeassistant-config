@@ -31,6 +31,34 @@
       value_template: "{{ '%.1f'|format(float(states.switch.washingmachine.attributes.energy)) }}
 "
 
+    livingroom_tv_power:
+      friendly_name: Livingroom TV Power
+      unit_of_measurement: "W"
+      device_class: power
+      value_template: "{{ '%.1f'|format(float(states.switch.livingroom_tv.attributes.power)) }}
+"
+
+    livingroom_tv_energy:
+      friendly_name: Livingroom TV Energy
+      unit_of_measurement: "kWh"
+      device_class: power
+      value_template: "{{ '%.1f'|format(float(states.switch.livingroom_tv.attributes.energy)) }}
+"
+
+    pc_monitor_power:
+      friendly_name: PC Monitor Power
+      unit_of_measurement: "W"
+      device_class: power
+      value_template: "{{ '%.1f'|format(float(states.switch.pc_monitor.attributes.power)) }}
+"
+
+    pc_monitor_energy:
+      friendly_name: PC Monitor Energy
+      unit_of_measurement: "kWh"
+      device_class: power
+      value_template: "{{ '%.1f'|format(float(states.switch.pc_monitor.attributes.energy)) }}
+"
+
     room_humidity:
       friendly_name: Room Humidity
       unit_of_measurement: "%"
