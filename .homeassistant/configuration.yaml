@@ -51,8 +51,8 @@ logger:
 frontend:
 
 alexa:
-
-intent_script: !include alexa.yaml
+  smart_home:
+#  intent_script: !include alexa.yaml
 
 customizer:
   custom_ui: local
@@ -251,11 +251,6 @@ history_graph:
       - sensor.room_humidity
     hours_to_show: 24
     refresh: 60
-
-asuswrt:
-  host: !secret asuswrt_host
-  username: !secret asuswrt_username
-  ssh_key: !secret asuswrt_ssh_key
 
 group: !include groups.yaml
 scene: !include scene.yaml
