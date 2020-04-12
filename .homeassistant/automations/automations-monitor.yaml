@@ -57,7 +57,7 @@
 - alias: Turn Off Monitor After I Go To Bed
   trigger:
     - platform: state
-      entity_id: binary_sensor.bed_switch
+      entity_id: binary_sensor.room_bed_sleep
       to: 'on'
       for:
         minutes: 1
