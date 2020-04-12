@@ -1,4 +1,4 @@
-- alias: Clean all rooms after a vacancy
+- alias: Clean my room in my absence
   trigger:
   - platform: time
     at: '11:00:00'
@@ -14,7 +14,7 @@
     data:
       entity_id: script.clean_myroom
 
-- alias: Clean all rooms after a vacancy
+- alias: Clean all rooms in an absence
   trigger:
   - platform: time
     at: '12:30:00'
