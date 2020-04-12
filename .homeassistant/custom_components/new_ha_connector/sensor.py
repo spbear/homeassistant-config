@@ -72,10 +72,6 @@ def get_st_device(config):
     response = requests.get(url);
     devices = json.loads(response.text)
 
-    _LOGGER.error("==========devices=======")
-    _LOGGER.error("%s", devices)
-    _LOGGER.error("==========devices=======")
-
     return devices
 
 
@@ -114,7 +110,7 @@ def setup_platform(hass, config, add_entities, discovery_info = None):
         value_template = Template("{{ value_json.state }}", hass)
         json_attrs = item['attr']
 
-        rest = STData(DEFAULT_METHOD, resource, None, None, None, None)
+        rest = STData(DEFAULT_METHOD, resource, None, None, None, DEFAULT_VERIFY_SSL)
         rest.update()
 
         for attr in json_attrs:
@@ -183,7 +179,6 @@ class STSensor(Entity):
     def update(self):
         """Get the latest data from REST API and update the state."""
         self._rest.update()
-        _LOGGER.error("DATA: %s", self._rest.data)
 
         if self._rest.data is None:
             value = STATE_UNKNOWN
@@ -218,7 +213,6 @@ class STData(object):
                     self._request, timeout=10, verify=self._verify_ssl)
 
             self.data = json.loads(response.text)
-            _LOGGER.info("data info: %s", self.data)
         except requests.exceptions.RequestException:
             _LOGGER.error("Error fetching data: %s", self._request)
             self.data = None
