@@ -56,6 +56,12 @@
   payload_on: 'present'
   payload_off: 'not present'
 
+- platform: template
+  sensors:
+    room_bed_sleep:
+      friendly_name: Room Bed Sleep
+      value_template: "{{is_state('switch.room_bed_sleep', 'on') }}"
+
 - platform: mqtt
   state_topic: bt-gateway/projector/presence
   name: screen_projector
@@ -79,18 +85,6 @@
   name: Restroom Motion
   payload_on: 'active'
   payload_off: 'inactive'
-
-- platform: mqtt
-  state_topic: smartthings/Passage Motion Sensor/motion
-  name: Passage Motion
-  payload_on: 'active'
-  payload_off: 'inactive'
-
-- platform: mqtt
-  state_topic: smartthings/Sleep Sensor/switch
-  name: Room Bed Sleep
-  payload_on: 'on'
-  payload_off: 'off'
 
 - platform: mqtt
   state_topic: smartthings/Mi Standing Fan/switch
