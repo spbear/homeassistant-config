@@ -17,6 +17,20 @@
       device_class: temperature
       value_template: "{{ '%.1f'|format(states.fan.mi_air_purifier.attributes.temperature) }}"
 
+    washingmachine_power:
+      friendly_name: Washing Machine Power
+      unit_of_measurement: "W"
+      device_class: power
+      value_template: "{{ '%.1f'|format(float(states.switch.washingmachine.attributes.power)) }}
+"
+
+    washingmachine_energy:
+      friendly_name: Washing Machine Energy
+      unit_of_measurement: "kWh"
+      device_class: power
+      value_template: "{{ '%.1f'|format(float(states.switch.washingmachine.attributes.energy)) }}
+"
+
     room_humidity:
       friendly_name: Room Humidity
       unit_of_measurement: "%"
