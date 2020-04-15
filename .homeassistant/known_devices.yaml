@@ -39,3 +39,10 @@ grandma_android:
   picture: https://www.home-assistant.io/images/favicon-192x192.png
   track: yes
   hide_if_away: no
+
+yunhan_macbook:
+  name: Yunhan's Macbook
+  mac: !secret yunhan_macbook_mac
+  picture: https://www.home-assistant.io/images/favicon-192x192.png
+  track: yes
+  hide_if_away: no

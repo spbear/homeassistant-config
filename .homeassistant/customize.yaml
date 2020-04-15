@@ -22,6 +22,10 @@ binary_sensor.yunhan_desktop:
   device_class: power
   icon: mdi:desktop-tower
   friendly_name: Yunhan's Desktop
+binary_sensor.yunhan_macbook:
+  device_class: power
+  icon: mdi:laptop
+  friendly_name: Yunhan's Macbook
 binary_sensor.screen_projector:
   device_class: power
   icon: mdi:projector
@@ -58,6 +62,8 @@ binary_sensor.watch_active2:
 sensor.room_pm25:
   icon: mdi:cloud
 switch.livingroom_tv:
+  icon: mdi:television
+switch.livingroom_tv_real:
   icon: mdi:television
 switch.passage_light:
   icon: mdi:lightbulb
@@ -98,6 +104,8 @@ cover.window_curtain:
 sensor.weather_sensor_temperature:
   friendly_name: Outside Temperature
   device_class: temperature
+sensor.awair_pm2_5:
+  unit_of_measurement: "㎍/m³"
 sensor.weather_sensor_humidity:
   friendly_name: Outside Humidity
   device_class: humidity

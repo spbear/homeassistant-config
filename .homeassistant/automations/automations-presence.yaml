@@ -104,3 +104,17 @@
         topic: smartthings/Desktop PC/switch
         payload: >
           {% if trigger.to_state.state == 'home' %}present{% else %}not present{% endif %}
+
+- alias: Yunhan's Macbook Presence to ST
+  trigger:
+  - platform: state
+    entity_id: device_tracker.yunhan_macbook
+  condition:
+  - condition: template
+    value_template: "{{ trigger.to_state.state != trigger.from_state.state }}"
+  action:
+    - service: mqtt.publish
+      data_template:
+        topic: smartthings/Yunhan Macbook/switch
+        payload: >
+          {% if trigger.to_state.state == 'home' %}present{% else %}not present{% endif %}

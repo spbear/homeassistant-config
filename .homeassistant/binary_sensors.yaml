@@ -56,6 +56,12 @@
   payload_on: 'present'
   payload_off: 'not present'
 
+- platform: mqtt
+  state_topic: smartthings/Yunhan Macbook/switch
+  name: yunhan_macbook
+  payload_on: 'present'
+  payload_off: 'not present'
+
 - platform: template
   sensors:
     room_bed_sleep:
