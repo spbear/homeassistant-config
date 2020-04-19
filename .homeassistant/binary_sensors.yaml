@@ -47,6 +47,11 @@
       icon_template: "mdi:cellphone-android"
       value_template: "{{is_state('device_tracker.yunhan_android', 'home') or is_state('binary_sensor.yunhan_bt_presence', 'on') }}"
 
+    washingmachine:
+      friendly_name: Washing Machine
+      icon_template: "mdi:washing-machine"
+      value_template: "{{ float(states.switch.washingmachine.attributes.power) > 2.0 }}"
+
 ##########################################################
 # Desktop
 ##########################################################

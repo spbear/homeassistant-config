@@ -30,9 +30,14 @@
     - condition: state
       entity_id: switch.pc_monitor
       state: 'off'
-    - condition: state
-      entity_id: binary_sensor.yunhan_desktop
-      state: 'on'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: binary_sensor.yunhan_desktop
+        state: 'on'
+      - condition: state
+        entity_id: binary_sensor.yunhan_macbook
+        state: 'on'
   action:
     - service_template: switch.turn_on
       data:

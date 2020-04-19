@@ -1,0 +1,1 @@
+"""The line notify component."""

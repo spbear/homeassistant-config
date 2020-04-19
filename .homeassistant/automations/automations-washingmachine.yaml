@@ -1,0 +1,23 @@
+- alias: Turn On Washing Machine
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.washingmachine
+    to: 'on'
+  condition: []
+  action:
+  - service: notify.home
+    data:
+      title: 'Notify'
+      message: '🧺🧺🧺\r세탁기 또는 건조기를 가동합니다.'
+
+- alias: Turn Off Washing Machine
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.washingmachine
+    to: 'off'
+  condition: []
+  action:
+  - service: notify.home
+    data:
+      title: 'Notify'
+      message: '🧺🧺🧺\r세탁기 또는 건조기 가동이 끝났습니다.\r세탁물을 꺼내주세요.'

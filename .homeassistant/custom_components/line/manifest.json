@@ -1,0 +1,10 @@
+{
+  "domain": "line",
+  "name": "Line",
+  "documentation": "https://www.home-assistant.io/integrations/line",
+  "requirements": [
+    "line_notify==0.1.4"
+  ],
+  "dependencies": [],
+  "codeowners": []
+}

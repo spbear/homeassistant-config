@@ -104,6 +104,7 @@
         topic: smartthings/Desktop PC/switch
         payload: >
           {% if trigger.to_state.state == 'home' %}present{% else %}not present{% endif %}
+        retain: True
 
 - alias: Yunhan's Macbook Presence to ST
   trigger:
@@ -118,3 +119,4 @@
         topic: smartthings/Yunhan Macbook/switch
         payload: >
           {% if trigger.to_state.state == 'home' %}present{% else %}not present{% endif %}
+        retain: True

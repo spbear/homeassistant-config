@@ -42,7 +42,12 @@ logger:
     homeassistant.components.intent_script: debug
     custom_components.fan.xiaomi_miio_fan: debug
     custom_components.new_ha_connector: debug
+    custom_components.line: debug
 
+notify:
+  - name: home
+    platform: line
+    access_token: !secret notify_home_line_access_token
 
 # Show links to resources in log and frontend
 #introduction:
