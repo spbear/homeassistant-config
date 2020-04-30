@@ -34,8 +34,9 @@ CONF_JSON_ATTRS = 'json_attributes'
 REMOVE_SPECIAL_CHARS = '[-=\[\]\(\)\s.#/?:$}]'
 
 DOMAIN = "new_ha_connector"
-
-KNOWN_DEVICES_KEY = "new_ha_connector_sensor_known_devices"
+APP_URL = "app_url"
+APP_ID = "app_id"
+ACCESS_TOKEN = "access_token"
 
 PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
     vol.Required(CONF_RESOURCE): cv.url,
@@ -44,17 +45,17 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
     vol.Optional(CONF_TIMEOUT, default=DEFAULT_TIMEOUT): cv.positive_int,
 })
 
-def get_device_url(config):
-    app_url = config[DOMAIN].get(CONF_APP_URL)
-    app_id = config[DOMAIN].get(CONF_APP_ID)
-    access_token = config[DOMAIN].get(CONF_ACCESS_TOKEN)
+def get_device_url(hass):
+    app_url = hass.data[DOMAIN].get(APP_URL)
+    app_id = hass.data[DOMAIN].get(APP_ID)
+    access_token = hass.data[DOMAIN].get(ACCESS_TOKEN)
 
     return app_url + app_id + "/get?access_token=" + access_token
 
-def get_st_device(config):
-    app_url = config[DOMAIN].get(CONF_APP_URL)
-    app_id = config[DOMAIN].get(CONF_APP_ID)
-    access_token = config[DOMAIN].get(CONF_ACCESS_TOKEN)
+def get_st_device(hass):
+    app_url = hass.data[DOMAIN].get(APP_URL)
+    app_id = hass.data[DOMAIN].get(APP_ID)
+    access_token = hass.data[DOMAIN].get(ACCESS_TOKEN)
 
     url = app_url + app_id + "/getSTDevices?access_token=" + access_token
 
@@ -63,25 +64,14 @@ def get_st_device(config):
 
     return devices
 
-# pylint: disable=unused-argument
-@asyncio.coroutine
-def async_setup_platform(hass, config, async_add_devices, discovery_info=None):
+def async_setup_platform(hass, config, async_add_devices, discovery_info):
     """Set up the RESTful switch."""
-    method = discovery_info.get(CONF_METHOD)
-    name = discovery_info.get(CONF_NAME)
-    resource = discovery_info.get(CONF_RESOURCE)
-    timeout = discovery_info.get(CONF_TIMEOUT)
-    json_attrs = discovery_info.get(CONF_JSON_ATTRS)
+    st_device_list = get_st_device(hass)
 
-    devices = []
-    known_devices = hass.data.get(KNOWN_DEVICES_KEY)
-    if known_devices is None:
-        known_devices = set()
-        hass.data[KNOWN_DEVICES_KEY] = known_devices
+    url = get_device_url(hass)
 
-    st_device_list = get_st_device(discovery_info)
+    added_devices = []
 
-    url = get_device_url(discovery_info)
     for item in st_device_list:
         if item['type'] != 'switch':
             continue
@@ -89,6 +79,10 @@ def async_setup_platform(hass, config, async_add_devices, discovery_info=None):
         name = "nst_" + re.sub(REMOVE_SPECIAL_CHARS, '_', (item['id'].lower() + "_" + item['dni'].lower()))
         resource = url + "&dni=" + item['dni']
 
+        if name in added_devices:
+            continue
+
+        _LOGGER.warning("SETUP PLATFORM(name): %s", name)
         try:
             switch = STSwitch(name, resource, None, DEFAULT_TIMEOUT, None, None)
 
@@ -102,8 +96,10 @@ def async_setup_platform(hass, config, async_add_devices, discovery_info=None):
         if req.status >= 400:
             _LOGGER.error("Got non-ok response from resource: %s", req.status)
         else:
-            async_add_devices([switch])
-            known_devices.add(name)
+            async_add_devices([switch], False)
+            added_devices.append(name)
+
+    return True
 
 
 class STSwitch(SwitchDevice):

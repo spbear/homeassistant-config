@@ -27,6 +27,7 @@ DEVICE_CLASSES = [
     DEVICE_CLASS_TEMPERATURE,
     DEVICE_CLASS_POWER
 ]
+
 DEVICE_UNITS = {
     DEVICE_CLASS_BATTERY:'%',
     DEVICE_CLASS_HUMIDITY:'%',
@@ -34,6 +35,7 @@ DEVICE_UNITS = {
     DEVICE_CLASS_TEMPERATURE:TEMP_CELSIUS,
     DEVICE_CLASS_POWER:'W'
 }
+
 DEFAULT_METHOD = 'GET'
 DEFAULT_NAME = 'ST Sensor'
 DEFAULT_VERIFY_SSL = True
@@ -45,27 +47,24 @@ METHODS = ['POST', 'GET']
 _LOGGER = logging.getLogger(__name__)
 
 DOMAIN = "new_ha_connector"
-
-KNOWN_DEVICES_KEY = "new_ha_connector_sensor_known_devices"
-
-CONF_APP_URL = "app_url"
-CONF_APP_ID = "app_id"
-CONF_ACCESS_TOKEN = "access_token"
+APP_URL = "app_url"
+APP_ID = "app_id"
+ACCESS_TOKEN = "access_token"
 
 REMOVE_SPECIAL_CHARS = '[-=\[\]\(\)\s.#/?:$}]'
 
 
-def get_device_url(config):
-    app_url = config[DOMAIN].get(CONF_APP_URL)
-    app_id = config[DOMAIN].get(CONF_APP_ID)
-    access_token = config[DOMAIN].get(CONF_ACCESS_TOKEN)
+def get_device_url(hass):
+    app_url = hass.data[DOMAIN].get(APP_URL)
+    app_id = hass.data[DOMAIN].get(APP_ID)
+    access_token = hass.data[DOMAIN].get(ACCESS_TOKEN)
 
     return app_url + app_id + "/get?access_token=" + access_token
 
-def get_st_device(config):
-    app_url = config[DOMAIN].get(CONF_APP_URL)
-    app_id = config[DOMAIN].get(CONF_APP_ID)
-    access_token = config[DOMAIN].get(CONF_ACCESS_TOKEN)
+def get_st_device(hass):
+    app_url = hass.data[DOMAIN].get(APP_URL)
+    app_id = hass.data[DOMAIN].get(APP_ID)
+    access_token = hass.data[DOMAIN].get(ACCESS_TOKEN)
 
     url = app_url + app_id + "/getSTDevices?access_token=" + access_token
 
@@ -74,77 +73,50 @@ def get_st_device(config):
 
     return devices
 
+def setup_platform(hass, config, async_add_entities, discovery_info):
+    st_device_list = get_st_device(hass)
 
-
-def setup_platform(hass, config, add_entities, discovery_info = None):
-    """Set up the RESTful sensor."""
-    name = config.get(CONF_NAME)
-    resource = config.get(CONF_RESOURCE)
-    method = config.get(CONF_METHOD)
-    payload = config.get(CONF_PAYLOAD)
-    verify_ssl = config.get(CONF_VERIFY_SSL)
-    username = config.get(CONF_USERNAME)
-    password = config.get(CONF_PASSWORD)
-    headers = config.get(CONF_HEADERS)
-    unit = config.get(CONF_UNIT_OF_MEASUREMENT)
-    value_template = config.get(CONF_VALUE_TEMPLATE)
-    json_attrs = config.get(CONF_JSON_ATTRS)
-    force_update = config.get(CONF_FORCE_UPDATE)
-
-    devices = []
-    known_devices = hass.data.get(KNOWN_DEVICES_KEY)
-    if known_devices is None:
-        known_devices = set()
-        hass.data[KNOWN_DEVICES_KEY] = known_devices
-
-    config = discovery_info
-    st_device_list = get_st_device(config)
-
-    url = get_device_url(config)
     for item in st_device_list:
         if item['type'] != 'sensor':
             continue
 
+        url = get_device_url(hass)
         name = "nst_" + re.sub(REMOVE_SPECIAL_CHARS, '_', (item['id'].lower() + "_" + item['dni'].lower()))
-        resource = url + "&dni=" + item['dni']
-        value_template = Template("{{ value_json.state }}", hass)
+        resource_url = url + "&dni=" + item['dni']
         json_attrs = item['attr']
 
-        rest = STData(DEFAULT_METHOD, resource, None, None, None, DEFAULT_VERIFY_SSL)
-        rest.update()
+        for device_class in json_attrs:
+            device_name = name + '_' + device_class
 
-        for attr in json_attrs:
-            device = name + '_' + attr
-            if attr in DEVICE_CLASSES:
-                add_entities([STSensor(
-                    hass, rest, device, attr, unit, None, attr, DEFAULT_FORCE_UPDATE
-                )], True)
-                known_devices.add(device)
-
+            if device_class in DEVICE_CLASSES:
+                sensor = STSensor(device_name, device_class, resource_url, DEFAULT_FORCE_UPDATE)
+                async_add_entities([sensor], True)
 
 
 class STSensor(Entity):
     """Implementation of a REST sensor."""
 
-    def __init__(self, hass, rest, name, device_class, unit_of_measurement,
-                 value_template, json_attrs, force_update):
+    def __init__(self, name, device_class, resource_url, force_update):
         """Initialize the REST sensor."""
-        self._hass = hass
-        self._rest = rest
         self._name = name
         self._uuid = name
         self._state = STATE_UNKNOWN
-        self._unit_of_measurement = DEVICE_UNITS[device_class]
-        self._value_template = value_template
         self._device_class = device_class
-        self._json_attrs = json_attrs
+        self._unit_of_measurement = DEVICE_UNITS[device_class]
         self._attributes = None
         self._force_update = force_update
+        self._rest = STData(DEFAULT_METHOD, resource_url, None, None, None, DEFAULT_VERIFY_SSL)
+        self._rest.update()
 
     @property
     def name(self):
         """Return the name of the sensor."""
         return self._name
+
+    @property
+    def unique_id(self):
+        """Return the unique id of this entity."""
+        return f"{self._uuid}"
 
     @property
     def unit_of_measurement(self):
@@ -165,11 +137,6 @@ class STSensor(Entity):
     def state(self):
         """Return the state of the device."""
         return self._state
-
-    @property
-    def unique_id(self):
-        """Return the unique id of this entity."""
-        return f"{self._uuid}"
 
     @property
     def force_update(self):

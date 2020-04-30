@@ -15,6 +15,9 @@ from homeassistant.const import (
 _LOGGER = logging.getLogger(__name__)
 
 DOMAIN = "new_ha_connector"
+APP_URL = "app_url"
+APP_ID = "app_id"
+ACCESS_TOKEN = "access_token"
 
 SERVICE_NEW_HA_CONNECTOR = "new_ha_connector"
 
@@ -24,24 +27,24 @@ def getRegisteredHADeviceList(app_url, app_id, access_token):
 
 def setup(hass, config):
     _LOGGER.info("Setup New HA Connector")
-    app_url = config[DOMAIN].get('app_url')
-    app_id = config[DOMAIN].get('app_id')
-    access_token = config[DOMAIN].get('access_token')
+    hass.data[DOMAIN] = {}
+    app_url = hass.data[DOMAIN][APP_URL] = config[DOMAIN].get(APP_URL)
+    app_id = hass.data[DOMAIN][APP_ID] = config[DOMAIN].get(APP_ID)
+    access_token = hass.data[DOMAIN][ACCESS_TOKEN] = config[DOMAIN].get(ACCESS_TOKEN)
+
     registerList = getRegisteredHADeviceList(app_url, app_id, access_token)
 
-    async def new_ha_connector_discovered(service, discovery_info):
-        """Perform action when device(s) has been found """
-
-    discovery.listen(hass, SERVICE_NEW_HA_CONNECTOR, new_ha_connector_discovered)
-
     for component in ["sensor", "binary_sensor", "switch"]:
-        discovery.load_platform(hass, component, DOMAIN, config, config)
+        discovery.load_platform(hass, component, DOMAIN, {}, config)
 
     def event_listener(event):
 
         newState = event.data['new_state']
+        if newState is None:
+            return None
+
         id = newState.entity_id
-        if newState is None or newState.state in (STATE_UNKNOWN, '') or id not in registerList:
+        if newState.state in (STATE_UNKNOWN, '') or id not in registerList:
             return None
         '''
         lastUpdateTime = newState.last_changed.timestamp()
