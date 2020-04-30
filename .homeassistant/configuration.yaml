@@ -36,7 +36,6 @@ logger:
   default: info
   logs:
     homeassistant.components.device_tracker: error
-    homeassistant.components.xiaomi_aqara: debug
     homeassistant.event: debug
     homeassistant.components.alexa: debug
     homeassistant.components.intent_script: debug

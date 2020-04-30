@@ -37,10 +37,18 @@
     entity_id: binary_sensor.yunhan_android
     state: 'on'
   action:
-  - service: notify.home
-    data:
-      title: 'Notify'
-      message: '🤖🤖🤖\r집 청소를 시작합니다.\r이불을 개고 바닥에 아무 것도 없게 해주세요.'
   - service: script.turn_on
     data:
       entity_id: script.clean_all
+
+- alias: Report the error of vaccum machine to LINE
+  trigger:
+  - platform: state
+    entity_id: vacuum.mi_robot_vacuum
+    to: 'Error'
+  condition: []
+  action:
+  - service: notify.home
+    data:
+      title: 'Notify'
+      message: "🤖🤖🤖\r청소기에 문제가 생겼습니다.\r청소기를 확인해 주세요."

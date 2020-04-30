@@ -8,7 +8,7 @@
   - service: notify.home
     data:
       title: 'Notify'
-      message: '🧺🧺🧺\r세탁기 또는 건조기를 가동합니다.'
+      message: "🧺🧺🧺\r세탁기 또는 건조기를 가동합니다."
 
 - alias: Turn Off Washing Machine
   trigger:
@@ -20,4 +20,4 @@
   - service: notify.home
     data:
       title: 'Notify'
-      message: '🧺🧺🧺\r세탁기 또는 건조기 가동이 끝났습니다.\r세탁물을 꺼내주세요.'
+      message: "🧺🧺🧺\r세탁기 또는 건조기 가동이 끝났습니다.\r세탁물을 꺼내주세요."

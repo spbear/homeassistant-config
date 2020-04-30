@@ -68,6 +68,10 @@ clean_kidsroom:
 clean_all:
   alias: clean_all
   sequence:
+  - service: notify.home
+    data:
+      title: 'Notify'
+      message: "🤖🤖🤖\r집 청소를 시작합니다.\r이불을 개고 바닥에 아무 것도 없게 해주세요."
   - service: script.clean_myroom
   - delay:
       minutes: 3
@@ -83,3 +87,10 @@ clean_all:
       minutes: 3
   - wait_template: "{{  is_state('vacuum.mi_robot_vacuum', 'docked') }}"
   - service: script.clean_livingroom
+  - delay:
+      minutes: 3
+  - wait_template: "{{  is_state('vacuum.mi_robot_vacuum', 'docked') }}"
+  - service: notify.home
+    data:
+      title: 'Notify'
+      message: "🤖🤖🤖\r집 청소를 마쳤습니다."
