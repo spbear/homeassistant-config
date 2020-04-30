@@ -1,0 +1,43 @@
+- alias: Notify Yunhan's presence
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.yunhan_android
+  condition: []
+  action:
+  - service: notify.me
+    data_template:
+      title: 'Notify'
+      message: "{% if trigger.to_state.state == 'on' %}🧑🏻 아빠가 집에 왔어요{% else %}🧑🏻 아빠가 집을 떠났어요{% endif %}"
+
+- alias: Notify Mom's presence
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.mom_iphone
+  condition: []
+  action:
+  - service: notify.me
+    data_template:
+      title: 'Notify'
+      message: "{% if trigger.to_state.state == 'on' %}👩🏻 엄마가 집에 왔어요{% else %}👩🏻 엄마가 집을 떠났어요{% endif %}"
+
+- alias: Notify Hyunjun's presence
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.hyunjun_android
+  condition: []
+  action:
+  - service: notify.me
+    data_template:
+      title: 'Notify'
+      message: "{% if trigger.to_state.state == 'on' %}👦🏻 현준이가 집에 왔어요{% else %}👦🏻 현준이가 집을 떠났어요{% endif %}"
+
+- alias: Notify Minjun's presence
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.minjun_android
+  condition: []
+  action:
+  - service: notify.me
+    data_template:
+      title: 'Notify'
+      message: "{% if trigger.to_state.state == 'on' %}👦🏻 민준이가 집에 왔어요{% else %}👦🏻 민준이가 집을 떠났어요{% endif %}"

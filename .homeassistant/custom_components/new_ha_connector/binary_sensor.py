@@ -21,11 +21,13 @@ from homeassistant.helpers.template import Template
 
 DEVICE_CLASSES = [
     "motion",
-    "tamper"
+    "tamper",
+    "contact"
 ]
 DEVICE_CLASS_FALSE = [
     "inactive",
-    "clear"
+    "clear",
+    "closed"
 ]
 DEFAULT_METHOD = 'GET'
 DEFAULT_NAME = 'ST Sensor'
@@ -70,6 +72,7 @@ def setup_platform(hass, config, async_add_entities, discovery_info):
     for item in st_device_list:
         if item['type'] != 'sensor':
             continue
+
 
         url = get_device_url(hass)
         name = "nst_" + re.sub(REMOVE_SPECIAL_CHARS, '_', (item['id'].lower() + "_" + item['dni'].lower()))

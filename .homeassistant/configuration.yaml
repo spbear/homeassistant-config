@@ -47,6 +47,9 @@ notify:
   - name: home
     platform: line
     access_token: !secret notify_home_line_access_token
+  - name: me
+    platform: line
+    access_token: !secret notify_me_line_access_token
 
 # Show links to resources in log and frontend
 #introduction:

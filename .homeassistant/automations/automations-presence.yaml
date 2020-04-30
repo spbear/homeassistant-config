@@ -29,7 +29,7 @@
       payload: >
           {% if trigger.to_state.state == 'home' %}present{% else %}not present{% endif %}
 
-- alias: Jiyeon's iPhone Presence to ST
+- alias: Mom's iPhone Presence to ST
   trigger:
   - platform: state
     entity_id: device_tracker.mom_iphone

@@ -30,7 +30,7 @@ binary_sensor.screen_projector:
   device_class: power
   icon: mdi:projector
   friendly_name: Screen Projector
-binary_sensor.entrace_door:
+binary_sensor.entrance_door:
   device_class: door
   friendly_name: Entrance Door
 binary_sensor.passage_motion:

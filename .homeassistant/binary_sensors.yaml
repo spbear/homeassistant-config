@@ -81,7 +81,7 @@
 
 - platform: mqtt
   state_topic: smartthings/Entrance Door/contact
-  name: Entrance Door
+  name: entrance_door
   payload_on: 'open'
   payload_off: 'closed'
 
