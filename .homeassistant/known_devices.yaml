@@ -27,7 +27,7 @@ spbear_desktop:
   hide_if_away: no
 
 mom_iphone:
-  name: Mom's Android
+  name: Mom's iPhone
   mac: !secret mom_mac
   picture: https://www.home-assistant.io/images/favicon-192x192.png
   track: yes

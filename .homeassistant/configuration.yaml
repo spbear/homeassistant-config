@@ -77,6 +77,11 @@ device_tracker: !include device_tracker.yaml
 sensor: !include sensors.yaml
 binary_sensor: !include binary_sensors.yaml
 
+asuswrt:
+    host: !secret asuswrt_host
+    username: !secret asuswrt_username
+    ssh_key: !secret asuswrt_ssh_key
+
 # Enables configuration UI
 config:
 

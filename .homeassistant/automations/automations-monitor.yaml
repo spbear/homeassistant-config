@@ -59,13 +59,11 @@
       data:
         entity_id: switch.pc_monitor
 
-- alias: Turn Off Monitor After I Go To Bed
+- alias: Turn Off Monitor When I Go To Bed
   trigger:
     - platform: state
       entity_id: binary_sensor.room_bed_sleep
       to: 'on'
-      for:
-        minutes: 1
   condition:
     - condition: state
       entity_id: switch.pc_monitor
