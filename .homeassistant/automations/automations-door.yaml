@@ -7,4 +7,6 @@
   - service: notify.me
     data_template:
       title: 'Notify'
-      message: "{% if trigger.to_state.state == 'on' %}🚪문이 열렸습니다{% else %}🚪문이 닫혔습니다{% endif %}"
+      message: "
+        {% if trigger.to_state.state == 'on' %}🚪문이 열렸습니다{% else %}🚪문이 닫혔습니다{% endif %}\r
+        {% if is_state('binary_sensor.binary_sensor.passage_motion', 'on') %}🏃 복도에 움직임이 있어요{% else %}🧍 복도에 움직임이 없어요{% endif %}"
