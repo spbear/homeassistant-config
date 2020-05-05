@@ -92,6 +92,12 @@
   payload_off: 'inactive'
 
 - platform: mqtt
+  state_topic: smartthings/Passage Long Motion/motion
+  name: Passage Long Motion
+  payload_on: 'active'
+  payload_off: 'inactive'
+
+- platform: mqtt
   state_topic: smartthings/Restroom Multi Sensor/motion
   name: Restroom Motion
   payload_on: 'active'

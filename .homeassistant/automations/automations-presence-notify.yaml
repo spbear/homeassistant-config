@@ -9,7 +9,7 @@
       message: "
         {% if trigger.to_state.state == 'on' %}🧑🏻 아빠가 집에 왔어요{% else %}🧑🏻 아빠가 집을 떠났어요{% endif %}\r
         ---------\r
-        {% if is_state('binary_sensor.yunhan_android', 'on') %}🧑🏻 아빠는 집에 있어요{% else %}🚘 아빠는 집에 없어요{% endif %}\r\
+        {% if is_state('binary_sensor.yunhan_android', 'on') %}🧑🏻 아빠는 집에 있어요{% else %}🚘 아빠는 집에 없어요{% endif %}\r
         {% if is_state('binary_sensor.mom_iphone', 'on') %}👩🏻 엄마는 집에 있어요{% else %}🚘 엄마는 집에 없어요{% endif %}\r
         {% if is_state('binary_sensor.hyunjun_android', 'on') %}👦🏻 현준이는 집에 있어요{% else %}🚲 현준이는 집에 없어요{% endif %}\r
         {% if is_state('binary_sensor.minjun_android', 'on') %}👦🏻 민준이는 집에 있어요{% else %}🚲 민준이는 집에 없어요{% endif %}"
@@ -25,7 +25,7 @@
       message: "
         {% if trigger.to_state.state == 'on' %}👩🏻 엄마가 집에 왔어요{% else %}👩🏻 엄마가 집을 떠났어요{% endif %}\r
         ---------\r
-        {% if is_state('binary_sensor.yunhan_android', 'on') %}🧑🏻 아빠는 집에 있어요{% else %}🚘 아빠는 집에 없어요{% endif %}\r\
+        {% if is_state('binary_sensor.yunhan_android', 'on') %}🧑🏻 아빠는 집에 있어요{% else %}🚘 아빠는 집에 없어요{% endif %}\r
         {% if is_state('binary_sensor.mom_iphone', 'on') %}👩🏻 엄마는 집에 있어요{% else %}🚘 엄마는 집에 없어요{% endif %}\r
         {% if is_state('binary_sensor.hyunjun_android', 'on') %}👦🏻 현준이는 집에 있어요{% else %}🚲 현준이는 집에 없어요{% endif %}\r
         {% if is_state('binary_sensor.minjun_android', 'on') %}👦🏻 민준이는 집에 있어요{% else %}🚲 민준이는 집에 없어요{% endif %}"
@@ -41,7 +41,7 @@
       message: "
         {% if trigger.to_state.state == 'on' %}👦🏻 현준이가 집에 왔어요{% else %}👦🏻 현준이가 집을 떠났어요{% endif %}\r
         ---------\r
-        {% if is_state('binary_sensor.yunhan_android', 'on') %}🧑🏻 아빠는 집에 있어요{% else %}🚘 아빠는 집에 없어요{% endif %}\r\
+        {% if is_state('binary_sensor.yunhan_android', 'on') %}🧑🏻 아빠는 집에 있어요{% else %}🚘 아빠는 집에 없어요{% endif %}\r
         {% if is_state('binary_sensor.mom_iphone', 'on') %}👩🏻 엄마는 집에 있어요{% else %}🚘 엄마는 집에 없어요{% endif %}\r
         {% if is_state('binary_sensor.hyunjun_android', 'on') %}👦🏻 현준이는 집에 있어요{% else %}🚲 현준이는 집에 없어요{% endif %}\r
         {% if is_state('binary_sensor.minjun_android', 'on') %}👦🏻 민준이는 집에 있어요{% else %}🚲 민준이는 집에 없어요{% endif %}"
@@ -57,7 +57,7 @@
       message: "
         {% if trigger.to_state.state == 'on' %}👦🏻 민준이가 집에 왔어요{% else %}👦🏻 민준이가 집을 떠났어요{% endif %}\r
         ---------\r
-        {% if is_state('binary_sensor.yunhan_android', 'on') %}🧑🏻 아빠는 집에 있어요{% else %}🚘 아빠는 집에 없어요{% endif %}\r\
+        {% if is_state('binary_sensor.yunhan_android', 'on') %}🧑🏻 아빠는 집에 있어요{% else %}🚘 아빠는 집에 없어요{% endif %}\r
         {% if is_state('binary_sensor.mom_iphone', 'on') %}👩🏻 엄마는 집에 있어요{% else %}🚘 엄마는 집에 없어요{% endif %}\r
         {% if is_state('binary_sensor.hyunjun_android', 'on') %}👦🏻 현준이는 집에 있어요{% else %}🚲 현준이는 집에 없어요{% endif %}\r
         {% if is_state('binary_sensor.minjun_android', 'on') %}👦🏻 민준이는 집에 있어요{% else %}🚲 민준이는 집에 없어요{% endif %}"
