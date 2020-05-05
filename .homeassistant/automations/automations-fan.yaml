@@ -92,3 +92,19 @@
     - service: fan.turn_off
       data:
         entity_id: fan.mi_standing_fan
+
+- alias: Turn on when it's morning
+  trigger:
+    - platform: time
+      at: '07:00:00'
+  condition:
+    - condition: state
+      entity_id: binary_sensor.yunhan_android
+      state: 'on'
+  action:
+    - service: fan.turn_on
+      data:
+        entity_id: fan.mi_standing_fan
+    - service: script.turn_on
+      data:
+        entity_id: script.fan_to_desk
