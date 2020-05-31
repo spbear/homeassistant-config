@@ -1,37 +1,37 @@
-- alias: Clean my room in my absence
-  trigger:
-  - platform: time
-    at: '11:00:00'
-  condition:
-  - condition: state
-    entity_id: binary_sensor.yunhan_android
-    state: 'off'
-  - condition: state
-    entity_id: binary_sensor.room_door_status
-    state: 'on'
-  action:
-  - service: script.turn_on
-    data:
-      entity_id: script.clean_myroom
+#- alias: Clean my room in my absence
+#  trigger:
+#  - platform: time
+#    at: '11:00:00'
+#  condition:
+#  - condition: state
+#    entity_id: binary_sensor.yunhan_android
+#    state: 'off'
+#  - condition: state
+#    entity_id: binary_sensor.room_door_status
+#    state: 'on'
+#  action:
+#  - service: script.turn_on
+#    data:
+#      entity_id: script.clean_myroom
 
-- alias: Clean all rooms in an absence
-  trigger:
-  - platform: time
-    at: '12:30:00'
-  condition:
-  - condition: state
-    entity_id: group.people
-    state: 'off'
-  action:
-  - service: script.turn_on
-    data:
-      entity_id: script.clean_kitchen
+#- alias: Clean all rooms in an absence
+#  trigger:
+#  - platform: time
+#    at: '12:30:00'
+#  condition:
+#  - condition: state
+#    entity_id: group.people
+#    state: 'off'
+#  action:
+#  - service: script.turn_on
+#    data:
+#      entity_id: script.clean_kitchen
 
 
 - alias: Clean all rooms everyday
   trigger:
   - platform: time
-    at: '08:30:00'
+    at: '08:00:00'
   condition:
   - condition: state
     entity_id: binary_sensor.yunhan_android

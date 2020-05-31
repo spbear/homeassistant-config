@@ -120,3 +120,33 @@
         payload: >
           {% if trigger.to_state.state == 'home' %}present{% else %}not present{% endif %}
         retain: True
+
+- alias: Hyunjun's Desktop Presence to MQTT
+  trigger:
+  - platform: state
+    entity_id: device_tracker.hyunjun_desktop
+  condition:
+  - condition: template
+    value_template: "{{ trigger.to_state.state != trigger.from_state.state }}"
+  action:
+    - service: mqtt.publish
+      data_template:
+        topic: smartthings/Hyunjun Desktop/switch
+        payload: >
+          {% if trigger.to_state.state == 'home' %}on{% else %}off{% endif %}
+        retain: True
+
+- alias: Minjun's Desktop Presence to MQTT
+  trigger:
+  - platform: state
+    entity_id: device_tracker.minjun_desktop
+  condition:
+  - condition: template
+    value_template: "{{ trigger.to_state.state != trigger.from_state.state }}"
+  action:
+    - service: mqtt.publish
+      data_template:
+        topic: smartthings/Minjun Desktop/switch
+        payload: >
+          {% if trigger.to_state.state == 'home' %}on{% else %}off{% endif %}
+        retain: True

@@ -61,3 +61,25 @@
         {% if is_state('binary_sensor.mom_iphone', 'on') %}👩🏻 엄마는 집에 있어요{% else %}🚘 엄마는 집에 없어요{% endif %}\r
         {% if is_state('binary_sensor.hyunjun_android', 'on') %}👦🏻 현준이는 집에 있어요{% else %}🚲 현준이는 집에 없어요{% endif %}\r
         {% if is_state('binary_sensor.minjun_android', 'on') %}👦🏻 민준이는 집에 있어요{% else %}🚲 민준이는 집에 없어요{% endif %}"
+
+- alias: Notify Hyunjun Desktop Status
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.hyunjun_desktop
+  condition: []
+  action:
+  - service: notify.home
+    data_template:
+      message: "
+        {% if trigger.to_state.state == 'on' %}👦🏻 현준이가 🖥️ 컴퓨터를 🟢 켰어요{% else %}👦🏻 현준이가 🖥️ 컴퓨터를 🔴 껐어요{% endif %}"
+
+- alias: Notify Minjun Desktop Status
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.minjun_desktop
+  condition: []
+  action:
+  - service: notify.home
+    data_template:
+      message: "
+        {% if trigger.to_state.state == 'on' %}👦🏻 민준이가 🖥️ 컴퓨터를 🟢 켰어요{% else %}👦🏻 민준이가 🖥️ 컴퓨터를 🔴 껐어요{% endif %}"

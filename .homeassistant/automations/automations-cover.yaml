@@ -50,10 +50,10 @@
         entity_id: cover.window_curtain
 
 # Open
-- alias: cover_open_0730
+- alias: cover_open_0800
   trigger:
   - platform: time
-    at: '07:30:00'
+    at: '08:00:00'
   condition: []
   action:
   - service: cover.open_cover
