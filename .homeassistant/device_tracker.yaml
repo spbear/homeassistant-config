@@ -18,6 +18,8 @@
     - !secret spbear_desktop_ip
     - !secret samsung_tv_ip
     - !secret yunhan_macbook_ip
+    - !secret hyunjun_desktop_ip
+    - !secret minjun_desktop_ip
   interval_seconds: 12
   consider_home: 30
   home_interval: 1

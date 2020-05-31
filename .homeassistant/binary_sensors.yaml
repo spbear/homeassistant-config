@@ -67,6 +67,18 @@
   payload_on: 'present'
   payload_off: 'not present'
 
+- platform: mqtt
+  state_topic: smartthings/Hyunjun Desktop/switch
+  name: hyunjun_desktop
+  payload_on: 'on'
+  payload_off: 'off'
+
+- platform: mqtt
+  state_topic: smartthings/Minjun Desktop/switch
+  name: minjun_desktop
+  payload_on: 'on'
+  payload_off: 'off'
+
 - platform: template
   sensors:
     room_bed_sleep:

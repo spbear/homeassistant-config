@@ -46,3 +46,17 @@ yunhan_macbook:
   picture: https://www.home-assistant.io/images/favicon-192x192.png
   track: yes
   hide_if_away: no
+
+hyunjun_desktop:
+  name: Hyunjun's Desktop
+  mac: !secret hyunjun_desktop_mac
+  icon: mdi:desktop-tower
+  track: yes
+  hide_if_away: no
+
+minjun_desktop:
+  name: Minjun's Desktop
+  mac: !secret minjun_desktop_mac
+  icon: mdi:desktop-tower
+  track: yes
+  hide_if_away: no

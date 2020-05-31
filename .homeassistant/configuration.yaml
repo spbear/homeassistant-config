@@ -4,6 +4,8 @@ homeassistant:
   # Location required to calculate the time the sun rises and sets
   latitude: !secret home_lat
   longitude: !secret home_lon
+  external_url: "https://home.spbear.com"
+  internal_url: "http://192.168.1.60:8123"
   # Impacts weather/sunrise data (altitude above sea level in meters)
   elevation: 0
   # metric for Metric, imperial for Imperial
@@ -39,6 +41,7 @@ logger:
     homeassistant.event: debug
     homeassistant.components.alexa: debug
     homeassistant.components.intent_script: debug
+    homeassistant.components.api: debug
     custom_components.fan.xiaomi_miio_fan: debug
     custom_components.new_ha_connector: debug
     custom_components.line: debug
@@ -94,7 +97,7 @@ mqtt:
 
 http:
   # Secrets are defined in the file secrets.yaml
-  api_password: !secret http_password
+  #api_password: !secret http_password
   # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
   # base_url: example.duckdns.org:8123
 
@@ -247,22 +250,6 @@ media_player:
     apps:
       "netflix": "Netflix"
       "youtube": "Youtube"
-
-history_graph:
-  gr1:
-    name: Temperature
-    entities:
-      - sensor.weather_temperature
-      - sensor.room_temperature
-    hours_to_show: 24
-    refresh: 60
-  gr2:
-    name: Humidity
-    entities:
-      - sensor.weather_humidity
-      - sensor.room_humidity
-    hours_to_show: 24
-    refresh: 60
 
 group: !include groups.yaml
 scene: !include scene.yaml

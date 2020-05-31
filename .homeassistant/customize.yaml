@@ -22,6 +22,14 @@ binary_sensor.yunhan_desktop:
   device_class: power
   icon: mdi:desktop-tower
   friendly_name: Yunhan's Desktop
+binary_sensor.hyunjun_desktop:
+  device_class: power
+  icon: mdi:desktop-tower
+  friendly_name: Hyunjun's Desktop
+binary_sensor.minjun_desktop:
+  device_class: power
+  icon: mdi:desktop-tower
+  friendly_name: Minjun's Desktop
 binary_sensor.yunhan_macbook:
   device_class: power
   icon: mdi:laptop
