@@ -42,6 +42,18 @@ sonos_play_random:
       data:
         entity_id: script.sonos_play_specific_song
 
+sonos_play_kpop_top100:
+  alias: sonos_play_kpop_top100
+  sequence:
+    - service: input_select.select_option
+      data_template:
+        entity_id: input_select.sonos_playlist
+        option: "Top 100 Songs South Korea"
+    - service: script.turn_on
+      data:
+        entity_id: script.sonos_play_specific_song
+
+
 sonos_play_sleep_song:
   alias: sonos_play_sleep_song
   sequence:
@@ -49,9 +61,15 @@ sonos_play_sleep_song:
       data_template:
         entity_id: input_select.sonos_playlist
         option: "{{ ['sleep'] | random }}"
-    - service: script.turn_on
+    - service: media_player.shuffle_set
       data:
-        entity_id: script.sonos_play_specific_song
+        entity_id: media_player.playroom
+        shuffle: false
+    - service: media_player.select_source
+      data_template:
+        entity_id: media_player.playroom
+        source: >
+          {{ states('input_select.sonos_playlist') }}
 
 sonos_play_specific_song:
   alias: sonos_play_specific_song

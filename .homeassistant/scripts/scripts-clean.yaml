@@ -1,5 +1,5 @@
-clean_myroom:
-  alias: clean_myroom
+reset_vacuum_position:
+  alias: Reset Vacuum Position
   sequence:
   - service: vacuum.start
     data:
@@ -15,26 +15,25 @@ clean_myroom:
     data:
       entity_id: 'vacuum.mi_robot_vacuum'
       command: 'app_zoned_clean'
-      params: [[25030,24139,25930,26589,1],[20916,24093,25066,25393,1],[19491,27372,20041,29022,1],[19487,28414,21937,30114,1],[19499,25351,21949,28151,1]]
+      params: [[25030,24139,25930,26589,1]]
+
+clean_myroom:
+  alias: clean_myroom
+  sequence:
+  - service: vacuum.send_command
+    data:
+      entity_id: 'vacuum.mi_robot_vacuum'
+      command: 'app_zoned_clean'
+      params: [[20916,24093,25066,25393,2],[19491,27372,20041,29022,2],[19487,28414,21937,30114,2],[19499,25351,21949,28151,2]]
 
 clean_kitchen:
   alias: clean_kitchen
   sequence:
-  - service: vacuum.start
-    data:
-      entity_id: 'vacuum.mi_robot_vacuum'
-  - delay:
-      seconds: 7
-  - service: vacuum.return_to_base
-    data:
-      entity_id: 'vacuum.mi_robot_vacuum'
-  - delay:
-      seconds: 10
   - service: vacuum.send_command
     data:
       entity_id: 'vacuum.mi_robot_vacuum'
       command: 'app_zoned_clean'
-      params: [[25030,24139,25930,26589,1],[26098,24115,31498,25565,1],[26711,22273,29511,24123,1],[25943,19683,27706,22333,1],[27037,22188,29537,24838,1]]
+      params: [[26098,24115,31498,25565,1],[26711,22273,29511,24123,1],[25943,19683,27706,22333,1],[27037,22188,29537,24838,1]]
 
 clean_livingroom:
   alias: clean_livingroom
@@ -45,25 +44,25 @@ clean_livingroom:
       command: 'app_zoned_clean'
       params: [[29222,25295,30222,30695,1],[25515,29282,30215,30932,1],[29222,25295,30222,30695,1],[25360,24093,30160,26093,1],[26283,24154,26783,29204,1]]
 
+
 clean_kidsroom:
   alias: clean_kidsroom
   sequence:
-  - service: vacuum.start
-    data:
-      entity_id: 'vacuum.mi_robot_vacuum'
-  - delay:
-      seconds: 7
-  - service: vacuum.return_to_base
-    data:
-      entity_id: 'vacuum.mi_robot_vacuum'
-  - delay:
-      seconds: 10
   - service: vacuum.send_command
     data:
       entity_id: 'vacuum.mi_robot_vacuum'
       command: 'app_zoned_clean'
-      params: [[25030,24139,25930,26589,1],[22910,25280,25060,28830,1]]
+      params: [[22202,25573,25152,28973,1]]
 
+
+clean_pcroom:
+  alias: clean_pcroom
+  sequence:
+  - service: vacuum.send_command
+    data:
+      entity_id: 'vacuum.mi_robot_vacuum'
+      command: 'app_zoned_clean'
+      params: [[22170,19751,25520,24101,1]]
 
 clean_all:
   alias: clean_all
@@ -72,21 +71,26 @@ clean_all:
     data:
       title: 'Notify'
       message: "🤖🤖🤖\r집 청소를 시작합니다.\r이불을 개고 바닥에 아무 것도 없게 해주세요."
-  - service: script.clean_myroom
+  - service: script.reset_vacuum_position
   - delay:
-      minutes: 3
-  - wait_template: "{{  is_state('vacuum.mi_robot_vacuum', 'docked') }}"
-  - service: script.turn_on
-    data:
-      entity_id: script.clean_kidsroom
-  - delay:
-      minutes: 3
-  - wait_template: "{{  is_state('vacuum.mi_robot_vacuum', 'docked') }}"
+      minutes: 1
   - service: script.clean_kitchen
   - delay:
       minutes: 3
   - wait_template: "{{  is_state('vacuum.mi_robot_vacuum', 'docked') }}"
+  - service: script.clean_pcroom
+  - delay:
+      minutes: 3
+  - wait_template: "{{  is_state('vacuum.mi_robot_vacuum', 'docked') }}"
   - service: script.clean_livingroom
+  - delay:
+      minutes: 3
+  - wait_template: "{{  is_state('vacuum.mi_robot_vacuum', 'docked') }}"
+  - service: script.clean_kidsroom
+  - delay:
+      minutes: 3
+  - wait_template: "{{  is_state('vacuum.mi_robot_vacuum', 'docked') }}"
+  - service: script.clean_myroom
   - delay:
       minutes: 3
   - wait_template: "{{  is_state('vacuum.mi_robot_vacuum', 'docked') }}"
