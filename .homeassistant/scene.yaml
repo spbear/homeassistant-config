@@ -29,44 +29,44 @@
     switch.security_mode: off
     light.desk_lamp:
       state: on
-      kelvin: 2800
+      rgb_color: [255, 173, 94]
       brightness: 255
     light.sleep_lamp:
       state: on
-      kelvin: 2800
+      rgb_color: [255, 173, 94]
       brightness: 100
 
 - name: LightWelcome
   entities:
     light.desk_lamp:
       state: on
-      kelvin: 3250
+      rgb_color: [255, 200, 140]
       brightness: 255
     light.sleep_lamp:
       state: on
-      kelvin: 2700
+      rgb_color: [255, 173, 94]
       brightness: 255
 
 - name: LightDeskMotion
   entities:
     light.desk_lamp:
       state: on
-      kelvin: 3250
+      rgb_color: [255, 200, 140]
       brightness: 255
     light.sleep_lamp:
       state: on
-      kelvin: 2700
+      rgb_color: [255, 173, 94]
       brightness: 100
 
 - name: LightBedMotion
   entities:
     light.desk_lamp:
       state: on
-      kelvin: 3250
+      rgb_color: [255, 200, 140]
       brightness: 255
     light.sleep_lamp:
       state: on
-      kelvin: 2700
+      rgb_color: [255, 173, 94]
       brightness: 255
 
 - name: LightBeforeSleep
@@ -76,7 +76,7 @@
       state: off
     light.sleep_lamp:
       state: on
-      kelvin: 2700
+      rgb_color: [255, 173, 94]
       brightness: 60
 
 - name: LightReader
@@ -85,7 +85,7 @@
       state: off
     light.sleep_lamp:
       state: on
-      kelvin: 3250
+      rgb_color: [255, 200, 140]
       brightness: 255
 
 - name: LightOff
@@ -109,5 +109,3 @@
     switch.hyunjun_garage_light: off
     switch.minjun_room_light: off
     light.minjun_stand_lamp: off
-    switch.livingroom_sub_light: on
-    switch.passage_light: on
