@@ -45,8 +45,8 @@ clean_livingroom:
       params: [[29222,25295,30222,30695,1],[25515,29282,30215,30932,1],[29222,25295,30222,30695,1],[25360,24093,30160,26093,1],[26283,24154,26783,29204,1]]
 
 
-clean_kidsroom:
-  alias: clean_kidsroom
+clean_minjun_room:
+  alias: clean_minjun_room
   sequence:
   - service: vacuum.send_command
     data:
@@ -55,8 +55,8 @@ clean_kidsroom:
       params: [[22202,25573,25152,28973,1]]
 
 
-clean_pcroom:
-  alias: clean_pcroom
+clean_hyunjun_room:
+  alias: clean_hyunjun_room
   sequence:
   - service: vacuum.send_command
     data:
@@ -73,20 +73,21 @@ clean_all:
       message: "🤖🤖🤖\r집 청소를 시작합니다.\r이불을 개고 바닥에 아무 것도 없게 해주세요."
   - service: script.reset_vacuum_position
   - delay:
-      minutes: 1
+      minutes: 2
+  - wait_template: "{{  is_state('vacuum.mi_robot_vacuum', 'docked') }}"
+  - service: script.clean_hyunjun_room
+  - delay:
+      minutes: 3
+  - wait_template: "{{  is_state('vacuum.mi_robot_vacuum', 'docked') }}"
+  - service: script.clean_minjun_room
+  - delay:
+      minutes: 3
+  - wait_template: "{{  is_state('vacuum.mi_robot_vacuum', 'docked') }}"
   - service: script.clean_kitchen
   - delay:
       minutes: 3
   - wait_template: "{{  is_state('vacuum.mi_robot_vacuum', 'docked') }}"
-  - service: script.clean_pcroom
-  - delay:
-      minutes: 3
-  - wait_template: "{{  is_state('vacuum.mi_robot_vacuum', 'docked') }}"
   - service: script.clean_livingroom
-  - delay:
-      minutes: 3
-  - wait_template: "{{  is_state('vacuum.mi_robot_vacuum', 'docked') }}"
-  - service: script.clean_kidsroom
   - delay:
       minutes: 3
   - wait_template: "{{  is_state('vacuum.mi_robot_vacuum', 'docked') }}"
