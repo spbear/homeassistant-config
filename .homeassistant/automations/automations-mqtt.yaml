@@ -68,19 +68,19 @@
       script.script_turn_{% if is_state('switch.samsung_air_conditioner', 'on') %}on{% else %}off{% endif %}_my_room_ac
 
 ##########################################################
-# Passage Light
+# Outside Air Fan
 ##########################################################
-- alias: mqtt_passage_light_ha
+- alias: mqtt_external_air_control_ha
   trigger:
   - platform: state
-    entity_id: switch.passage_light_switchbot
+    entity_id: switch.external_air_control_switchbot
   condition: []
   action:
   - service: mqtt.publish
     data_template:
-      topic: smartthings/Passage Light/switch
+      topic: smartthings/External Air Control/switch
       payload: >
-        {% if is_state('switch.passage_light_switchbot', 'on') %}on{% else %}off{% endif %}
+        {% if is_state('switch.external_air_control_switchbot', 'on') %}on{% else %}off{% endif %}
 
 
 ##########################################################
