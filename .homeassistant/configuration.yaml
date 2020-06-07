@@ -42,6 +42,7 @@ logger:
     homeassistant.components.alexa: debug
     homeassistant.components.intent_script: debug
     homeassistant.components.api: debug
+    homeassistant.components.workday: debug
     custom_components.fan.xiaomi_miio_fan: debug
     custom_components.new_ha_connector: debug
     custom_components.line: debug
