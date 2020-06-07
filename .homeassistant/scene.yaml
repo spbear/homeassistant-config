@@ -71,6 +71,7 @@
 
 - name: LightBeforeSleep
   entities:
+    switch.my_room_light: off
     light.desk_lamp:
       state: off
     light.sleep_lamp:
@@ -93,3 +94,20 @@
       state: off
     light.sleep_lamp:
       state: off
+
+- name: Night Livingroom
+  entities:
+    switch.livingroom_sub_light: on
+    switch.kitchen_light: off
+    switch.kitchen_sub_light: off
+    switch.table_light: off
+    switch.livingroom_light: off
+
+- name: Goodnight Kids
+  entities:
+    switch.hyunjun_room_light: off
+    switch.hyunjun_garage_light: off
+    switch.minjun_room_light: off
+    light.minjun_stand_lamp: off
+    switch.livingroom_sub_light: on
+    switch.passage_light: on

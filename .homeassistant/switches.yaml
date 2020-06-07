@@ -1,22 +1,22 @@
 - platform: switchbot
-  name: "Passage Light Switchbot"
-  mac: !secret passage_light_switchbot_mac
-
-- platform: mqtt
-  name: "Passage Light"
-  state_topic: "smartthings/Passage Light/switch"
-  command_topic: "smartthings/Passage Light/switch"
-  payload_on: "on"
-  payload_off: "off"
-  state_on: "on"
-  state_off: "off"
-  icon: mdi:lightbulb
-  optimistic: false
-  retain: true
+  name: "External Air Control Switchbot"
+  mac: !secret external_air_control_switchbot_mac
 
 - platform: switchbot
   name: "Heating Control Switchbot"
   mac: !secret heating_control_switchbot_mac
+
+- platform: mqtt
+  name: "External Air Control"
+  state_topic: "smartthings/External Air Control/switch"
+  command_topic: "smartthings/External Air Control/switch"
+  payload_on: "on"
+  payload_off: "off"
+  state_on: "on"
+  state_off: "off"
+  icon: mdi:fan
+  optimistic: false
+  retain: true
 
 - platform: mqtt
   name: "Heating Control"

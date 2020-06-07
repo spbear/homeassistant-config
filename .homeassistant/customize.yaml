@@ -77,9 +77,11 @@ switch.passage_light:
   icon: mdi:lightbulb
 switch.heating_control:
   icon: mdi:fire
-switch.passage_light_switchbot:
+switch.external_air_control:
+  icon: mdi:fan
+switch.external_air_control_switchbot:
   assumed_state: false
-  icon: mdi:lightbulb
+  icon: mdi:fan
 switch.heating_control_switchbot:
   assumed_state: false
   icon: mdi:fire
