@@ -1,0 +1,10 @@
+{
+  "domain": "line_bot",
+  "name": "LINE bot",
+  "documentation": "https://www.home-assistant.io/integrations/line_bot",
+  "requirements": [
+    "line-bot-sdk==1.16.0"
+  ],
+  "dependencies": ["http"],
+  "codeowners": []
+}
