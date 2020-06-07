@@ -1,0 +1,91 @@
+- alias: Alarm 0800
+  trigger:
+  - platform: time
+    at: '08:00:00'
+  condition:
+  - condition: state
+    entity_id: binary_sensor.workday
+    state: 'on'
+  action:
+  - service: notify.home
+    data_template:
+      message: "⏰ 08시 기상시간이예요. 밥먹고 수업 준비하세요."
+
+- alias: Alarm 0900
+  trigger:
+  - platform: time
+    at: '09:00:00'
+  condition:
+  - condition: state
+    entity_id: binary_sensor.workday
+    state: 'on'
+  action:
+  - service: notify.home
+    data_template:
+      message: "⏰ 09시 학교 수업 시간이예요."
+
+- alias: Alarm 1300
+  trigger:
+  - platform: time
+    at: '13:00:00'
+  condition: []
+  action:
+  - service: notify.home
+    data_template:
+      message: "⏰ 점심시간이예요. 밥먹어요!"
+
+- alias: Alarm 1400
+  trigger:
+  - platform: time
+    at: '14:00:00'
+  condition:
+  - condition: state
+    entity_id: binary_sensor.workday
+    state: 'on'
+  action:
+  - service: notify.home
+    data_template:
+      message: "⏰ 현준이는 운동+자유시간, 민준이는 남은 EBS할 시간예요."
+
+- alias: Alarm 1500
+  trigger:
+  - platform: time
+    at: '15:00:00'
+  condition:
+  - condition: state
+    entity_id: binary_sensor.workday
+    state: 'on'
+  action:
+  - service: notify.home
+    data_template:
+      message: "⏰ 현준이는 운동+자유시간, 민준이는 운동할 시간예요."
+
+- alias: Alarm 1800
+  trigger:
+  - platform: time
+    at: '18:00:00'
+  condition: []
+  action:
+  - service: notify.home
+    data_template:
+      message: "⏰ 저녁시간이예요. 밥먹어요!"
+
+- alias: Alarm 2200
+  trigger:
+  - platform: time
+    at: '22:00:00'
+  condition: []
+  action:
+  - service: notify.home
+    data_template:
+      message: "⏰ 게임 끝"
+
+- alias: Alarm 2300
+  trigger:
+  - platform: time
+    at: '23:00:00'
+  condition: []
+  action:
+  - service: notify.home
+    data_template:
+      message: "⏰ 잘 시간이예요! 잘 자요!"

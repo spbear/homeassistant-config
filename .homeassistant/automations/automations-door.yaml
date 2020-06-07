@@ -2,37 +2,11 @@
   trigger:
   - platform: state
     entity_id: binary_sensor.entrance_door
+    to: 'on'
   condition: []
   action:
   - service: notify.me
     data_template:
       title: 'Notify'
-      message: "
-        {% if trigger.to_state.state == 'on' %}🚪문이 열렸습니다{% else %}🚪문이 닫혔습니다{% endif %}\r
-        {% if is_state('binary_sensor.passage_long_motion', 'on') %}🏃 복도에 움직임이 있어요{% else %}🧍 복도에 움직임이 없어요{% endif %}"
-
-- alias: Trigger Passage Long Motion ON
-  trigger:
-  - platform: state
-    entity_id: binary_sensor.passage_motion
-    to: 'off'
-    for:
-      minutes: 3
-  condition: []
-  action:
-  - service: mqtt.publish
-    data_template:
-      topic: smartthings/Passage Long Motion/motion
-      payload: 'inactive'
-
-- alias: Trigger Passage Long Motion OFF
-  trigger:
-  - platform: state
-    entity_id: binary_sensor.passage_motion
-    to: 'on'
-  condition: []
-  action:
-  - service: mqtt.publish
-    data_template:
-      topic: smartthings/Passage Long Motion/motion
-      payload: 'active'
+      message: "🚪문이 열렸습니다\r
+        {% if is_state('binary_sensor.passage_motion', 'on') %}🏃 복도에 움직임이 있어요\r🏃 누군가 나간 것일 수 있어요{% else %}🧍 복도에 움직임이 없어요{% endif %}"

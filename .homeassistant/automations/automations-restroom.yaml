@@ -21,7 +21,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.restroom_humidity
-      above: 55.0
+      above: 65.0
     - platform: state
       entity_id: binary_sensor.restroom_motion
       from: 'off'
@@ -59,14 +59,14 @@
           minutes: 10
     - platform: numeric_state
       entity_id: sensor.restroom_humidity
-      below: 55.0
+      below: 65.0
   condition:
     - condition: state
       entity_id: switch.restroom_fan
       state: 'on'
     - condition: numeric_state
       entity_id: sensor.restroom_humidity
-      below: 55.0
+      below: 65.0
   action:
     - service: switch.turn_off
       data:
