@@ -3,7 +3,7 @@ update_sonos_playlist:
   method: POST
   headers:
     content-type: application/json
-    x-ha-access: !secret http_password
+    Authorization: !secret music_updater_token
   content_type: application/json
   payload: >-
     {
