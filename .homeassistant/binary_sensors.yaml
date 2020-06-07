@@ -19,6 +19,11 @@
   payload_on: 'present'
   payload_off: 'not present'
 
+- platform: workday
+  name: workday
+  country: Korea
+  workdays: [mon, tue, wed, thu, fri]
+
 - platform: mqtt
   state_topic: smartthings/Grandma's Presence/presence
   name: grandma_android
@@ -90,36 +95,6 @@
   name: screen_projector
   payload_on: 'True'
   payload_off: 'False'
-
-- platform: mqtt
-  state_topic: smartthings/Entrance Door/contact
-  name: entrance_door
-  payload_on: 'open'
-  payload_off: 'closed'
-
-- platform: mqtt
-  state_topic: smartthings/My Room Motion Sensor/motion
-  name: Room Door Motion
-  payload_on: 'active'
-  payload_off: 'inactive'
-
-- platform: mqtt
-  state_topic: smartthings/Passage Long Motion/motion
-  name: Passage Long Motion
-  payload_on: 'active'
-  payload_off: 'inactive'
-
-- platform: mqtt
-  state_topic: smartthings/Restroom Multi Sensor/motion
-  name: Restroom Motion
-  payload_on: 'active'
-  payload_off: 'inactive'
-
-- platform: mqtt
-  state_topic: smartthings/Mi Standing Fan/switch
-  name: Mi Standing Fan
-  payload_on: 'on'
-  payload_off: 'off'
 
 - platform: mqtt
   state_topic: smartthings/Mi Air Purifier/switch
