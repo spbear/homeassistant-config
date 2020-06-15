@@ -83,7 +83,7 @@ clean_all:
   - delay:
       minutes: 3
   - wait_template: "{{  is_state('vacuum.mi_robot_vacuum', 'docked') }}"
-  - service: script.clean_kitchen
+  - service: script.clean_myroom
   - delay:
       minutes: 3
   - wait_template: "{{  is_state('vacuum.mi_robot_vacuum', 'docked') }}"
@@ -91,7 +91,7 @@ clean_all:
   - delay:
       minutes: 3
   - wait_template: "{{  is_state('vacuum.mi_robot_vacuum', 'docked') }}"
-  - service: script.clean_myroom
+  - service: script.clean_kitchen
   - delay:
       minutes: 3
   - wait_template: "{{  is_state('vacuum.mi_robot_vacuum', 'docked') }}"

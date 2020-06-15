@@ -10,7 +10,7 @@
       to: 'on'
   condition:
     - condition: state
-      entity_id: switch.heating_control_switchbot
+      entity_id: switch.heating_control
       state: 'off'
     - condition: state
       entity_id: binary_sensor.yunhan_android
@@ -21,7 +21,7 @@
   action:
     - service: switch.turn_on
       data:
-        entity_id: switch.heating_control_switchbot
+        entity_id: switch.heating_control
 
 - alias: Turn On Heating Control Below 19.0c
   trigger:
@@ -32,12 +32,12 @@
         minutes: 10
   condition:
     - condition: state
-      entity_id: switch.heating_control_switchbot
+      entity_id: switch.heating_control
       state: 'off'
   action:
     - service: switch.turn_on
       data:
-        entity_id: switch.heating_control_switchbot
+        entity_id: switch.heating_control
 
 - alias: Turn Off Heating Control Above 21.5c
   trigger:
@@ -48,12 +48,12 @@
         minutes: 10
   condition:
     - condition: state
-      entity_id: switch.heating_control_switchbot
+      entity_id: switch.heating_control
       state: 'on'
   action:
     - service: switch.turn_off
       data:
-        entity_id: switch.heating_control_switchbot
+        entity_id: switch.heating_control
 
 - alias: Turn On Heating Control Above 20.0c
   trigger:
@@ -64,7 +64,7 @@
         minutes: 10
   condition:
     - condition: state
-      entity_id: switch.heating_control_switchbot
+      entity_id: switch.heating_control
       state: 'on'
     - condition: state
       entity_id: binary_sensor.yunhan_android
@@ -72,7 +72,7 @@
   action:
     - service: switch.turn_off
       data:
-        entity_id: switch.heating_control_switchbot
+        entity_id: switch.heating_control
 
 
 - alias: Turn Off When Leaving
@@ -82,7 +82,7 @@
       to: 'off'
   condition:
     - condition: state
-      entity_id: switch.heating_control_switchbot
+      entity_id: switch.heating_control
       state: 'on'
     - condition: numeric_state
       entity_id: sensor.room_temperature
@@ -90,4 +90,4 @@
   action:
     - service: switch.turn_off
       data:
-        entity_id: switch.heating_control_switchbot
+        entity_id: switch.heating_control

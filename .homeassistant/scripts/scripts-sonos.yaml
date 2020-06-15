@@ -1,10 +1,10 @@
 sonos_say:
   alias: "Sonos TTS script"
   sequence:
-   - service: media_player.sonos_snapshot
+   - service: sonos.snapshot
      data_template:
        entity_id: "{{ sonos_entity }}"
-   - service: media_player.sonos_unjoin
+   - service: sonos.unjoin
      data_template:
        entity_id: "{{ sonos_entity }}"
    - service: media_player.volume_set
@@ -16,7 +16,7 @@ sonos_say:
        entity_id: "{{ sonos_entity }}"
        message: "{{ message }}"
    - delay: "{{ delay }}"
-   - service: media_player.sonos_restore
+   - service: sonos.restore
      data_template:
        entity_id: "{{ sonos_entity }}"
 
@@ -45,13 +45,17 @@ sonos_play_random:
 sonos_play_kpop_top100:
   alias: sonos_play_kpop_top100
   sequence:
-    - service: input_select.select_option
-      data_template:
-        entity_id: input_select.sonos_playlist
-        option: "Top 100 Songs South Korea"
-    - service: script.turn_on
+    - service: switch.turn_off
       data:
-        entity_id: script.sonos_play_specific_song
+        entity_id: switch.music_auto_play
+    - service: media_player.shuffle_set
+      data:
+        entity_id: media_player.playroom
+        shuffle: false
+    - service: media_player.select_source
+      data_template:
+        entity_id: media_player.playroom
+        source: "Top 100 Songs South Korea"
 
 
 sonos_play_sleep_song:

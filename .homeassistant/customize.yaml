@@ -1,20 +1,25 @@
 binary_sensor.yunhan_android:
+  assumed_state: false
   icon: mdi:cellphone-android
   device_class: presence
   friendly_name: Yunhan's Android
 binary_sensor.minjun_android:
+  assumed_state: false
   icon: mdi:cellphone-android
   device_class: presence
   friendly_name: Minjun's Android
 binary_sensor.hyunjun_android:
+  assumed_state: false
   icon: mdi:cellphone-android
   device_class: presence
   friendly_name: Hyunjun's Android
 binary_sensor.mom_iphone:
+  assumed_state: false
   device_class: presence
   icon: mdi:cellphone-iphone
   friendly_name: Mom's iPhone
 binary_sensor.grandma_android:
+  assumed_state: false
   device_class: presence
   icon: mdi:cellphone-android
   friendly_name: Grandma's Android
@@ -75,14 +80,10 @@ switch.livingroom_tv_real:
   icon: mdi:television
 switch.passage_light:
   icon: mdi:lightbulb
-switch.heating_control:
-  icon: mdi:fire
 switch.external_air_control:
-  icon: mdi:fan
-switch.external_air_control_switchbot:
   assumed_state: false
   icon: mdi:fan
-switch.heating_control_switchbot:
+switch.heating_control:
   assumed_state: false
   icon: mdi:fire
 sensor.livingroom_pm25:
@@ -125,13 +126,5 @@ sensor.air_quality_pm25value:
 sensor.air_quality_pm10value:
   icon: mdi:cloud
   friendly_name: Outside PM10
-switch.restroom_fan:
-  icon: mdi:fan
-switch.restroom_light:
-  icon: mdi:lightbulb
-switch.restroom_sub_light:
-  icon: mdi:lightbulb
-switch.my_room_light:
-  icon: mdi:lightbulb
 binary_sensor.restroom_door_status:
   device_class: door

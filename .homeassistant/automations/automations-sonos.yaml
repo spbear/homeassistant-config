@@ -7,9 +7,6 @@
   - platform: state
     entity_id: binary_sensor.room_door_motion
     to: 'on'
-  - platform: state
-    entity_id: binary_sensor.room_bed_motion
-    to: 'on'
   condition:
   - condition: state
     entity_id: binary_sensor.yunhan_bt_presence
@@ -34,6 +31,8 @@
   trigger:
   - platform: homeassistant
     event: start
+  - platform: time
+    at: '06:00:00'
   action:
   - service: rest_command.update_sonos_playlist
 
@@ -155,12 +154,22 @@
 - alias: Turn on Music Auto Play every 7AM
   trigger:
   - platform: time
-    at: "08:00:00"
+    at: "07:00:00"
   condition: []
   action:
   - service: switch.turn_on
     data:
       entity_id: switch.music_auto_play
+
+- alias: Play Morning Song
+  trigger:
+  - platform: time
+    at: "08:00:00"
+  condition:
+  action:
+  - service: script.turn_on
+    data:
+      entity_id: script.sonos_play_kpop_top100
 
 # Stop Sonos when I am away
 - alias: Stop Sonos when I am away

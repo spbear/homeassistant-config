@@ -1,0 +1,25 @@
+- alias: Turn on External Air Control +1
+  trigger:
+    - platform: state
+      entity_id: switch.external_air_control
+      to: 'on'
+      for:
+        seconds: 7
+  condition: []
+  action:
+    - service: switch.turn_on
+      data:
+        entity_id: switch.external_air_control_strength
+
+- alias: Turn on External Air Control +2
+  trigger:
+    - platform: state
+      entity_id: switch.external_air_control_strength
+      to: 'on'
+      for:
+        seconds: 5
+  condition: []
+  action:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.external_air_control_strength

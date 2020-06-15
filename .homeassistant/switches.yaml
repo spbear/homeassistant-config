@@ -1,34 +1,14 @@
 - platform: switchbot
-  name: "External Air Control Switchbot"
+  name: "External Air Control"
   mac: !secret external_air_control_switchbot_mac
 
 - platform: switchbot
-  name: "Heating Control Switchbot"
-  mac: !secret heating_control_switchbot_mac
+  name: "External Air Control Strength"
+  mac: !secret external_air_control_strength_switchbot_mac
 
-- platform: mqtt
-  name: "External Air Control"
-  state_topic: "smartthings/External Air Control/switch"
-  command_topic: "smartthings/External Air Control/switch"
-  payload_on: "on"
-  payload_off: "off"
-  state_on: "on"
-  state_off: "off"
-  icon: mdi:fan
-  optimistic: false
-  retain: true
-
-- platform: mqtt
+- platform: switchbot
   name: "Heating Control"
-  state_topic: "smartthings/Heating Control/switch"
-  command_topic: "smartthings/Heating Control/switch"
-  payload_on: "on"
-  payload_off: "off"
-  state_on: "on"
-  state_off: "off"
-  icon: mdi:fire
-  optimistic: false
-  retain: true
+  mac: !secret heating_control_switchbot_mac
 
 - platform: mqtt
   name: "Samsung Air Conditioner"
@@ -111,7 +91,7 @@
   payload_off: "off"
   state_on: "on"
   state_off: "off"
-  icon: mdi:fan
+  icon: mdi:air-humidifier
   optimistic: false
   retain: true
 

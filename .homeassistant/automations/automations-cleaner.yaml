@@ -45,7 +45,7 @@
   trigger:
   - platform: state
     entity_id: vacuum.mi_robot_vacuum
-    to: 'Error'
+    to: 'error'
   condition: []
   action:
   - service: notify.home
