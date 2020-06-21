@@ -13,7 +13,7 @@
       below: 40
   condition:
     - condition: state
-      entity_id: binary_sensor.yunhan_desktop
+      entity_id: binary_sensor.yunhan_android
       state: 'on'
   action:
     - service: fan.turn_on
@@ -27,10 +27,10 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.room_humidify
-      above: 55
+      above: 65
   condition:
     - condition: state
-      entity_id: binary_sensor.yunhan_desktop
+      entity_id: binary_sensor.yunhan_android
       state: 'on'
   action:
     - service: fan.turn_off

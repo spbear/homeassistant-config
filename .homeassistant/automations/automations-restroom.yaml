@@ -8,7 +8,10 @@
       entity_id: binary_sensor.restroom_motion
       from: 'off'
       to: 'on'
-  condition: []
+  condition:
+    - condition: state
+      entity_id: switch.restroom_light
+      state: 'off'
   action:
     - service: switch.turn_on
       data:
@@ -26,7 +29,10 @@
       entity_id: binary_sensor.restroom_motion
       from: 'off'
       to: 'on'
-  condition: []
+  condition:
+    - condition: state
+      entity_id: switch.restroom_fan
+      state: 'off'
   action:
     - service: switch.turn_on
       data:

@@ -21,6 +21,7 @@
     switch.curtain_auto_control: on
     switch.my_room_light: off
     switch.my_room_yankee_candle: off
+    switch.external_air_control: off
 
 - name: Night Welcome
   entities:

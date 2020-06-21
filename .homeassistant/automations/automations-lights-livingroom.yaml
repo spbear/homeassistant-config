@@ -14,6 +14,9 @@
       entity_id: switch.livingroom_light
       state: 'off'
     - condition: state
+      entity_id: switch.livingroom_sub_light
+      state: 'off'
+    - condition: state
       entity_id: sun.sun
       state: 'below_horizon'
   action:

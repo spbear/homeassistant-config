@@ -75,10 +75,19 @@
       entity_id: sun.sun
       value_template: "{{ state_attr('sun.sun', 'elevation') }}"
       below: 15.0
+    - platform: numeric_state
+      entity_id: sensor.minjun_room_illuminance
+      below: 30.0
   condition:
     - condition: state
       entity_id: binary_sensor.minjun_android
       state: 'on'
+    - condition: time
+      after: '17:00:00'
+      before: '21:00:00'
+    - condition: state
+      entity_id: light.minjun_stand_lamp
+      state: 'off'
   action:
     - service: light.turn_on
       data:
@@ -90,10 +99,19 @@
       entity_id: sun.sun
       value_template: "{{ state_attr('sun.sun', 'elevation') }}"
       below: 15.0
+    - platform: numeric_state
+      entity_id: sensor.minjun_room_illuminance
+      below: 30.0
   condition:
     - condition: state
       entity_id: binary_sensor.hyunjun_android
       state: 'on'
+    - condition: time
+      after: '17:00:00'
+      before: '21:00:00'
+    - condition: state
+      entity_id: switch.hyunjun_room_light
+      state: 'off'
   action:
     - service: switch.turn_on
       data:

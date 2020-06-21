@@ -1,0 +1,50 @@
+- alias: Kids Fan OFF
+  trigger:
+    - platform: time
+      at: '00:00:00'
+  condition: []
+  action:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.minjun_fan
+    - service: switch.turn_off
+      data:
+        entity_id: switch.hyunjun_fan
+
+- alias: Minjun Fan OFF
+  trigger:
+    - platform: state
+      entity_id: switch.minjun_fan
+      to: 'on'
+      for:
+        minutes: 60
+  condition:
+    - condition: time
+      after: '00:00:00'
+      before: '08:00:00'
+    - condition: state
+      entity_id: switch.minjun_fan
+      state: 'on'
+  action:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.minjun_fan
+
+- alias: Minjun Fan OFF
+  trigger:
+    - platform: state
+      entity_id: switch.hyunjun_fan
+      to: 'on'
+      for:
+        minutes: 60
+  condition:
+    - condition: time
+      after: '00:00:00'
+      before: '08:00:00'
+    - condition: state
+      entity_id: switch.hyunjun_fan
+      state: 'on'
+  action:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.hyunjun_fan
