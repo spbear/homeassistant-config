@@ -72,6 +72,8 @@ binary_sensor.gear_fit2_pro:
   icon: mdi:watch
 binary_sensor.watch_active2:
   icon: mdi:watch
+binary_sensor.washing_machine:
+  icon: mdi:washing-machine
 sensor.room_pm25:
   icon: mdi:cloud
 switch.livingroom_tv:

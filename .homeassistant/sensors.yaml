@@ -17,18 +17,18 @@
       device_class: temperature
       value_template: "{{ '%.1f'|format(states.fan.mi_air_purifier.attributes.temperature) }}"
 
-    washingmachine_power:
+    washing_machine_power:
       friendly_name: Washing Machine Power
       unit_of_measurement: "W"
       device_class: power
-      value_template: "{{ '%.1f'|format(float(states.switch.washingmachine.attributes.power)) }}
+      value_template: "{{ '%.1f'|format(float(states.switch.washingmachine.attributes.current_power_w)) }}
 "
 
-    washingmachine_energy:
+    washing_machine_energy:
       friendly_name: Washing Machine Energy
       unit_of_measurement: "kWh"
       device_class: power
-      value_template: "{{ '%.1f'|format(float(states.switch.washingmachine.attributes.energy)) }}
+      value_template: "{{ '%.1f'|format(float(states.switch.washingmachine.attributes.toady_energy_kwh)) }}
 "
 
     livingroom_tv_power:

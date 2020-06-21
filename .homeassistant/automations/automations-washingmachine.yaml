@@ -1,7 +1,7 @@
 - alias: Turn On Washing Machine
   trigger:
   - platform: state
-    entity_id: binary_sensor.washingmachine
+    entity_id: binary_sensor.washing_machine
     to: 'on'
   condition: []
   action:
@@ -13,7 +13,7 @@
 - alias: Turn Off Washing Machine
   trigger:
   - platform: state
-    entity_id: binary_sensor.washingmachine
+    entity_id: binary_sensor.washing_machine
     to: 'off'
   condition: []
   action:
