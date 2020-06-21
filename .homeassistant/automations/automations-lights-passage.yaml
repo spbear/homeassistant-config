@@ -1,0 +1,46 @@
+- alias: Passage Motion Lamp ON
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.passage_motion
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.kids_room_entrance_motion
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.entrance_door
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: switch.passage_light
+      state: 'off'
+  action:
+    - service: switch.turn_on
+      data:
+        entity_id: switch.passage_light
+
+- alias: Passage Motion Lamp OFF
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.passage_motion
+      to: 'off'
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: binary_sensor.kids_room_entrance_motion
+      to: 'off'
+      for:
+        minutes: 10
+  condition:
+    - condition: state
+      entity_id: switch.passage_light
+      state: 'on'
+    - condition: state
+      entity_id: binary_sensor.passage_motion
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.kids_room_entrance_motion
+      state: 'off'
+  action:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.passage_light

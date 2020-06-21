@@ -1,0 +1,76 @@
+- alias: Livingroom Sublight ON
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.passage_motion
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.kids_room_entrance_motion
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.entrance_door
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: switch.livingroom_light
+      state: 'off'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+  action:
+    - service: switch.turn_on
+      data:
+        entity_id: switch.livingroom_sub_light
+
+- alias: Night Livingroom
+  trigger:
+    - platform: time
+      at: '23:00:00'
+  condition: []
+  action:
+    - service: scene.turn_on
+      data:
+        entity_id: scene.night_livingroom
+
+- alias: Livingroom Sub Light OFF when Livingroom Light Turned On
+  trigger:
+    - platform: state
+      entity_id: switch.livingroom_light
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: switch.livingroom_sub_light
+      state: 'on'
+  action:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.livingroom_sub_light
+
+- alias: Livingroom Sub Light On when Livingroom Light Turned On
+  trigger:
+    - platform: state
+      entity_id: switch.livingroom_sub_light
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: switch.livingroom_light
+      state: 'on'
+  action:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.livingroom_light
+
+- alias: Livingroom Sub Light OFF
+  trigger:
+    - platform: state
+      entity_id: switch.livingroom_sub_light
+      to: 'on'
+      for:
+        minutes: 30
+  condition:
+    - condition: time
+      after: '23:00:00'
+      before: '07:00:00'
+  action:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.livingroom_sub_light

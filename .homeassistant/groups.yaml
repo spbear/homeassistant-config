@@ -107,6 +107,7 @@ me:
 people:
   name: People
   entities:
+    - binary_sensor.yunhan_android
     - binary_sensor.minjun_android
     - binary_sensor.hyunjun_android
     - binary_sensor.mom_iphone

@@ -1,0 +1,100 @@
+- alias: Goodbye Kids
+  trigger:
+    - platform: time
+      at: '23:30:00'
+  condition: []
+  action:
+    - service: scene.turn_on
+      data:
+        entity_id: scene.goodnight_kids
+
+- alias: Minjun Stand Light OFF
+  trigger:
+    - platform: state
+      entity_id: light.minjun_stand_lamp
+      to: 'on'
+      for:
+        minutes: 30
+  condition:
+    - condition: time
+      after: '23:30:00'
+      before: '09:00:00'
+  action:
+    - service: light.turn_off
+      data:
+        entity_id: light.minjun_stand_lamp
+
+- alias: Minjun Room Light OFF
+  trigger:
+    - platform: state
+      entity_id: switch.minjun_room_light
+      to: 'on'
+      for:
+        minutes: 30
+  condition:
+    - condition: time
+      after: '23:30:00'
+      before: '09:00:00'
+  action:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.minjun_room_light
+
+- alias: Hyunjun Room Light OFF
+  trigger:
+    - platform: state
+      entity_id: switch.hyunjun_room_light
+      to: 'on'
+      for:
+        minutes: 30
+  condition:
+    - condition: time
+      after: '23:30:00'
+      before: '09:00:00'
+  action:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.hyunjun_room_light
+
+- alias: Hyunjun Garage Light OFF
+  trigger:
+    - platform: state
+      entity_id: switch.hyunjun_garage_light
+      to: 'on'
+      for:
+        minutes: 10
+  condition: []
+  action:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.hyunjun_garage_light
+
+- alias: Turn on light when the sun set for minjun
+  trigger:
+    - platform: numeric_state
+      entity_id: sun.sun
+      value_template: "{{ state_attr('sun.sun', 'elevation') }}"
+      below: 15.0
+  condition:
+    - condition: state
+      entity_id: binary_sensor.minjun_android
+      state: 'on'
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.minjun_stand_lamp
+
+- alias: Turn on light when the sun set for hyunjun
+  trigger:
+    - platform: numeric_state
+      entity_id: sun.sun
+      value_template: "{{ state_attr('sun.sun', 'elevation') }}"
+      below: 15.0
+  condition:
+    - condition: state
+      entity_id: binary_sensor.hyunjun_android
+      state: 'on'
+  action:
+    - service: switch.turn_on
+      data:
+        entity_id: switch.hyunjun_room_light

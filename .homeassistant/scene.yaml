@@ -20,6 +20,7 @@
     switch.security_mode: on
     switch.curtain_auto_control: on
     switch.my_room_light: off
+    switch.my_room_yankee_candle: off
 
 - name: Night Welcome
   entities:

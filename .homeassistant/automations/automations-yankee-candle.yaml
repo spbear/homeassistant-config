@@ -1,0 +1,39 @@
+- alias: Turn Off My Room Yankee Candle After 20min
+  trigger:
+    - platform: state
+      entity_id: switch.my_room_yankee_candle
+      to: 'on'
+      for:
+        minutes: 20
+  condition: []
+  action:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.my_room_yankee_candle
+
+- alias: Turn Off Kitchen Yankee Candle After 20min
+  trigger:
+    - platform: state
+      entity_id: switch.kitchen_yankee_candle
+      to: 'on'
+      for:
+        minutes: 20
+  condition: []
+  action:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.kitchen_yankee_candle
+
+- alias: Turn On My Room Yankee Candle When I Arrived
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.yunhan_android
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+  action:
+    - service: switch.turn_on
+      data:
+        entity_id: switch.my_room_yankee_candle
