@@ -4,7 +4,7 @@
       entity_id: binary_sensor.kitchen_motion
       to: 'off'
       for:
-        minutes: 30
+        minutes: 10
     - platform: state
       entity_id: group.people
       to: 'off'
@@ -23,7 +23,7 @@
       entity_id: binary_sensor.kitchen_motion
       to: 'off'
       for:
-        minutes: 30
+        minutes: 10
     - platform: state
       entity_id: group.people
       to: 'off'
@@ -43,8 +43,8 @@
       to: 'on'
   condition:
     - condition: state
-      entity_id: binary_sensor.yunhan_android
-      state: 'on'
+      entity_id: sun.sun
+      state: 'below_horizon'
   action:
     - service: switch.turn_on
       data:
@@ -56,7 +56,7 @@
       entity_id: switch.table_light
       to: 'on'
       for:
-        minutes: 30
+        minutes: 20
     - platform: state
       entity_id: group.people
       to: 'off'

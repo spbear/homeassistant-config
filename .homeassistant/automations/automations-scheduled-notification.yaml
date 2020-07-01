@@ -11,6 +11,16 @@
     data_template:
       message: "⏰ 08시 기상시간이예요. 밥먹고 수업 준비하세요."
 
+- alias: Alarm 0830
+  trigger:
+  - platform: time
+    at: '08:00:00'
+  condition: []
+  action:
+  - service: notify.home
+    data_template:
+      message: "⏰ 학생 건강 진단 체크해주세요.\rhttps://eduro.goe.go.kr/hcheck"
+
 - alias: Alarm 0900
   trigger:
   - platform: time
@@ -64,7 +74,23 @@
   trigger:
   - platform: time
     at: '18:00:00'
-  condition: []
+  condition:
+  - condition: state
+    entity_id: binary_sensor.workday
+    state: 'on'
+  action:
+  - service: notify.home
+    data_template:
+      message: "⏰ 저녁시간이예요. 밥먹어요!"
+
+- alias: Alarm 1830
+  trigger:
+  - platform: time
+    at: '18:30:00'
+  condition:
+  - condition: state
+    entity_id: binary_sensor.workday
+    state: 'off'
   action:
   - service: notify.home
     data_template:

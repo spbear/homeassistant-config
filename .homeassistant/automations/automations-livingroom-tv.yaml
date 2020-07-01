@@ -1,0 +1,79 @@
+- alias: Sync TV Control ON
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.livingroom_tv_power
+      above: 20.0
+      for:
+        seconds: 5
+    - platform: time_pattern
+      minutes: "/1"
+  condition:
+    - condition: state
+      entity_id: switch.livingroom_tv
+      state: 'off'
+    - condition: numeric_state
+      entity_id: sensor.livingroom_tv_power
+      above: 20.0
+  action:
+    - service: switch.turn_on
+      data:
+        entity_id: switch.livingroom_tv
+
+- alias: Sync TV Control OFF
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.livingroom_tv_power
+      below: 20.0
+      for:
+        seconds: 5
+    - platform: time_pattern
+      minutes: "/1"
+  condition:
+    - condition: state
+      entity_id: switch.livingroom_tv
+      state: 'on'
+    - condition: numeric_state
+      entity_id: sensor.livingroom_tv_power
+      below: 20.0
+  action:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.livingroom_tv
+
+- alias: TV Control ON
+  trigger:
+    - platform: state
+      entity_id: switch.livingroom_tv
+      to: 'on'
+  condition:
+    - condition: numeric_state
+      entity_id: sensor.livingroom_tv_power
+      below: 20.0
+  action:
+    - service: switch.toggle
+      data:
+        entity_id: switch.livingroom_tv_control
+
+- alias: TV Control OFF
+  trigger:
+    - platform: state
+      entity_id: switch.livingroom_tv
+      to: 'off'
+  condition:
+    - condition: numeric_state
+      entity_id: sensor.livingroom_tv_power
+      above: 20.0
+  action:
+    - service: switch.toggle
+      data:
+        entity_id: switch.livingroom_tv_control
+
+- alias: Notify TV Status
+  trigger:
+  - platform: state
+    entity_id: switch.livingroom_tv
+  condition: []
+  action:
+  - service: notify.me
+    data_template:
+      message: "📺 거실TV를 {% if trigger.to_state.state == 'on' %}🟢 켰어요{% else %}🔴 껐어요{% endif %}"

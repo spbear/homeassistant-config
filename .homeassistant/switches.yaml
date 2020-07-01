@@ -71,18 +71,6 @@
         data:
             entity_id: cover.roll_screen
 
-    livingroom_tv_real:
-      friendly_name: "Livingroom TV"
-      value_template: "{{ float(states.switch.livingroom_tv.attributes.power) > 2.0 }}"
-      turn_on:
-        service: switch.turn_on
-        data:
-          entity_id: switch.livingroom_tv
-      turn_off:
-        service: switch.turn_off
-        data:
-          entity_id: switch.livingroom_tv
-
 - platform: mqtt
   name: "Mi Dehumidifier"
   state_topic: "switch/mi_dehumidifier"

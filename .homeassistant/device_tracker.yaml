@@ -1,18 +1,26 @@
 # sudo setcap cap_net_raw,cap_net_admin,cap_net_bind_service+eip /usr/bin/nmap
-- platform: nmap_tracker
-  hosts:
-    - !secret minjun_mobile_ip
-    - !secret hyunjun_mobile_ip
-    - !secret spbear_mobile_ip
-    - !secret mom_mobile_ip
-    - !secret grandma_mobile_ip
-  interval_seconds: 10
-  home_interval: 5
-  consider_home: 180
-  scan_options: " --privileged -sP "
+#- platform: nmap_tracker
+#  hosts:
+#    - !secret minjun_mobile_ip
+#    - !secret hyunjun_mobile_ip
+#    - !secret spbear_mobile_ip
+#    - !secret mom_mobile_ip
+#    - !secret grandma_mobile_ip
+#  interval_seconds: 10
+#  home_interval: 5
+#  consider_home: 180
+#  scan_options: " --privileged -sP "
 
 # You should turn off power-control option on Window system's ethernet device
 # http://hearit.tistory.com/13
+
+- platform: asuswrt
+  consider_home: 300
+  interval_seconds: 60
+  scan_interval: 60
+  new_device_defaults:
+    track_new_devices: false
+
 - platform: nmap_tracker
   hosts:
     - !secret spbear_desktop_ip
