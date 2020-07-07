@@ -6,8 +6,51 @@
     - humidity
     - fog
 
-- platform: awair
-  access_token: !secret awair_token
+- platform: rest
+  name: Awair 2nd Edition
+  json_attributes:
+    - temp
+    - humid
+    - co2
+    - voc
+    - pm25
+    - score
+  resource: !secret awair_url
+  value_template: '{{value_json.score}}'
+
+- platform: template
+  sensors:
+    awair_temperature:
+      friendly_name: My Room Temperature
+      value_template: "{{ state_attr('sensor.awair_2nd_edition', 'temp') | round(1) }}"
+      icon_template: mdi:thermometer
+      unit_of_measurement: '°C'
+    awair_humidity:
+      friendly_name: My Room Humidity
+      value_template: "{{ state_attr('sensor.awair_2nd_edition', 'humid') | round(1) }}"
+      icon_template: mdi:water-percent
+      unit_of_measurement: '%'
+    awair_score:
+      friendly_name: My Room Air Score
+      value_template: "{{ state_attr('sensor.awair_2nd_edition', 'score') | round(0) }}"
+      icon_template: mdi:percent
+      unit_of_measurement: '%'
+    awair_voc:
+      friendly_name: My Room VOC
+      value_template: "{{ state_attr('sensor.awair_2nd_edition', 'voc') | round(0) }}"
+      icon_template: mdi:chemical-weapon
+      unit_of_measurement: 'ppb'
+    awair_co2:
+      friendly_name: My Room CO2
+      value_template: "{{ state_attr('sensor.awair_2nd_edition', 'co2') | round(0) }}"
+      icon_template: mdi:periodic-table-co2
+      unit_of_measurement: 'ppm'
+    awair_pm2_5:
+      friendly_name: My Room PM2.5
+      value_template: "{{ state_attr('sensor.awair_2nd_edition', 'pm25') | round(1) }}"
+      icon_template: mdi:cloud
+      unit_of_measurement: 'µg/m³'
+
 
 - platform: template
   sensors:
