@@ -186,6 +186,11 @@ replacement = {
         "entity_id" : "switch.table_light",
         "icon" : "mdi:ceiling-light"
     },
+    "세탁기" : {
+        "name" : "Washing Machine",
+        "entity_id" : "switch.washing_machine",
+        "icon" : "mdi:washing-machine"
+    },
     "주방 후드" : {
         "name" : "Kitchen Hood",
         "entity_id" : "switch.kitchen_hood",
@@ -201,9 +206,14 @@ replacement = {
         "entity_id" : "switch.minjun_fan",
         "icon" : "mdi:fan"
     },
-    "TV" : {
-        "name" : "Livingroom TV",
-        "entity_id" : "switch.livingroom_tv",
+    "거실 TV 컨트롤" : {
+        "name" : "Livingroom TV Control",
+        "entity_id" : "switch.livingroom_tv_control",
+        "icon" : "mdi:television-classic"
+    },
+    "플러그 거실 TV" : {
+        "name" : "Livingroom TV Plug",
+        "entity_id" : "switch.livingroom_tv_plug",
         "icon" : "mdi:television-classic"
     },
 }
