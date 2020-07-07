@@ -43,7 +43,8 @@ logger:
     homeassistant.components.intent_script: debug
     homeassistant.components.api: debug
     homeassistant.components.workday: debug
-    homeassistant.components.asuswrt: debug
+    homeassistant.components.awair: debug
+    custom_components.asuswrt_plus: debug
     custom_components.fan.xiaomi_miio_fan: debug
     custom_components.new_ha_connector: debug
     custom_components.line: debug
@@ -64,7 +65,7 @@ frontend:
 
 alexa:
   smart_home:
-#  intent_script: !include alexa.yaml
+  intent_script: !include alexa.yaml
 
 customizer:
   custom_ui: local
@@ -82,12 +83,10 @@ device_tracker: !include device_tracker.yaml
 sensor: !include sensors.yaml
 binary_sensor: !include binary_sensors.yaml
 
-asuswrt:
+asuswrt_plus:
   host: !secret asuswrt_host
   username: !secret asuswrt_username
   ssh_key: !secret asuswrt_ssh_key
-  sensors:
-    - devices
 
 # Enables configuration UI
 config:

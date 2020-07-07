@@ -14,7 +14,7 @@
 # You should turn off power-control option on Window system's ethernet device
 # http://hearit.tistory.com/13
 
-- platform: asuswrt
+- platform: asuswrt_plus
   consider_home: 300
   interval_seconds: 60
   scan_interval: 60
