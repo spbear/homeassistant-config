@@ -64,29 +64,37 @@
       friendly_name: Washing Machine Power
       unit_of_measurement: "W"
       device_class: power
-      value_template: "{{ '%.1f'|format(float(states.switch.washing_machine.attributes.current_power_w)) }}
-"
+      value_template: "{{ '%.1f'|format(float(states.switch.washing_machine.attributes.current_power_w)) }}"
 
     washing_machine_energy:
       friendly_name: Washing Machine Energy
       unit_of_measurement: "kWh"
       device_class: power
-      value_template: "{{ '%.1f'|format(float(states.switch.washing_machine.attributes.today_energy_kwh)) }}
-"
+      value_template: "{{ '%.1f'|format(float(states.switch.washing_machine.attributes.today_energy_kwh)) }}"
 
     livingroom_tv_power:
       friendly_name: Livingroom TV Power
       unit_of_measurement: "W"
       device_class: power
-      value_template: "{{ '%.1f'|format(float(states.switch.livingroom_tv_plug.attributes.current_power_w)) }}
-"
+      value_template: "{{ '%.1f'|format(float(states.switch.livingroom_tv_plug.attributes.current_power_w)) }}"
 
     livingroom_tv_energy:
       friendly_name: Livingroom TV Energy
       unit_of_measurement: "kWh"
       device_class: power
-      value_template: "{{ '%.1f'|format(float(states.switch.livingroom_tv_plug.attributes.today_energy_kwh)) }}
-"
+      value_template: "{{ '%.1f'|format(float(states.switch.livingroom_tv_plug.attributes.today_energy_kwh)) }}"
+
+    livingroom_airconditioner_power:
+      friendly_name: Livingroom Airconditioner Power
+      unit_of_measurement: "W"
+      device_class: power
+      value_template: "{{ '%.1f'|format(float(states.switch.livingroom_airconditioner_plug.attributes.current_power_w)) }}"
+
+    livingroom_airconditioner_energy:
+      friendly_name: Livingroom Airconditioner Energy
+      unit_of_measurement: "kWh"
+      device_class: power
+      value_template: "{{ '%.1f'|format(float(states.switch.livingroom_airconditioner_plug.attributes.today_energy_kwh)) }}"
 
     room_humidity:
       friendly_name: Room Humidity

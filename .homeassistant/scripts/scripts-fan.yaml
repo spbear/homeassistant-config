@@ -77,11 +77,15 @@ fan_to_desk:
     data:
       entity_id: 'fan.mi_standing_fan'
       direction: 'right'
+  - service: fan.set_direction
+    data:
+      entity_id: 'fan.mi_standing_fan'
+      direction: 'right'
   - service: fan.set_speed
     data:
       entity_id: 'fan.mi_standing_fan'
-      speed: '100'
-  - service: fan.xiaomi_miio_set_natural_mode_on
+      speed: '50'
+  - service: fan.xiaomi_miio_set_natural_mode_off
     data:
       entity_id: 'fan.mi_standing_fan'
   - service_template: switch.turn_on

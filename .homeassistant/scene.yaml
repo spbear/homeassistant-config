@@ -100,6 +100,8 @@
 - name: Night Livingroom
   entities:
     switch.livingroom_sub_light: on
+    switch.passage_light: on
+    switch.kitchen_yankee_candle: on
     switch.kitchen_light: off
     switch.kitchen_sub_light: off
     switch.table_light: off
@@ -107,7 +109,12 @@
 
 - name: Goodnight Kids
   entities:
+    switch.minjun_room_light: off
     switch.hyunjun_room_light: off
     switch.hyunjun_garage_light: off
-    switch.minjun_room_light: off
-    light.minjun_stand_lamp: off
+    light.minjun_stand_lamp:
+      state: on
+      brightness: 50
+    light.hyunjun_stand_lamp:
+      state: on
+      brightness: 50
