@@ -37,3 +37,16 @@
     - service: switch.turn_on
       data:
         entity_id: switch.my_room_yankee_candle
+
+- alias: Turn On My Room Yankee Candle In The Morning
+  trigger:
+    - platform: time
+      at: '08:00:00'
+  condition:
+    - condition: state
+      entity_id: binary_sensor.yunhan_bt_presence
+      state: 'on'    
+  action:
+    - service: switch.turn_on
+      data:
+        entity_id: switch.my_room_yankee_candle

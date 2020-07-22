@@ -30,7 +30,7 @@
       entity_id: binary_sensor.room_door_status
       to: 'off'
       for:
-        minutes: 5
+        minutes: 1
   condition:
     - condition: state
       entity_id: binary_sensor.yunhan_android
@@ -40,5 +40,21 @@
       state: 'off'
   action:
     - service: switch.turn_on
+      data:
+        entity_id: switch.external_air_control
+
+- alias: Turn off when my room is opened
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.room_door_status
+      to: 'on'
+      for:
+        minutes: 1
+  condition:
+    - condition: state
+      entity_id: switch.external_air_control
+      state: 'on'
+  action:
+    - service: switch.turn_off
       data:
         entity_id: switch.external_air_control

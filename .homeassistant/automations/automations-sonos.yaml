@@ -81,7 +81,7 @@
     to: 'off'
   condition:
   - condition: state
-    entity_id: binary_sensor.yunhan_bt_presence
+    entity_id: binary_sensor.yunhan_android
     state: 'on'
   - condition: state
     entity_id: media_player.playroom
@@ -103,7 +103,7 @@
     to: 'off'
   condition:
   - condition: state
-    entity_id: binary_sensor.yunhan_bt_presence
+    entity_id: binary_sensor.yunhan_android
     state: 'on'
   - condition: state
     entity_id: switch.music_auto_play
@@ -134,7 +134,7 @@
       minutes: 30
   condition:
   - condition: state
-    entity_id: binary_sensor.yunhan_bt_presence
+    entity_id: binary_sensor.yunhan_android
     state: 'on'
   - condition: state
     entity_id: binary_sensor.room_bed_sleep
@@ -166,6 +166,9 @@
   - platform: time
     at: "08:00:00"
   condition:
+  - condition: state
+    entity_id: binary_sensor.yunhan_android
+    state: 'on'
   action:
   - service: script.turn_on
     data:
@@ -178,11 +181,11 @@
     entity_id: media_player.playroom
     to: 'playing'
   - platform: state
-    entity_id: binary_sensor.yunhan_bt_presence
+    entity_id: binary_sensor.yunhan_android
     to: 'off'
   condition:
   - condition: state
-    entity_id: binary_sensor.yunhan_bt_presence
+    entity_id: binary_sensor.yunhan_android
     state: 'off'
   - condition: state
     entity_id: media_player.playroom

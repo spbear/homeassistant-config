@@ -1,0 +1,39 @@
+- alias: Turn on livingroom air purifier
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.livingroom_window
+      to: 'off'
+    - platform: state
+      entity_id: binary_sensor.kitchen_window
+      to: 'off'
+    - platform: state
+      entity_id: group.people
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: binary_sensor.livingroom_window
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.kitchen_window
+      state: 'off'
+  action:
+    - service: fan.turn_on
+      data:
+        entity_id: fan.mi_air_purifier_livingroom
+
+- alias: Turn off livingroom air purifier
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.livingroom_window
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.kitchen_window
+      to: 'on'
+    - platform: state
+      entity_id: group.people
+      to: 'off'
+  condition: []
+  action:
+    - service: fan.turn_off
+      data:
+        entity_id: fan.mi_air_purifier_livingroom

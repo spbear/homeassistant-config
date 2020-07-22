@@ -36,35 +36,61 @@
       data:
         entity_id: switch.kitchen_sub_light
 
+- alias: Kitchen Table Light OFF
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.kitchen_motion
+      to: 'off'
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: group.people
+      to: 'off'
+  condition:
+    - condition: state
+      entity_id: switch.table_light
+      state: 'on'
+  action:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.table_light
+
 - alias: Kitchen Sub Light ON
   trigger:
     - platform: state
       entity_id: binary_sensor.kitchen_motion
       to: 'on'
   condition:
+    - condition: numeric_state
+      entity_id: sensor.kitchen_illuminance
+      below: 20.0
     - condition: state
-      entity_id: sun.sun
-      state: 'below_horizon'
+      entity_id: group.people
+      state: 'on'
+    - condition: state
+      entity_id: switch.kitchen_sub_light
+      state: 'off'
   action:
     - service: switch.turn_on
       data:
         entity_id: switch.kitchen_sub_light
 
-- alias: Kitchen Table Light OFF
+- alias: Kitchen Light ON
   trigger:
     - platform: state
-      entity_id: switch.table_light
+      entity_id: binary_sensor.kitchen_motion
       to: 'on'
-      for:
-        minutes: 20
-    - platform: state
-      entity_id: group.people
-      to: 'off'
   condition:
-    - condition: time
-      after: '23:00:00'
-      before: '07:00:00'
+    - condition: numeric_state
+      entity_id: sensor.kitchen_illuminance
+      below: 20.0
+    - condition: state
+      entity_id: group.people
+      state: 'on'
+    - condition: state
+      entity_id: switch.kitchen_light
+      state: 'off'
   action:
-    - service: switch.turn_off
+    - service: switch.turn_on
       data:
-        entity_id: switch.table_light
+        entity_id: switch.kitchen_light

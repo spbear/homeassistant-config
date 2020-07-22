@@ -7,6 +7,9 @@
       entity_id: binary_sensor.kids_room_entrance_motion
       to: 'on'
     - platform: state
+      entity_id: binary_sensor.livingroom_motion
+      to: 'on'
+    - platform: state
       entity_id: binary_sensor.entrance_door
       to: 'on'
   condition:
@@ -65,14 +68,14 @@
 - alias: Livingroom Sub Light OFF
   trigger:
     - platform: state
-      entity_id: switch.livingroom_sub_light
-      to: 'on'
+      entity_id: binary_sensor.livingroom_motion
+      to: 'off'
       for:
-        minutes: 30
+        minutes: 10
   condition:
-    - condition: time
-      after: '23:00:00'
-      before: '07:00:00'
+    - condition: state
+      entity_id: switch.livingroom_sub_light
+      state: 'on'
   action:
     - service: switch.turn_off
       data:

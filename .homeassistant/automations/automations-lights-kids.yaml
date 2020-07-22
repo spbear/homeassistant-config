@@ -1,7 +1,7 @@
 - alias: Goodbye Kids
   trigger:
     - platform: time
-      at: '23:30:00'
+      at: '23:00:00'
   condition: []
   action:
     - service: scene.turn_on
@@ -17,7 +17,7 @@
         minutes: 30
   condition:
     - condition: time
-      after: '23:30:00'
+      after: '23:00:00'
       before: '09:00:00'
   action:
     - service: light.turn_off
@@ -33,12 +33,28 @@
         minutes: 30
   condition:
     - condition: time
-      after: '23:30:00'
+      after: '23:00:00'
       before: '09:00:00'
   action:
     - service: switch.turn_off
       data:
         entity_id: switch.minjun_room_light
+
+- alias: Hyunjun Stand Light OFF
+  trigger:
+    - platform: state
+      entity_id: light.hyunjun_stand_lamp
+      to: 'on'
+      for:
+        minutes: 30
+  condition:
+    - condition: time
+      after: '23:00:00'
+      before: '09:00:00'
+  action:
+    - service: light.turn_off
+      data:
+        entity_id: light.hyunjun_stand_lamp
 
 - alias: Hyunjun Room Light OFF
   trigger:
@@ -49,7 +65,7 @@
         minutes: 30
   condition:
     - condition: time
-      after: '23:30:00'
+      after: '23:00:00'
       before: '09:00:00'
   action:
     - service: switch.turn_off
@@ -83,7 +99,7 @@
       entity_id: binary_sensor.minjun_android
       state: 'on'
     - condition: time
-      after: '17:00:00'
+      after: '16:00:00'
       before: '21:00:00'
     - condition: state
       entity_id: light.minjun_stand_lamp
@@ -92,6 +108,7 @@
     - service: light.turn_on
       data:
         entity_id: light.minjun_stand_lamp
+        brightness: 255
 
 - alias: Turn on light when the sun set for hyunjun
   trigger:
@@ -107,12 +124,13 @@
       entity_id: binary_sensor.hyunjun_android
       state: 'on'
     - condition: time
-      after: '17:00:00'
+      after: '16:00:00'
       before: '21:00:00'
     - condition: state
-      entity_id: switch.hyunjun_room_light
+      entity_id: light.hyunjun_stand_lamp
       state: 'off'
   action:
-    - service: switch.turn_on
+    - service: light.turn_on
       data:
-        entity_id: switch.hyunjun_room_light
+        entity_id: light.hyunjun_stand_lamp
+        brightness: 255

@@ -1,0 +1,41 @@
+- alias: Too Hot My Room
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.room_temperature
+    above: 28.0
+  condition:
+  - condition: state
+    entity_id: binary_sensor.yunhan_android
+    state: 'on'
+  action:
+  - service: notify.me
+    data_template:
+      message: "🔥 내 방 온도가 28도를 넘었습니다."
+
+- alias: Too Hot Livingroom
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.livingroom_temperature
+    above: 28.0
+  condition:
+  - condition: state
+    entity_id: group.people
+    state: 'on'
+  action:
+  - service: notify.home
+    data_template:
+      message: "🔥 거실 온도가 28도를 넘었습니다."
+
+- alias: Too Hot Outside
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.weather_sensor_temperature
+    above: 30.0
+  condition:
+  - condition: state
+    entity_id: group.people
+    state: 'on'
+  action:
+  - service: notify.home
+    data_template:
+      message: "🔥 외부 온도가 30도를 넘었습니다."
