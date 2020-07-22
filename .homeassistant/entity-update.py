@@ -96,6 +96,16 @@ replacement = {
         "entity_id" : "binary_sensor.washing_room_door",
         "icon" : "mdi:door-closed"
     },
+    "주방 창문 contact" : {
+        "name" : "Kitchen Window",
+        "entity_id" : "binary_sensor.kitchen_window",
+        "icon" : "mdi:door-closed"
+    },
+    "거실 창문 contact" : {
+        "name" : "Livingroom Window",
+        "entity_id" : "binary_sensor.livingroom_window",
+        "icon" : "mdi:door-closed"
+    },
     "Entrance Door contact" : {
         "name" : "Entrace Door",
         "entity_id" : "binary_sensor.entrance_door",
@@ -171,6 +181,11 @@ replacement = {
         "entity_id" : "light.minjun_stand_lamp",
         "icon" : "mdi:floor-lamp"
     },
+    "현준이방 스텐드 조명" : {
+        "name" : "Hyunjun's Stand Lamp",
+        "entity_id" : "light.hyunjun_stand_lamp",
+        "icon" : "mdi:floor-lamp"
+    },
     "주방 전등" : {
         "name" : "Kitchen Light",
         "entity_id" : "switch.kitchen_light",
@@ -215,6 +230,36 @@ replacement = {
         "name" : "Livingroom TV Plug",
         "entity_id" : "switch.livingroom_tv_plug",
         "icon" : "mdi:television-classic"
+    },
+    "에어콘" : {
+        "name" : "Livingroom Airconditioner",
+        "entity_id" : "switch.livingroom_airconditioner",
+        "icon" : "mdi:air-conditioner"
+    },
+    "거실 에어콘 컨트롤" : {
+        "name" : "Livingroom Airconditioner Control",
+        "entity_id" : "switch.livingroom_airconditioner_control",
+        "icon" : "mdi:air-conditioner"
+    },
+    "플러그 거실 에어콘" : {
+        "name" : "Livingroom Airconditioner Plug",
+        "entity_id" : "switch.livingroom_airconditioner_plug",
+        "icon" : "mdi:air-conditioner"
+    },
+    "주방 조도 Illuminance" : {
+        "name" : "Kitchen Illuminance",
+        "entity_id" : "sensor.kitchen_illuminance",
+        "icon" : "mdi:brightness-5"
+    },
+    "거실 조도 Illuminance" : {
+        "name" : "Livingroom Illuminance",
+        "entity_id" : "sensor.livingroom_illuminance",
+        "icon" : "mdi:brightness-5"
+    },
+    "아이들방 입구 센서 Illuminance" : {
+        "name" : "Passage Illuminance",
+        "entity_id" : "sensor.passage_illuminance",
+        "icon" : "mdi:brightness-5"
     },
 }
 
