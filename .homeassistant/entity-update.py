@@ -261,6 +261,21 @@ replacement = {
         "entity_id" : "sensor.passage_illuminance",
         "icon" : "mdi:brightness-5"
     },
+    "메인 모니터" : {
+        "name" : "Main PC Monitor",
+        "entity_id" : "switch.main_pc_monitor",
+        "icon" : "mdi:monitor"
+    },
+    "보조 모니터" : {
+        "name" : "Sub PC Monitor",
+        "entity_id" : "switch.sub_pc_monitor",
+        "icon" : "mdi:monitor"
+    },
+    "모니터 조명" : {
+        "name" : "Sub PC Monitor",
+        "entity_id" : "switch.monitor_light",
+        "icon" : "mdi:ceiling-light"
+    },
 }
 
 with open(".storage/core.entity_registry", "r") as json_file:
