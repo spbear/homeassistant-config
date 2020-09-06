@@ -4,13 +4,21 @@
       entity_id: binary_sensor.desk_chair
       to: 'on'
   condition:
-    - condition: state
-      entity_id: light.desk_lamp
-      state: 'off'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: light.desk_lamp
+        state: 'off'
+      - condition: state
+        entity_id: switch.monitor_light
+        state: 'off'
   action:
     - service: scene.turn_on
       data:
         entity_id: scene.lightdeskmotion
+    - service: switch.turn_on
+      data:
+        entity_id: switch.monitor_light
 
 - alias: Turn Off Desk Light
   trigger:
@@ -20,9 +28,14 @@
       for:
         minutes: 10
   condition:
-    - condition: state
-      entity_id: light.desk_lamp
-      state: 'on'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: light.desk_lamp
+        state: 'on'
+      - condition: state
+        entity_id: switch.monitor_light
+        state: 'on'
     - condition: numeric_state
       entity_id: sensor.light_sensor
       above: 10
@@ -30,3 +43,6 @@
     - service: light.turn_off
       data:
         entity_id: light.desk_lamp
+    - service: switch.turn_off
+      data:
+        entity_id: switch.monitor_light

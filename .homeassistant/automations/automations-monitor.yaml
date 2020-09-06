@@ -21,16 +21,24 @@
     - condition: state
       entity_id: binary_sensor.yunhan_macbook
       state: 'on'
-  - condition: state
-    entity_id: switch.pc_monitor
-    state: 'off'
+  - condition: or
+    conditions:
+    - condition: state
+      entity_id: switch.main_pc_monitor
+      state: 'off'
+    - condition: state
+      entity_id: switch.sub_pc_monitor
+      state: 'off'
   - condition: state
     entity_id: binary_sensor.room_bed_sleep
     state: 'off'
   action:
   - service_template: switch.turn_on
     data:
-      entity_id: switch.pc_monitor
+      entity_id: switch.main_pc_monitor
+  - service_template: switch.turn_on
+    data:
+      entity_id: switch.sub_pc_monitor
 
 - alias: Turn Off Monitor When Desktop/Macbook Is Turned OFF
   trigger:
@@ -47,13 +55,21 @@
   - condition: state
     entity_id: binary_sensor.yunhan_macbook
     state: 'off'
-  - condition: state
-    entity_id: switch.pc_monitor
-    state: 'on'
+  - condition: or
+    conditions:
+    - condition: state
+      entity_id: switch.main_pc_monitor
+      state: 'on'
+    - condition: state
+      entity_id: switch.sub_pc_monitor
+      state: 'on'
   action:
   - service_template: switch.turn_off
     data:
-      entity_id: switch.pc_monitor
+      entity_id: switch.main_pc_monitor
+  - service_template: switch.turn_off
+    data:
+      entity_id: switch.sub_pc_monitor
 
 
 - alias: Turn Off Monitor with Bluetooth Presence
@@ -64,13 +80,21 @@
       for:
         minutes: 10
   condition:
-    - condition: state
-      entity_id: switch.pc_monitor
-      state: 'on'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: switch.main_pc_monitor
+        state: 'on'
+      - condition: state
+        entity_id: switch.sub_pc_monitor
+        state: 'on'
   action:
     - service_template: switch.turn_off
       data:
-        entity_id: switch.pc_monitor
+        entity_id: switch.main_pc_monitor
+    - service_template: switch.turn_off
+      data:
+        entity_id: switch.sub_pc_monitor
 
 - alias: Turn Off Monitor When I Go To Bed
   trigger:
@@ -78,10 +102,18 @@
       entity_id: binary_sensor.room_bed_sleep
       to: 'on'
   condition:
-    - condition: state
-      entity_id: switch.pc_monitor
-      state: 'on'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: switch.main_pc_monitor
+        state: 'on'
+      - condition: state
+        entity_id: switch.sub_pc_monitor
+        state: 'on'
   action:
     - service_template: switch.turn_off
       data:
-        entity_id: switch.pc_monitor
+        entity_id: switch.main_pc_monitor
+    - service_template: switch.turn_off
+      data:
+        entity_id: switch.sub_pc_monitor

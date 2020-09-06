@@ -27,6 +27,29 @@
       data:
         entity_id: switch.livingroom_sub_light
 
+- alias: Livingroom Light ON when it dark
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.livingroom_illuminance
+      below: 30.0
+  condition:
+    - condition: state
+      entity_id: group.people
+      state: 'on'
+    - condition: state
+      entity_id: switch.livingroom_light
+      state: 'off'
+    - condition: time
+      after: '12:00:00'
+      before: '22:00:00'
+    - condition: numeric_state
+      entity_id: sensor.livingroom_illuminance
+      below: 30.0
+  action:
+    - service: switch.turn_on
+      data:
+        entity_id: switch.livingroom_light
+
 - alias: Night Livingroom
   trigger:
     - platform: time
@@ -65,6 +88,25 @@
       data:
         entity_id: switch.livingroom_light
 
+- alias: Livingroom Light OFF
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.livingroom_motion
+      to: 'off'
+      for:
+        minutes: 10
+  condition:
+    - condition: state
+      entity_id: switch.livingroom_light
+      state: 'on'
+    - condition: time
+      after: '23:00:00'
+      before: '07:00:00'
+  action:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.livingroom_light
+
 - alias: Livingroom Sub Light OFF
   trigger:
     - platform: state
@@ -76,6 +118,9 @@
     - condition: state
       entity_id: switch.livingroom_sub_light
       state: 'on'
+    - condition: time
+      after: '23:00:00'
+      before: '07:00:00'
   action:
     - service: switch.turn_off
       data:

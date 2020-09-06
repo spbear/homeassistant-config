@@ -58,10 +58,18 @@
     light.sleep_lamp:
       state: on
       rgb_color: [255, 173, 94]
-      brightness: 100
+      brightness: 255
+    light.gateway_light:
+      state: on
+      rgb_color: [255, 19, 145]
+      brightness: 255
 
 - name: LightBedMotion
   entities:
+    switch.my_room_light: off
+    switch.monitor_light: off
+    light.gateway_light:
+      state: off
     light.desk_lamp:
       state: on
       rgb_color: [255, 200, 140]
@@ -73,7 +81,6 @@
 
 - name: LightBeforeSleep
   entities:
-    switch.my_room_light: off
     light.desk_lamp:
       state: off
     light.sleep_lamp:
