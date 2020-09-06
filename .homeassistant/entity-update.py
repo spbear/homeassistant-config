@@ -272,7 +272,7 @@ replacement = {
         "icon" : "mdi:monitor"
     },
     "모니터 조명" : {
-        "name" : "Sub PC Monitor",
+        "name" : "Monitor Light",
         "entity_id" : "switch.monitor_light",
         "icon" : "mdi:ceiling-light"
     },
