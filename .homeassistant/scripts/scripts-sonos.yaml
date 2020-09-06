@@ -57,23 +57,35 @@ sonos_play_kpop_top100:
         entity_id: media_player.playroom
         source: "Top 100 Songs South Korea"
 
-
 sonos_play_sleep_song:
   alias: sonos_play_sleep_song
   sequence:
-    - service: input_select.select_option
-      data_template:
-        entity_id: input_select.sonos_playlist
-        option: "{{ ['sleep'] | random }}"
+    - service: switch.turn_off
+      data:
+        entity_id: switch.music_auto_play
     - service: media_player.shuffle_set
       data:
         entity_id: media_player.playroom
-        shuffle: false
+        shuffle: true
     - service: media_player.select_source
       data_template:
         entity_id: media_player.playroom
-        source: >
-          {{ states('input_select.sonos_playlist') }}
+        source: "sleep"
+
+sonos_play_jazz:
+  alias: sonos_play_jazz
+  sequence:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.music_auto_play
+    - service: media_player.shuffle_set
+      data:
+        entity_id: media_player.playroom
+        shuffle: true
+    - service: media_player.select_source
+      data_template:
+        entity_id: media_player.playroom
+        source: "New York Jazz Lounge"
 
 sonos_play_specific_song:
   alias: sonos_play_specific_song
