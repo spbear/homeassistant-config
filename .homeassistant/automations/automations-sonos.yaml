@@ -9,7 +9,7 @@
     to: 'on'
   condition:
   - condition: state
-    entity_id: binary_sensor.yunhan_bt_presence
+    entity_id: binary_sensor.yunhan_android
     state: 'on'
   - condition: state
     entity_id: media_player.playroom
@@ -18,13 +18,38 @@
     entity_id: binary_sensor.room_bed_sleep
     state: 'off'
   - condition: time
-    after: '07:00:00'
-    before: '03:00:00'
+    after: '11:00:00'
+    before: '20:00:00'
   - condition: state
     entity_id: switch.music_auto_play
     state: 'on'
   action:
   - service: script.sonos_play_random
+
+# Play Sonos when motion is detected
+- alias: Play Sonos when motion is detected at night
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.room_door_motion
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: binary_sensor.yunhan_android
+    state: 'on'
+  - condition: state
+    entity_id: media_player.playroom
+    state: 'paused'
+  - condition: state
+    entity_id: binary_sensor.room_bed_sleep
+    state: 'off'
+  - condition: time
+    after: '20:00:00'
+    before: '03:00:00'
+  - condition: state
+    entity_id: switch.music_auto_play
+    state: 'on'
+  action:
+  - service: script.sonos_play_jazz
 
 # Update Sonos Playlist from Favorite
 - alias: Update Sonos Playlist
@@ -32,7 +57,7 @@
   - platform: homeassistant
     event: start
   - platform: time
-    at: '06:00:00'
+    at: '07:00:00'
   action:
   - service: rest_command.update_sonos_playlist
 
@@ -59,7 +84,7 @@
     to: 'on'
   condition:
   - condition: state
-    entity_id: binary_sensor.yunhan_bt_presence
+    entity_id: binary_sensor.yunhan_android
     state: 'on'
   - condition: time
     after: '20:00:00'
@@ -67,57 +92,8 @@
   - condition: state
     entity_id: switch.mibox
     state: 'off'
-  - condition: state
-    entity_id: switch.music_auto_play
-    state: 'on'
   action:
   - service: script.sonos_play_sleep_song
-
-# Change music when sleep sensor is cleared
-- alias: Change music when sleep sensor is cleared
-  trigger:
-  - platform: state
-    entity_id: binary_sensor.room_bed_sleep
-    to: 'off'
-  condition:
-  - condition: state
-    entity_id: binary_sensor.yunhan_android
-    state: 'on'
-  - condition: state
-    entity_id: media_player.playroom
-    state: 'paused'
-  - condition: state
-    entity_id: switch.mibox
-    state: 'off'
-  - condition: state
-    entity_id: switch.music_auto_play
-    state: 'on'
-  action:
-  - service: script.sonos_play_random
-
-# Ask Clova today's weather when sleep sensor is cleared
-- alias: Ask Clova today's weather when sleep sensor is cleared
-  trigger:
-  - platform: state
-    entity_id: binary_sensor.room_bed_sleep
-    to: 'off'
-  condition:
-  - condition: state
-    entity_id: binary_sensor.yunhan_android
-    state: 'on'
-  - condition: state
-    entity_id: switch.music_auto_play
-    state: 'on'
-  action:
-  - service: input_select.select_option
-    data_template:
-      entity_id: input_select.sonos_playlist
-      option: "{{ states.media_player.playroom.attributes.source_list | random }}"
-#  - service: tts.google_say
-#    entity_id: media_player.googlehome
-#    data_template:
-#        message: "클로바...... 오늘 날씨 알려줘"
-#        language: "ko"
 
 # Stop Sonos 30 minutes after sleep sensor is detected
 - alias: Stop Sonos 30 minutes after sleep sensor is detected
@@ -161,14 +137,30 @@
     data:
       entity_id: switch.music_auto_play
 
-- alias: Play Morning Song
+# Play Song In The Morning
+- alias: Play Song in the Morning
   trigger:
   - platform: time
     at: "08:00:00"
+  - platform: state
+    entity_id: binary_sensor.room_bed_sleep
+    to: 'off'
+  - platform: state
+    entity_id: binary_sensor.room_door_motion
+    to: 'on'
   condition:
   - condition: state
     entity_id: binary_sensor.yunhan_android
     state: 'on'
+  - condition: state
+    entity_id: media_player.playroom
+    state: 'paused'
+  - condition: state
+    entity_id: switch.music_auto_play
+    state: 'on'
+  - condition: time
+    after: '07:00:00'
+    before: '11:00:00'
   action:
   - service: script.turn_on
     data:

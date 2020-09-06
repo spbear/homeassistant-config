@@ -31,10 +31,50 @@
       to: 'off'
       for:
         minutes: 1
+    - platform: state
+      entity_id: binary_sensor.livingroom_window
+      to: 'off'
+      for:
+        minutes: 1
+    - platform: state
+      entity_id: binary_sensor.kitchen_window
+      to: 'off'
+      for:
+        minutes: 1
   condition:
     - condition: state
       entity_id: binary_sensor.yunhan_android
       state: 'on'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: switch.room_door_status
+        state: 'on'
+      - condition: and
+        conditions:
+        - condition: state
+          entity_id: switch.room_door_status
+          state: 'off'
+        - condition: state
+          entity_id: switch.livingroom_window
+          state: 'on'
+        - condition: state
+          entity_id: switch.kitchen_window
+          state: 'on'
+    - condition: state
+      entity_id: switch.external_air_control
+      state: 'off'
+  action:
+    - service: switch.turn_on
+      data:
+        entity_id: switch.external_air_control
+
+- alias: Turn on when CO2 is high
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.awair_co2
+      above: 600
+  condition:
     - condition: state
       entity_id: switch.external_air_control
       state: 'off'
@@ -50,7 +90,26 @@
       to: 'on'
       for:
         minutes: 1
+    - platform: state
+      entity_id: binary_sensor.livingroom_window
+      to: 'on'
+      for:
+        minutes: 1
+    - platform: state
+      entity_id: binary_sensor.kitchen_window
+      to: 'on'
+      for:
+        minutes: 1
   condition:
+    - condition: state
+      entity_id: switch.room_door_status
+      state: 'on'
+    - condition: state
+      entity_id: switch.livingroom_window
+      state: 'on'
+    - condition: state
+      entity_id: switch.kitchen_window
+      state: 'on'
     - condition: state
       entity_id: switch.external_air_control
       state: 'on'
