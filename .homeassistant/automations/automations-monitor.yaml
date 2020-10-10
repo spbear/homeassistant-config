@@ -78,7 +78,7 @@
       entity_id: binary_sensor.yunhan_bt_presence
       to: 'off'
       for:
-        minutes: 10
+        minutes: 5
   condition:
     - condition: or
       conditions:

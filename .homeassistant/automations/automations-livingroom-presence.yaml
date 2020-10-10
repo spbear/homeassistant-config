@@ -1,10 +1,24 @@
-- alias: Turn off Livingroom TV Afther the Motion
+- alias: Turn off Livingroom TV After the Motion
   trigger:
     - platform: state
       entity_id: binary_sensor.livingroom_motion
       to: 'off'
       for:
         minutes: 10
+  condition:
+    - condition: state
+      entity_id: switch.livingroom_tv
+      state: 'on'
+    - condition: time
+      after: '23:00:00'
+      before: '07:00:00'
+  action:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.livingroom_tv
+
+- alias: Turn off Livingroom TV After People Left
+  trigger:
     - platform: state
       entity_id: group.people
       to: 'off'
@@ -16,41 +30,4 @@
     - service: switch.turn_off
       data:
         entity_id: switch.livingroom_tv
-
-- alias: Turn off Livingroom Lights Afther the Motion
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.livingroom_motion
-      to: 'off'
-      for:
-        minutes: 10
-    - platform: state
-      entity_id: group.people
-      to: 'off'
-  condition:
-    - condition: state
-      entity_id: switch.livingroom_light
-      state: 'on'
-  action:
-    - service: switch.turn_off
-      data:
-        entity_id: switch.livingroom_light
-
-- alias: Turn off Livingroom Sub Lights Afther the Motion
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.livingroom_motion
-      to: 'off'
-      for:
-        minutes: 10
-    - platform: state
-      entity_id: group.people
-      to: 'off'
-  condition:
-    - condition: state
-      entity_id: switch.livingroom_sub_light
-      state: 'on'
-  action:
-    - service: switch.turn_off
-      data:
-        entity_id: switch.livingroom_sub_light
+        

@@ -28,14 +28,9 @@
       for:
         minutes: 10
   condition:
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: light.desk_lamp
-        state: 'on'
-      - condition: state
-        entity_id: switch.monitor_light
-        state: 'on'
+    - condition: state
+      entity_id: light.desk_lamp
+      state: 'on'
     - condition: numeric_state
       entity_id: sensor.light_sensor
       above: 10
@@ -43,6 +38,19 @@
     - service: light.turn_off
       data:
         entity_id: light.desk_lamp
+
+- alias: Turn Off Monitor Light
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.desk_chair
+      to: 'off'
+      for:
+        minutes: 10
+  condition:
+    - condition: state
+      entity_id: switch.monitor_light
+      state: 'on'
+  action:
     - service: switch.turn_off
       data:
         entity_id: switch.monitor_light
