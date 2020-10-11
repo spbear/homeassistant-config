@@ -57,12 +57,27 @@
       icon_template: "mdi:washing-machine"
       value_template: "{{ float(states.switch.washing_machine.attributes.current_power_w) > 2.0 }}"
 
+    yunhan_macbook:
+      friendly_name: Yunhan's Macbook
+      icon_template: "mdi:laptop"
+      value_template: "{{is_state('binary_sensor.yunhan_macbook_sleep', 'on')}}"
+      delay_on:
+        seconds: 10
+      delay_off:
+        seconds: 5
+
 ##########################################################
 # Desktop
 ##########################################################
 - platform: mqtt
   state_topic: smartthings/Desktop PC/switch
   name: yunhan_desktop
+  payload_on: 'present'
+  payload_off: 'not present'
+
+- platform: mqtt
+  state_topic: smartthings/Yunhan Macbook/switch
+  name: yunhan_macbook_sleep
   payload_on: 'present'
   payload_off: 'not present'
 

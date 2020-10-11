@@ -55,6 +55,23 @@
       data:
         entity_id: switch.table_light
 
+- alias: Kitchen Light ON when Hood ON
+  trigger:
+    - platform: state
+      entity_id: switch.kitchen_hood
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: group.people
+      state: 'on'
+    - condition: state
+      entity_id: switch.kitchen_light
+      state: 'off'
+  action:
+    - service: switch.turn_on
+      data:
+        entity_id: switch.kitchen_light
+
 - alias: Kitchen Light ON
   trigger:
     - platform: state
