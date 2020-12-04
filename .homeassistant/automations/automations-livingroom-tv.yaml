@@ -2,7 +2,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.livingroom_tv_power
-      above: 12.0
+      above: 18.0
       for:
         seconds: 5
     - platform: time_pattern
@@ -13,7 +13,7 @@
       state: 'off'
     - condition: numeric_state
       entity_id: sensor.livingroom_tv_power
-      above: 12.0
+      above: 18.0
   action:
     - service: switch.turn_on
       data:
@@ -23,7 +23,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.livingroom_tv_power
-      below: 12.0
+      below: 18.0
       for:
         seconds: 5
     - platform: time_pattern
@@ -34,7 +34,7 @@
       state: 'on'
     - condition: numeric_state
       entity_id: sensor.livingroom_tv_power
-      below: 12.0
+      below: 18.0
   action:
     - service: switch.turn_off
       data:
@@ -48,7 +48,7 @@
   condition:
     - condition: numeric_state
       entity_id: sensor.livingroom_tv_power
-      below: 12.0
+      below: 18.0
   action:
     - service: switch.toggle
       data:
@@ -62,7 +62,7 @@
   condition:
     - condition: numeric_state
       entity_id: sensor.livingroom_tv_power
-      above: 12.0
+      above: 18.0
   action:
     - service: switch.toggle
       data:

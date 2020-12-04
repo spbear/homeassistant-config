@@ -92,6 +92,9 @@
   - condition: state
     entity_id: switch.mibox
     state: 'off'
+  - condition: state
+    entity_id: switch.music_auto_play
+    state: 'on'
   action:
   - service: script.sonos_play_sleep_song
 

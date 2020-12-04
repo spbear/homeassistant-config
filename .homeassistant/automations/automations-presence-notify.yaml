@@ -62,6 +62,17 @@
         {% if is_state('binary_sensor.hyunjun_android', 'on') %}👦🏻 현준이는 집에 있어요{% else %}🚲 현준이는 집에 없어요{% endif %}\r
         {% if is_state('binary_sensor.minjun_android', 'on') %}👦🏻 민준이는 집에 있어요{% else %}🚲 민준이는 집에 없어요{% endif %}"
 
+- alias: Notify Bed Status
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.room_bed_sleep
+  condition: []
+  action:
+  - service: notify.me
+    data_template:
+      message: "
+        {% if trigger.to_state.state == 'on' %}🛌🏽 침대에 누웠습니다 🟢{% else %}🛏️ 침대에서 일어났습니다 🔴{% endif %}"
+
 - alias: Notify Hyunjun Desktop Status
   trigger:
   - platform: state

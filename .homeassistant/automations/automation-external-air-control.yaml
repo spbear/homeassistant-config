@@ -1,118 +1,52 @@
-- alias: Turn on External Air Control +1
-  trigger:
-    - platform: state
-      entity_id: switch.external_air_control
-      to: 'on'
-      for:
-        seconds: 7
-  condition: []
-  action:
-    - service: switch.turn_on
-      data:
-        entity_id: switch.external_air_control_strength
-
-- alias: Turn on External Air Control +2
-  trigger:
-    - platform: state
-      entity_id: switch.external_air_control_strength
-      to: 'on'
-      for:
-        seconds: 5
-  condition: []
-  action:
-    - service: switch.turn_off
-      data:
-        entity_id: switch.external_air_control_strength
-
-- alias: Turn on when my room is closed
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.room_door_status
-      to: 'off'
-      for:
-        minutes: 1
-    - platform: state
-      entity_id: binary_sensor.livingroom_window
-      to: 'off'
-      for:
-        minutes: 1
-    - platform: state
-      entity_id: binary_sensor.kitchen_window
-      to: 'off'
-      for:
-        minutes: 1
-  condition:
-    - condition: state
-      entity_id: binary_sensor.yunhan_android
-      state: 'on'
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: switch.room_door_status
-        state: 'on'
-      - condition: and
-        conditions:
-        - condition: state
-          entity_id: switch.room_door_status
-          state: 'off'
-        - condition: state
-          entity_id: switch.livingroom_window
-          state: 'on'
-        - condition: state
-          entity_id: switch.kitchen_window
-          state: 'on'
-    - condition: state
-      entity_id: switch.external_air_control
-      state: 'off'
-  action:
-    - service: switch.turn_on
-      data:
-        entity_id: switch.external_air_control
-
 - alias: Turn on when CO2 is high
   trigger:
     - platform: numeric_state
       entity_id: sensor.awair_co2
       above: 600
+      for:
+        minutes: 1
+    - platform: time_pattern
+      minutes: "/10"
+    - platform: state
+      entity_id: binary_sensor.yunhan_android
+      to: 'on'
   condition:
     - condition: state
       entity_id: switch.external_air_control
       state: 'off'
+    - condition: state
+      entity_id: binary_sensor.yunhan_android
+      state: 'on'
+    - condition: numeric_state
+      entity_id: sensor.awair_co2
+      above: 600
   action:
     - service: switch.turn_on
       data:
         entity_id: switch.external_air_control
 
-- alias: Turn off when my room is opened
+- alias: Turn off when CO2 is low
   trigger:
-    - platform: state
-      entity_id: binary_sensor.room_door_status
-      to: 'on'
+    - platform: numeric_state
+      entity_id: sensor.awair_co2
+      below: 600
       for:
-        minutes: 1
+        minutes: 10
+    - platform: time_pattern
+      minutes: "/10"
     - platform: state
-      entity_id: binary_sensor.livingroom_window
+      entity_id: binary_sensor.yunhan_android
       to: 'on'
-      for:
-        minutes: 1
-    - platform: state
-      entity_id: binary_sensor.kitchen_window
-      to: 'on'
-      for:
-        minutes: 1
   condition:
-    - condition: state
-      entity_id: switch.room_door_status
-      state: 'on'
-    - condition: state
-      entity_id: switch.livingroom_window
-      state: 'on'
-    - condition: state
-      entity_id: switch.kitchen_window
-      state: 'on'
     - condition: state
       entity_id: switch.external_air_control
       state: 'on'
+    - condition: state
+      entity_id: binary_sensor.yunhan_android
+      state: 'on'
+    - condition: numeric_state
+      entity_id: sensor.awair_co2
+      below: 600
   action:
     - service: switch.turn_off
       data:

@@ -54,44 +54,8 @@
     - condition: state
       entity_id: binary_sensor.room_bed_sleep
       state: 'off'
-  action:
-    - service: scene.turn_on
-      data:
-        entity_id: scene.lightdeskmotion
-
-- alias: Bed Motion Lamp ON
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.room_bed_motion
-      from: 'off'
-      to: 'on'
-  condition:
-    - condition: numeric_state
-      entity_id: sensor.light_sensor
-      below: 10
     - condition: state
-      entity_id: binary_sensor.room_bed_sleep
-      state: 'off'
-  action:
-    - service: scene.turn_on
-      data:
-        entity_id: scene.lightbedmotion
-
-- alias: Bed Motion Lamp OFF
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.room_bed_motion
-      from: 'on'
-      to: 'off'
-  condition:
-    - condition: numeric_state
-      entity_id: sensor.light_sensor
-      below: 10
-    - condition: state
-      entity_id: binary_sensor.room_door_motion
-      state: 'on'
-    - condition: state
-      entity_id: binary_sensor.room_bed_sleep
+      entity_id: light.desk_lamp
       state: 'off'
   action:
     - service: scene.turn_on
@@ -119,7 +83,7 @@
       entity_id: binary_sensor.room_bed_sleep
       to: 'on'
       for:
-        minutes: 5
+        minutes: 10
   condition: []
   action:
     - service: scene.turn_on

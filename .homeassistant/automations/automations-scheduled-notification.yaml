@@ -14,12 +14,15 @@
 - alias: Alarm 0830
   trigger:
   - platform: time
-    at: '08:00:00'
-  condition: []
+    at: '08:10:00'
+  condition:
+  - condition: state
+    entity_id: binary_sensor.workday
+    state: 'on'
   action:
   - service: notify.home
     data_template:
-      message: "⏰ 학생 건강 진단 체크해주세요.\rhttps://eduro.goe.go.kr/hcheck"
+      message: "⏰ 학생 건강 진단 체크해주세요.\rhttps://hcs.eduro.go.kr/"
 
 - alias: Alarm 0900
   trigger:
@@ -38,37 +41,45 @@
   trigger:
   - platform: time
     at: '13:00:00'
-  condition: []
+  condition:
+  - condition: or
+    conditions:
+    - condition: state
+      entity_id: binary_sensor.hyunjun_android
+      state: 'on'
+    - condition: state
+      entity_id: binary_sensor.minjun_android
+      state: 'on'
   action:
   - service: notify.home
     data_template:
       message: "⏰ 점심시간이예요. 밥먹어요!"
 
-- alias: Alarm 1400
-  trigger:
-  - platform: time
-    at: '14:00:00'
-  condition:
-  - condition: state
-    entity_id: binary_sensor.workday
-    state: 'on'
-  action:
-  - service: notify.home
-    data_template:
-      message: "⏰ 현준이는 운동+자유시간, 민준이는 남은 EBS할 시간예요."
+#- alias: Alarm 1400
+#  trigger:
+#  - platform: time
+#    at: '14:00:00'
+#  condition:
+#  - condition: state
+#    entity_id: binary_sensor.workday
+#    state: 'on'
+#  action:
+#  - service: notify.home
+#    data_template:
+#      message: "⏰ 현준이는 운동+자유시간, 민준이는 남은 EBS할 시간예요."
 
-- alias: Alarm 1500
-  trigger:
-  - platform: time
-    at: '15:00:00'
-  condition:
-  - condition: state
-    entity_id: binary_sensor.workday
-    state: 'on'
-  action:
-  - service: notify.home
-    data_template:
-      message: "⏰ 현준이는 운동+자유시간, 민준이는 운동할 시간예요."
+#- alias: Alarm 1500
+#  trigger:
+#  - platform: time
+#    at: '15:00:00'
+#  condition:
+#  - condition: state
+#    entity_id: binary_sensor.workday
+#    state: 'on'
+#  action:
+#  - service: notify.home
+#    data_template:
+#      message: "⏰ 현준이는 운동+자유시간, 민준이는 운동할 시간예요."
 
 - alias: Alarm 1800
   trigger:

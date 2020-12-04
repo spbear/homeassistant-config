@@ -1,0 +1,47 @@
+- alias: Sleep Mat ON
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.room_bed_sleep
+      to: 'on'
+    - platform: time
+      at: '21:00:00'
+  condition:
+    - condition: state
+      entity_id: binary_sensor.yunhan_android
+      state: 'on'
+    - condition: state
+      entity_id: binary_sensor.room_bed_sleep
+      state: 'on'
+    - condition: time
+      after: '20:00:00'
+      before: '08:00:00'
+  action:
+    - service: switch.turn_on
+      data:
+        entity_id: switch.hot_water_mat
+
+- alias: Sleep Mat OFF
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.room_bed_sleep
+      to: 'off'
+      for:
+        minutes: 15
+  condition: []
+  action:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.hot_water_mat
+
+- alias: Sleep Mat Force OFF
+  trigger:
+    - platform: time
+      at: '09:00:00'
+    - platform: state
+      entity_id: binary_sensor.yunhan_android
+      to: 'off'
+  condition: []
+  action:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.hot_water_mat

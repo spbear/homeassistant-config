@@ -1,7 +1,7 @@
 - alias: Turn On Heating Control Below 21.5c
   trigger:
     - platform: numeric_state
-      entity_id: sensor.room_temperature
+      entity_id: sensor.awair_temperature
       below: 21.5
       for:
         minutes: 10
@@ -16,7 +16,7 @@
       entity_id: binary_sensor.yunhan_android
       state: 'on'
     - condition: numeric_state
-      entity_id: sensor.room_temperature
+      entity_id: sensor.awair_temperature
       below: 21.5
   action:
     - service: switch.turn_on
@@ -26,7 +26,7 @@
 - alias: Turn On Heating Control Below 19.0c
   trigger:
     - platform: numeric_state
-      entity_id: sensor.room_temperature
+      entity_id: sensor.awair_temperature
       below: 19.0
       for:
         minutes: 10
@@ -42,7 +42,7 @@
 - alias: Turn Off Heating Control Above 21.5c
   trigger:
     - platform: numeric_state
-      entity_id: sensor.room_temperature
+      entity_id: sensor.awair_temperature
       above: 21.5
       for:
         minutes: 10
@@ -55,11 +55,11 @@
       data:
         entity_id: switch.heating_control
 
-- alias: Turn On Heating Control Above 20.0c
+- alias: Turn On Heating Control Above 24.0c
   trigger:
     - platform: numeric_state
-      entity_id: sensor.room_temperature
-      above: 20.0
+      entity_id: sensor.awair_temperature
+      above: 24.0
       for:
         minutes: 10
   condition:
@@ -85,7 +85,7 @@
       entity_id: switch.heating_control
       state: 'on'
     - condition: numeric_state
-      entity_id: sensor.room_temperature
+      entity_id: sensor.awair_temperature
       above: 19.0
   action:
     - service: switch.turn_off
