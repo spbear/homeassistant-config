@@ -1,10 +1,10 @@
-- platform: yr
-  name: Weather
-  monitored_conditions:
-    - symbol
-    - temperature
-    - humidity
-    - fog
+#- platform: yr
+#  name: Weather
+#  monitored_conditions:
+#    - symbol
+#    - temperature
+#    - humidity
+#    - fog
 
 - platform: rest
   name: Awair 2nd Edition

@@ -54,7 +54,6 @@ binary_sensor.restroom_motion:
   device_class: motion
 binary_sensor.room_bed_sleep:
   device_class: occupancy
-  icon: mdi:hotel
 binary_sensor.window_sensor:
   device_class: window
 binary_sensor.room_door_status:

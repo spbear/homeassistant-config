@@ -44,6 +44,8 @@ logger:
     homeassistant.components.api: debug
     homeassistant.components.workday: debug
     homeassistant.components.awair: debug
+    homeassistant.components.withings: debug
+    homeassistant.components.smartthings: debug
     custom_components.asuswrt_plus: debug
     custom_components.fan.xiaomi_miio_fan: debug
     custom_components.new_ha_connector: debug
@@ -62,13 +64,11 @@ notify:
 
 # Enables the frontend
 frontend:
+python_script:
 
 alexa:
   smart_home:
   intent_script: !include alexa.yaml
-
-customizer:
-  custom_ui: local
 
 new_ha_connector:
   app_url: https://graph-ap02-apnortheast2.api.smartthings.com:443/api/smartapps/installations/
@@ -261,6 +261,11 @@ script: !include_dir_merge_named scripts/
 automation: !include_dir_merge_list automations/
 rest_command: !include rest_command.yaml
 shell_command: !include shell_command.yaml
+
+withings:
+  client_id: !secret withings_client_id
+  client_secret: !secret withings_client_secret
+  use_webhook: true
 
 input_select:
   sonos_playlist:

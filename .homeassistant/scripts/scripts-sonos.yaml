@@ -41,6 +41,8 @@ sonos_play_random:
     - service: script.turn_on
       data:
         entity_id: script.sonos_play_specific_song
+    - delay:
+        seconds: 3
 
 sonos_play_kpop_top100:
   alias: sonos_play_kpop_top100
@@ -52,6 +54,8 @@ sonos_play_kpop_top100:
       data:
         entity_id: media_player.playroom
         shuffle: false
+    - delay:
+        seconds: 3
     - service: media_player.select_source
       data_template:
         entity_id: media_player.playroom
@@ -67,6 +71,8 @@ sonos_play_sleep_song:
       data:
         entity_id: media_player.playroom
         shuffle: true
+    - delay:
+        seconds: 3
     - service: media_player.select_source
       data_template:
         entity_id: media_player.playroom
@@ -82,6 +88,8 @@ sonos_play_jazz:
       data:
         entity_id: media_player.playroom
         shuffle: true
+    - delay:
+        seconds: 3
     - service: media_player.select_source
       data_template:
         entity_id: media_player.playroom
@@ -97,10 +105,14 @@ sonos_play_specific_song:
       data_template:
         entity_id: media_player.playroom
         volume_level: 0.12
+    - delay:
+        seconds: 3
     - service: media_player.shuffle_set
       data:
         entity_id: media_player.playroom
         shuffle: true
+    - delay:
+        seconds: 3
     - service: media_player.select_source
       data_template:
         entity_id: media_player.playroom

@@ -1,27 +1,56 @@
 - name: Welcome
   entities:
-    light.gateway_light: off
-    fan.mi_air_purifier: on
-    switch.music_auto_play: on
-    switch.security_mode: off
+    light.gateway_light:
+      state: off
+    fan.mi_air_purifier:
+      state: on
+    switch.music_auto_play:
+      state: on
+    switch.security_mode:
+      state: off
+    switch.external_air_control:
+      state: on
 
 - name: Good Bye
   entities:
-    light.desk_lamp: off
-    light.sleep_lamp: off
-    light.gateway_light: off
-    fan.mi_air_purifier: off
-    fan.mi_standing_fan: off
-    fan.mi_humidifier: off
-    switch.mi_dehumidifier: off
-    switch.samsung_air_conditioner: off
-    media_player.playroom: paused
-    switch.music_auto_play: on
-    switch.security_mode: on
-    switch.curtain_auto_control: on
-    switch.my_room_light: off
-    switch.my_room_yankee_candle: off
-    switch.external_air_control: off
+    switch.my_room_light:
+      state: off
+    light.desk_lamp:
+      state: off
+    light.sleep_lamp:
+      state: off
+    light.gateway_light:
+      state: off
+    light.mid_light:
+      state: off
+    light.room_led_light:
+      state: off
+    fan.mi_air_purifier:
+      state: off
+    fan.mi_standing_fan:
+      state: off
+    fan.mi_humidifier:
+      state: off
+    switch.mi_dehumidifier:
+      state: off
+    switch.samsung_air_conditioner:
+      state: off
+    switch.music_auto_play:
+      state: on
+    switch.security_mode:
+      state: on
+    switch.curtain_auto_control:
+      state: on
+    switch.my_room_yankee_candle:
+      state: off
+    switch.external_air_control:
+      state: off
+    switch.hot_water_mat:
+      state: off
+    switch.monitor_light:
+      state: off
+    media_player.playroom:
+      state: paused
 
 - name: Night Welcome
   entities:
@@ -31,8 +60,6 @@
     switch.security_mode: off
     light.desk_lamp:
       state: on
-      rgb_color: [255, 173, 94]
-      brightness: 255
     light.sleep_lamp:
       state: on
       rgb_color: [255, 173, 94]
@@ -42,19 +69,6 @@
   entities:
     light.desk_lamp:
       state: on
-      rgb_color: [255, 200, 140]
-      brightness: 255
-    light.sleep_lamp:
-      state: on
-      rgb_color: [255, 173, 94]
-      brightness: 255
-
-- name: LightDeskMotion
-  entities:
-    light.desk_lamp:
-      state: on
-      rgb_color: [255, 200, 140]
-      brightness: 255
     light.sleep_lamp:
       state: on
       rgb_color: [255, 173, 94]
@@ -63,17 +77,24 @@
       state: on
       rgb_color: [255, 19, 145]
       brightness: 255
+    light.room_led_light:
+      state: on
+      rgb_color: [255, 19, 145]
+      brightness: 255
+
+- name: LightDeskMotion
+  entities:
+    light.desk_lamp:
+      state: on
 
 - name: LightBedMotion
   entities:
-    switch.my_room_light: off
-    switch.monitor_light: off
+    switch.my_room_light:
+      state: off
+    switch.monitor_light:
+      state: off
     light.gateway_light:
       state: off
-    light.desk_lamp:
-      state: on
-      rgb_color: [255, 200, 140]
-      brightness: 255
     light.sleep_lamp:
       state: on
       rgb_color: [255, 173, 94]
@@ -81,15 +102,33 @@
 
 - name: LightBeforeSleep
   entities:
+    switch.monitor_light:
+      state: off
     light.desk_lamp:
       state: off
     light.sleep_lamp:
       state: on
       rgb_color: [255, 173, 94]
       brightness: 60
+    light.mid_light:
+      state: off
+    light.gateway_light:
+      state: on
+      rgb_color: [255, 20, 20]
+      brightness: 60
+    light.room_led_light:
+      state: on
+      rgb_color: [255, 20, 20]
+      brightness: 60
+    switch.gardening_light:
+      state: off
 
 - name: LightReader
   entities:
+    switch.monitor_light:
+      state: off
+    light.gateway_light:
+      state: off
     light.desk_lamp:
       state: off
     light.sleep_lamp:
@@ -102,6 +141,14 @@
     light.desk_lamp:
       state: off
     light.sleep_lamp:
+      state: off
+    light.gateway_light:
+      state: off
+    light.mid_light:
+      state: off
+    light.room_led_light:
+      state: off
+    switch.gardening_light:
       state: off
 
 - name: Night Livingroom

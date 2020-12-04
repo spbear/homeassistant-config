@@ -5,7 +5,7 @@ reset_vacuum_position:
     data:
       entity_id: 'vacuum.mi_robot_vacuum'
   - delay:
-      seconds: 7
+      seconds: 10
   - service: vacuum.return_to_base
     data:
       entity_id: 'vacuum.mi_robot_vacuum'
@@ -73,27 +73,27 @@ clean_all:
       message: "🤖🤖🤖\r집 청소를 시작합니다.\r이불을 개고 바닥에 아무 것도 없게 해주세요."
   - service: script.reset_vacuum_position
   - delay:
+      minutes: 1
+  - wait_template: "{{  is_state('vacuum.mi_robot_vacuum', 'docked') }}"
+  - service: script.clean_kitchen
+  - delay:
+      minutes: 2
+  - wait_template: "{{  is_state('vacuum.mi_robot_vacuum', 'docked') }}"
+  - service: script.clean_minjun_room
+  - delay:
       minutes: 2
   - wait_template: "{{  is_state('vacuum.mi_robot_vacuum', 'docked') }}"
   - service: script.clean_hyunjun_room
   - delay:
-      minutes: 3
-  - wait_template: "{{  is_state('vacuum.mi_robot_vacuum', 'docked') }}"
-  - service: script.clean_minjun_room
-  - delay:
-      minutes: 3
+      minutes: 2
   - wait_template: "{{  is_state('vacuum.mi_robot_vacuum', 'docked') }}"
   - service: script.clean_myroom
   - delay:
-      minutes: 3
+      minutes: 2
   - wait_template: "{{  is_state('vacuum.mi_robot_vacuum', 'docked') }}"
   - service: script.clean_livingroom
   - delay:
-      minutes: 3
-  - wait_template: "{{  is_state('vacuum.mi_robot_vacuum', 'docked') }}"
-  - service: script.clean_kitchen
-  - delay:
-      minutes: 3
+      minutes: 2
   - wait_template: "{{  is_state('vacuum.mi_robot_vacuum', 'docked') }}"
   - service: notify.home
     data:

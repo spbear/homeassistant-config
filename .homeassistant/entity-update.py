@@ -276,6 +276,16 @@ replacement = {
         "entity_id" : "switch.monitor_light",
         "icon" : "mdi:ceiling-light"
     },
+    "방송용 조명" : {
+        "name" : "Broadcast Light",
+        "entity_id" : "switch.broadcast_light",
+        "icon" : "mdi:spotlight"
+    },
+    "내방 LED 조명" : {
+        "name" : "Room LED Light",
+        "entity_id" : "light.room_led_light",
+        "icon" : "mdi:lightbulb-multiple"
+    },
 }
 
 with open(".storage/core.entity_registry", "r") as json_file:
