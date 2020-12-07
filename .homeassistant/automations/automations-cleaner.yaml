@@ -52,3 +52,16 @@
     data:
       title: 'Notify'
       message: "🤖🤖🤖\r청소기에 문제가 생겼습니다.\r청소기를 확인해 주세요."
+
+- alias: Report the recover of vaccum machine to LINE
+  trigger:
+  - platform: state
+    entity_id: vacuum.mi_robot_vacuum
+    from: 'error'
+    to: 'cleaning'
+  condition: []
+  action:
+  - service: notify.home
+    data:
+      title: 'Notify'
+      message: "🤖🤖🤖\r청소기의 문제를 해결하였습니다."
