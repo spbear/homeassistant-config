@@ -286,6 +286,16 @@ replacement = {
         "entity_id" : "light.room_led_light",
         "icon" : "mdi:lightbulb-multiple"
     },
+    "거실식물등" : {
+        "name" : "Livingroom Gardening Light",
+        "entity_id" : "switch.livingroom_gardening_light",
+        "icon" : "mdi:pine-tree"
+    },
+    "거실식물등조도 Illuminance" : {
+        "name" : "Livingroom Gardening Illuminance",
+        "entity_id" : "sensor.livingroom_gardening_illuminance",
+        "icon" : "mdi:brightness-5"
+    },
 }
 
 with open(".storage/core.entity_registry", "r") as json_file:
