@@ -161,6 +161,60 @@
   value_template: "{{ '%.1f'|format(value | float) }}"
   unit_of_measurement: "%"
 
+- platform: miflora
+  name: 'Bengal Rubber Tree'
+  mac: !secret miflora_bengal_rubber_tree_mac
+  monitored_conditions:
+    - moisture
+    - light
+    - battery
+    - temperature
+    - conductivity
+
+# MiFlora Setting
+- platform: mqtt
+  name: "Goldcrest Wilma Mositure"
+  state_topic: "miflora/status/GoldcrestWilma/moisture"
+  value_template: "{{ value_json.val }}"
+  unit_of_measurement: "%"
+
+- platform: mqtt
+  name: "Pilea Peperomidoides Mositure"
+  state_topic: "miflora/status/PileaPeperomidoides/moisture"
+  value_template: "{{ value_json.val }}"
+  unit_of_measurement: "%"
+
+- platform: mqtt
+  name: "TravelersTree Mositure"
+  state_topic: "miflora/status/TravelersTree/moisture"
+  value_template: "{{ value_json.val }}"
+  unit_of_measurement: "%"
+
+- platform: mqtt
+  name: "Areca Palm Mositure"
+  state_topic: "miflora/status/ArecaPalm/moisture"
+  value_template: "{{ value_json.val }}"
+  unit_of_measurement: "%"
+
+- platform: mqtt
+  name: "Monstera Mositure"
+  state_topic: "miflora/status/Monstera/moisture"
+  value_template: "{{ value_json.val }}"
+  unit_of_measurement: "%"
+
+- platform: mqtt
+  name: "Jerusalem Cherry Mositure"
+  state_topic: "miflora/status/JerusalemCherry/moisture"
+  value_template: "{{ value_json.val }}"
+  unit_of_measurement: "%"
+
+- platform: mqtt
+  name: "Poinsettia Mositure"
+  state_topic: "miflora/status/Poinsettia/moisture"
+  value_template: "{{ value_json.val }}"
+  unit_of_measurement: "%"
+
+
 # sensors.yaml
 # 한국환경공단 검단 관측소 실시간 정보
 - platform: rest

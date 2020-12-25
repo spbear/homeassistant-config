@@ -1,0 +1,41 @@
+- alias: Gardening Light On
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.livingroom_gardening_illuminance
+      below: 100.0
+      for:
+        minutes: 10
+    - platform: time
+      at: '06:00:00'
+    - platform: sun
+      event: sunset
+      offset: '-00:30:00'
+  condition:
+    - condition: state
+      entity_id: switch.livingroom_gardening_light
+      state: 'off'
+  action:
+    - service: switch.turn_on
+      data:
+        entity_id: switch.livingroom_gardening_light
+
+- alias: Gardening Light Off
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.livingroom_gardening_illuminance
+      above: 100.0
+      for:
+        minutes: 10
+    - platform: time
+      at: '01:00:00'
+    - platform: sun
+      event: sunrise
+      offset: '-00:30:00'
+  condition:
+    - condition: state
+      entity_id: switch.livingroom_gardening_light
+      state: 'on'
+  action:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.livingroom_gardening_light

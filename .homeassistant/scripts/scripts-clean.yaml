@@ -9,13 +9,12 @@ reset_vacuum_position:
   - service: vacuum.return_to_base
     data:
       entity_id: 'vacuum.mi_robot_vacuum'
-  - delay:
-      seconds: 5
-#  - service: vacuum.send_command
-#    data:
-#      entity_id: 'vacuum.mi_robot_vacuum'
-#      command: 'app_zoned_clean'
-#      params: [[25030,24139,25930,26589,1]]
+  - wait_template: "{{  is_state('vacuum.mi_robot_vacuum', 'docked') }}"
+  - service: vacuum.send_command
+    data:
+      entity_id: 'vacuum.mi_robot_vacuum'
+      command: 'app_zoned_clean'
+      params: [[25030,24139,25930,26589,1]]
 
 clean_myroom:
   alias: clean_myroom
@@ -73,33 +72,23 @@ clean_all:
       message: "🤖🤖🤖\r집 청소를 시작합니다.\r이불을 개고 바닥에 아무 것도 없게 해주세요."
   - service: script.reset_vacuum_position
   - wait_template: "{{  is_state('vacuum.mi_robot_vacuum', 'cleaning') }}"
-  - delay:
-      minutes: 1
+    timeout: '00:00:30'
   - wait_template: "{{  is_state('vacuum.mi_robot_vacuum', 'docked') }}"
+    timeout: '00:00:30'
   - service: script.clean_kitchen
   - wait_template: "{{  is_state('vacuum.mi_robot_vacuum', 'cleaning') }}"
-  - delay:
-      minutes: 1
   - wait_template: "{{  is_state('vacuum.mi_robot_vacuum', 'docked') }}"
   - service: script.clean_minjun_room
   - wait_template: "{{  is_state('vacuum.mi_robot_vacuum', 'cleaning') }}"
-  - delay:
-      minutes: 1
   - wait_template: "{{  is_state('vacuum.mi_robot_vacuum', 'docked') }}"
   - service: script.clean_hyunjun_room
   - wait_template: "{{  is_state('vacuum.mi_robot_vacuum', 'cleaning') }}"
-  - delay:
-      minutes: 1
   - wait_template: "{{  is_state('vacuum.mi_robot_vacuum', 'docked') }}"
   - service: script.clean_myroom
   - wait_template: "{{  is_state('vacuum.mi_robot_vacuum', 'cleaning') }}"
-  - delay:
-      minutes: 1
   - wait_template: "{{  is_state('vacuum.mi_robot_vacuum', 'docked') }}"
   - service: script.clean_livingroom
   - wait_template: "{{  is_state('vacuum.mi_robot_vacuum', 'cleaning') }}"
-  - delay:
-      minutes: 1
   - wait_template: "{{  is_state('vacuum.mi_robot_vacuum', 'docked') }}"
   - service: notify.home
     data:
