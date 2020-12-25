@@ -179,8 +179,56 @@
   unit_of_measurement: "%"
 
 - platform: mqtt
+  name: "Goldcrest Wilma Light"
+  state_topic: "miflora/status/GoldcrestWilma/light"
+  value_template: "{{ value_json.val }}"
+  unit_of_measurement: "lx"
+
+- platform: mqtt
+  name: "Goldcrest Wilma Temperature"
+  state_topic: "miflora/status/GoldcrestWilma/temperature"
+  value_template: "{{ value_json.val }}"
+  unit_of_measurement: "%"
+
+- platform: mqtt
+  name: "Goldcrest Wilma Conductivity"
+  state_topic: "miflora/status/GoldcrestWilma/conductivity"
+  value_template: "{{ value_json.val }}"
+  unit_of_measurement: " µS/cm"
+
+- platform: mqtt
+  name: "Goldcrest Wilma Battery"
+  state_topic: "miflora/status/GoldcrestWilma/battery"
+  value_template: "{{ value_json.val }}"
+  unit_of_measurement: "%"
+
+- platform: mqtt
   name: "Pilea Peperomidoides Mositure"
   state_topic: "miflora/status/PileaPeperomidoides/moisture"
+  value_template: "{{ value_json.val }}"
+  unit_of_measurement: "%"
+
+- platform: mqtt
+  name: "Pilea Peperomidoides Light"
+  state_topic: "miflora/status/PileaPeperomidoides/light"
+  value_template: "{{ value_json.val }}"
+  unit_of_measurement: "lx"
+
+- platform: mqtt
+  name: "Pilea Peperomidoides Temperature"
+  state_topic: "miflora/status/PileaPeperomidoides/temperature"
+  value_template: "{{ value_json.val }}"
+  unit_of_measurement: "%"
+
+- platform: mqtt
+  name: "Pilea Peperomidoides Conductivity"
+  state_topic: "miflora/status/PileaPeperomidoides/conductivity"
+  value_template: "{{ value_json.val }}"
+  unit_of_measurement: " µS/cm"
+
+- platform: mqtt
+  name: "Pilea Peperomidoides Battery"
+  state_topic: "miflora/status/PileaPeperomidoides/battery"
   value_template: "{{ value_json.val }}"
   unit_of_measurement: "%"
 
@@ -191,8 +239,56 @@
   unit_of_measurement: "%"
 
 - platform: mqtt
+  name: "TravelersTree Light"
+  state_topic: "miflora/status/TravelersTree/light"
+  value_template: "{{ value_json.val }}"
+  unit_of_measurement: "lx"
+
+- platform: mqtt
+  name: "TravelersTree Temperature"
+  state_topic: "miflora/status/TravelersTree/temperature"
+  value_template: "{{ value_json.val }}"
+  unit_of_measurement: "%"
+
+- platform: mqtt
+  name: "TravelersTree Conductivity"
+  state_topic: "miflora/status/TravelersTree/conductivity"
+  value_template: "{{ value_json.val }}"
+  unit_of_measurement: " µS/cm"
+
+- platform: mqtt
+  name: "TravelersTree Battery"
+  state_topic: "miflora/status/TravelersTree/battery"
+  value_template: "{{ value_json.val }}"
+  unit_of_measurement: "%"
+
+- platform: mqtt
   name: "Areca Palm Mositure"
   state_topic: "miflora/status/ArecaPalm/moisture"
+  value_template: "{{ value_json.val }}"
+  unit_of_measurement: "%"
+
+- platform: mqtt
+  name: "Areca Palm Light"
+  state_topic: "miflora/status/ArecaPalm/light"
+  value_template: "{{ value_json.val }}"
+  unit_of_measurement: "lx"
+
+- platform: mqtt
+  name: "Areca Palm Temperature"
+  state_topic: "miflora/status/ArecaPalm/temperature"
+  value_template: "{{ value_json.val }}"
+  unit_of_measurement: "%"
+
+- platform: mqtt
+  name: "Areca Palm Conductivity"
+  state_topic: "miflora/status/ArecaPalm/conductivity"
+  value_template: "{{ value_json.val }}"
+  unit_of_measurement: " µS/cm"
+
+- platform: mqtt
+  name: "Areca Palm Battery"
+  state_topic: "miflora/status/ArecaPalm/battery"
   value_template: "{{ value_json.val }}"
   unit_of_measurement: "%"
 
@@ -203,14 +299,86 @@
   unit_of_measurement: "%"
 
 - platform: mqtt
+  name: "Monstera Light"
+  state_topic: "miflora/status/Monstera/light"
+  value_template: "{{ value_json.val }}"
+  unit_of_measurement: "lx"
+
+- platform: mqtt
+  name: "Monstera Temperature"
+  state_topic: "miflora/status/Monstera/temperature"
+  value_template: "{{ value_json.val }}"
+  unit_of_measurement: "%"
+
+- platform: mqtt
+  name: "Monstera Conductivity"
+  state_topic: "miflora/status/Monstera/conductivity"
+  value_template: "{{ value_json.val }}"
+  unit_of_measurement: " µS/cm"
+
+- platform: mqtt
+  name: "Monstera Battery"
+  state_topic: "miflora/status/Monstera/battery"
+  value_template: "{{ value_json.val }}"
+  unit_of_measurement: "%"
+
+- platform: mqtt
   name: "Jerusalem Cherry Mositure"
   state_topic: "miflora/status/JerusalemCherry/moisture"
   value_template: "{{ value_json.val }}"
   unit_of_measurement: "%"
 
 - platform: mqtt
+  name: "Jerusalem Cherry Light"
+  state_topic: "miflora/status/JerusalemCherry/light"
+  value_template: "{{ value_json.val }}"
+  unit_of_measurement: "lx"
+
+- platform: mqtt
+  name: "Jerusalem Cherry Temperature"
+  state_topic: "miflora/status/JerusalemCherry/temperature"
+  value_template: "{{ value_json.val }}"
+  unit_of_measurement: "%"
+
+- platform: mqtt
+  name: "Jerusalem Cherry Conductivity"
+  state_topic: "miflora/status/JerusalemCherry/conductivity"
+  value_template: "{{ value_json.val }}"
+  unit_of_measurement: " µS/cm"
+
+- platform: mqtt
+  name: "Jerusalem Cherry Battery"
+  state_topic: "miflora/status/JerusalemCherry/battery"
+  value_template: "{{ value_json.val }}"
+  unit_of_measurement: "%"
+
+- platform: mqtt
   name: "Poinsettia Mositure"
   state_topic: "miflora/status/Poinsettia/moisture"
+  value_template: "{{ value_json.val }}"
+  unit_of_measurement: "%"
+
+- platform: mqtt
+  name: "Poinsettia Light"
+  state_topic: "miflora/status/Poinsettia/light"
+  value_template: "{{ value_json.val }}"
+  unit_of_measurement: "lx"
+
+- platform: mqtt
+  name: "Poinsettia Temperature"
+  state_topic: "miflora/status/Poinsettia/temperature"
+  value_template: "{{ value_json.val }}"
+  unit_of_measurement: "%"
+
+- platform: mqtt
+  name: "Poinsettia Conductivity"
+  state_topic: "miflora/status/Poinsettia/conductivity"
+  value_template: "{{ value_json.val }}"
+  unit_of_measurement: " µS/cm"
+
+- platform: mqtt
+  name: "Poinsettia Battery"
+  state_topic: "miflora/status/Poinsettia/battery"
   value_template: "{{ value_json.val }}"
   unit_of_measurement: "%"
 

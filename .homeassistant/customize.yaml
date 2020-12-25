@@ -129,3 +129,87 @@ sensor.air_quality_pm10value:
   friendly_name: Outside PM10
 binary_sensor.restroom_door_status:
   device_class: door
+
+sensor.goldcrest_wilma_moisture:
+  device_class: humidity
+sensor.goldcrest_wilma_light:
+  device_class: illuminance
+sensor.goldcrest_wilma_temperature:
+  device_class: temperature
+sensor.goldcrest_wilma_conductivity:
+  device_class: none
+  icon: mdi:pine-tree
+sensor.goldcrest_wilma_battery:
+  device_class: battery
+
+sensor.pilea_peperomidoides_moisture:
+  device_class: humidity
+sensor.pilea_peperomidoides_light:
+  device_class: illuminance
+sensor.pilea_peperomidoides_temperature:
+  device_class: temperature
+sensor.pilea_peperomidoides_conductivity:
+  device_class: none
+  icon: mdi:pine-tree
+sensor.pilea_peperomidoides_battery:
+  device_class: battery
+
+sensor.travelerstree_moisture:
+  device_class: humidity
+sensor.travelerstree_light:
+  device_class: illuminance
+sensor.travelerstree_temperature:
+  device_class: temperature
+sensor.travelerstree_conductivity:
+  device_class: none
+  icon: mdi:pine-tree
+sensor.travelerstree_battery:
+  device_class: battery
+
+sensor.areca_palm_moisture:
+  device_class: humidity
+sensor.areca_palm_light:
+  device_class: illuminance
+sensor.areca_palm_temperature:
+  device_class: temperature
+sensor.areca_palm_conductivity:
+  device_class: none
+  icon: mdi:pine-tree
+sensor.areca_palm_battery:
+  device_class: battery
+
+sensor.monstera_moisture:
+  device_class: humidity
+sensor.monstera_light:
+  device_class: illuminance
+sensor.monstera_temperature:
+  device_class: temperature
+sensor.monstera_conductivity:
+  device_class: none
+  icon: mdi:pine-tree
+sensor.monstera_battery:
+  device_class: battery
+
+sensor.jerusalem_cherry_moisture:
+  device_class: humidity
+sensor.jerusalem_cherry_light:
+  device_class: illuminance
+sensor.jerusalem_cherry_temperature:
+  device_class: temperature
+sensor.jerusalem_cherry_conductivity:
+  device_class: none
+  icon: mdi:pine-tree
+sensor.jerusalem_cherry_battery:
+  device_class: battery
+
+sensor.poinsettia_moisture:
+  device_class: humidity
+sensor.poinsettia_light:
+  device_class: illuminance
+sensor.poinsettia_temperature:
+  device_class: temperature
+sensor.poinsettia_conductivity:
+  device_class: none
+  icon: mdi:pine-tree
+sensor.poinsettia_battery:
+  device_class: battery
