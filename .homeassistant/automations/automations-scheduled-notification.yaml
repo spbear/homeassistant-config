@@ -11,6 +11,27 @@
     data_template:
       message: "⏰ 08시 기상시간이예요. 밥먹고 수업 준비하세요."
 
+- alias: Alarm 0802
+  trigger:
+  - platform: time
+    at: '08:02:00'
+  condition: []
+  action:
+  - service: notify.home
+    data_template:
+      message: "
+        오늘의 식물 리포트\r
+        -----------------\r
+        🌲 율마의 수분은 {{ states('sensor.goldcrest_wilma_moisture') }}% 입니다. {% if states('sensor.goldcrest_wilma_moisture') | int < 15 %}🧺 물주기가 필요합니다.{% endif %}\r
+        🌿 필리아페페의 수분은 {{ states('sensor.pilea_peperomidoides_moisture') }}% 입니다. {% if states('sensor.pilea_peperomidoides_moisture') | int < 15 %}🧺 물주기가 필요합니다.{% endif %}\r
+        🍃 여인초의 수분은 {{ states('sensor.travelerstree_moisture') }}% 입니다. {% if states('sensor.travelerstree_moisture') | int < 15 %}🧺 물주기가 필요합니다.{% endif %}\r
+        🌴 아레카야자의 수분은 {{ states('sensor.areca_palm_moisture') }}% 입니다. {% if states('sensor.areca_palm_moisture') | int < 15 %}🧺 물주기가 필요합니다.{% endif %}\r
+        🌿 몬스테라의 수분은 {{ states('sensor.monstera_moisture') }}% 입니다. {% if states('sensor.monstera_moisture') | int < 15 %}🧺 물주기가 필요합니다.{% endif %}\r
+        🍒 예수살렘체리의 수분은 {{ states('sensor.jerusalem_cherry_moisture') }}% 입니다. {% if states('sensor.jerusalem_cherry_moisture') | int < 15 %}🧺 물주기가 필요합니다.{% endif %}\r
+        🌸 포인세티아의 수분은 {{ states('sensor.poinsettia_moisture') }}% 입니다. {% if states('sensor.poinsettia_moisture') | int < 15 %}🧺 물주기가 필요합니다.{% endif %}\r
+        🌳 벵갈고무나무의 수분은 {{ states('sensor.bengal_rubber_tree_moisture') }}% 입니다. {% if states('sensor.bengal_rubber_tree_moisture') | int < 15 %}🧺 물주기가 필요합니다.{% endif %}\r
+      "
+
 - alias: Alarm 0830
   trigger:
   - platform: time

@@ -173,7 +173,7 @@
 
 # MiFlora Setting
 - platform: mqtt
-  name: "Goldcrest Wilma Mositure"
+  name: "Goldcrest Wilma Moisture"
   state_topic: "miflora/status/GoldcrestWilma/moisture"
   value_template: "{{ value_json.val }}"
   unit_of_measurement: "%"
@@ -203,7 +203,7 @@
   unit_of_measurement: "%"
 
 - platform: mqtt
-  name: "Pilea Peperomidoides Mositure"
+  name: "Pilea Peperomidoides Moisture"
   state_topic: "miflora/status/PileaPeperomidoides/moisture"
   value_template: "{{ value_json.val }}"
   unit_of_measurement: "%"
@@ -233,7 +233,7 @@
   unit_of_measurement: "%"
 
 - platform: mqtt
-  name: "TravelersTree Mositure"
+  name: "TravelersTree Moisture"
   state_topic: "miflora/status/TravelersTree/moisture"
   value_template: "{{ value_json.val }}"
   unit_of_measurement: "%"
@@ -263,7 +263,7 @@
   unit_of_measurement: "%"
 
 - platform: mqtt
-  name: "Areca Palm Mositure"
+  name: "Areca Palm Moisture"
   state_topic: "miflora/status/ArecaPalm/moisture"
   value_template: "{{ value_json.val }}"
   unit_of_measurement: "%"
@@ -293,7 +293,7 @@
   unit_of_measurement: "%"
 
 - platform: mqtt
-  name: "Monstera Mositure"
+  name: "Monstera Moisture"
   state_topic: "miflora/status/Monstera/moisture"
   value_template: "{{ value_json.val }}"
   unit_of_measurement: "%"
@@ -323,7 +323,7 @@
   unit_of_measurement: "%"
 
 - platform: mqtt
-  name: "Jerusalem Cherry Mositure"
+  name: "Jerusalem Cherry Moisture"
   state_topic: "miflora/status/JerusalemCherry/moisture"
   value_template: "{{ value_json.val }}"
   unit_of_measurement: "%"
@@ -353,7 +353,7 @@
   unit_of_measurement: "%"
 
 - platform: mqtt
-  name: "Poinsettia Mositure"
+  name: "Poinsettia Moisture"
   state_topic: "miflora/status/Poinsettia/moisture"
   value_template: "{{ value_json.val }}"
   unit_of_measurement: "%"
