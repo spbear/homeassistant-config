@@ -2,7 +2,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.livingroom_gardening_illuminance
-      below: 100.0
+      below: 1000.0
       for:
         minutes: 10
     - platform: time
@@ -23,7 +23,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.livingroom_gardening_illuminance
-      above: 100.0
+      above: 1000.0
       for:
         minutes: 10
     - platform: time
