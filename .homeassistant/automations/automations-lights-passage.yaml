@@ -13,6 +13,9 @@
     - condition: state
       entity_id: switch.passage_light
       state: 'off'
+    - condition: numeric_state
+      entity_id: sensor.livingroom_illuminance
+      below: 150.0
   action:
     - service: switch.turn_on
       data:

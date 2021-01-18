@@ -20,12 +20,7 @@
 - alias: Kitchen Sub Light OFF
   trigger:
     - platform: state
-      entity_id: binary_sensor.kitchen_motion
-      to: 'off'
-      for:
-        minutes: 10
-    - platform: state
-      entity_id: group.people
+      entity_id: switch.kitchen_light
       to: 'off'
   condition:
     - condition: state
@@ -39,12 +34,7 @@
 - alias: Kitchen Table Light OFF
   trigger:
     - platform: state
-      entity_id: binary_sensor.kitchen_motion
-      to: 'off'
-      for:
-        minutes: 10
-    - platform: state
-      entity_id: group.people
+      entity_id: switch.kitchen_sub_light
       to: 'off'
   condition:
     - condition: state
@@ -80,7 +70,7 @@
   condition:
     - condition: numeric_state
       entity_id: sensor.kitchen_illuminance
-      below: 20.0
+      below: 80.0
     - condition: state
       entity_id: group.people
       state: 'on'
@@ -95,12 +85,9 @@
 - alias: Kitchen Sub Light ON
   trigger:
     - platform: state
-      entity_id: binary_sensor.kitchen_motion
+      entity_id: switch.kitchen_light
       to: 'on'
   condition:
-    - condition: numeric_state
-      entity_id: sensor.kitchen_illuminance
-      below: 20.0
     - condition: state
       entity_id: group.people
       state: 'on'
@@ -111,3 +98,17 @@
     - service: switch.turn_on
       data:
         entity_id: switch.kitchen_sub_light
+
+- alias: Hood ON
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.kitchen_temperature
+      above: 30.0
+  condition:
+    - condition: state
+      entity_id: switch.kitchen_hood
+      state: 'off'
+  action:
+    - service: switch.turn_on
+      data:
+        entity_id: switch.kitchen_hood

@@ -1,2 +1,3 @@
 dehumidifier_on: "/usr/local/bin/miceil --ip {{ states('sensor.dehumidifier_ip') }} --token {{ states('sensor.dehumidifier_token') }} on"
 dehumidifier_off: "/usr/local/bin/miceil --ip {{ states('sensor.dehumidifier_ip') }} --token {{ states('sensor.dehumidifier_token') }} off"
+reboot_airmesh: "/usr/bin/ssh admin@AirMesh reboot -h now"

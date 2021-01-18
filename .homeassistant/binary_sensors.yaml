@@ -112,6 +112,12 @@
   payload_off: 'False'
 
 - platform: mqtt
+  state_topic: miflora/bengal_rubber_tree/presence
+  name: Bengal Rubber Tree Presence
+  payload_on: 'present'
+  payload_off: 'not present'
+
+- platform: mqtt
   state_topic: smartthings/Mi Air Purifier/switch
   name: Mi Air Purifier
   payload_on: 'on'

@@ -50,6 +50,23 @@
       data:
         entity_id: switch.livingroom_light
 
+- alias: Livingroom Sub Light OFF when it bright
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.livingroom_illuminance
+      above: 30.0
+  condition:
+    - condition: state
+      entity_id: switch.livingroom_sub_light
+      state: 'on'
+    - condition: time
+      after: '05:00:00'
+      before: '12:00:00'
+  action:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.livingroom_sub_light
+
 - alias: Night Livingroom
   trigger:
     - platform: time
@@ -118,9 +135,6 @@
     - condition: state
       entity_id: switch.livingroom_sub_light
       state: 'on'
-    - condition: time
-      after: '23:00:00'
-      before: '07:00:00'
   action:
     - service: switch.turn_off
       data:

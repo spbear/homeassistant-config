@@ -191,7 +191,7 @@ replacement = {
         "entity_id" : "switch.kitchen_light",
         "icon" : "mdi:ceiling-light"
     },
-    "Kitchen Sub light" : {
+    "주방 보조등" : {
         "name" : "Kitchen Sub Light",
         "entity_id" : "switch.kitchen_sub_light",
         "icon" : "mdi:ceiling-light"

@@ -382,6 +382,13 @@
   value_template: "{{ value_json.val }}"
   unit_of_measurement: "%"
 
+- platform: template
+  sensors:
+    mi_humidifier_depth:
+      friendly_name: Mi Humidifier Depth
+      value_template: "{{ state_attr('fan.mi_humidifier', 'depth') | round(1) }}"
+      icon_template: mdi:water
+      unit_of_measurement: '%'
 
 # sensors.yaml
 # 한국환경공단 검단 관측소 실시간 정보

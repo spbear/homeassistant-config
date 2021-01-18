@@ -2,7 +2,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.livingroom_gardening_illuminance
-      below: 1000.0
+      below: 1000
       for:
         minutes: 10
     - platform: time
@@ -14,6 +14,9 @@
     - condition: state
       entity_id: switch.livingroom_gardening_light
       state: 'off'
+    - condition: time
+      after: '06:00:00'
+      before: '01:00:00' 
   action:
     - service: switch.turn_on
       data:
@@ -23,14 +26,14 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.livingroom_gardening_illuminance
-      above: 1000.0
+      above: 1000
       for:
         minutes: 10
     - platform: time
       at: '01:00:00'
     - platform: sun
       event: sunrise
-      offset: '-00:30:00'
+      offset: '+03:00:00'
   condition:
     - condition: state
       entity_id: switch.livingroom_gardening_light

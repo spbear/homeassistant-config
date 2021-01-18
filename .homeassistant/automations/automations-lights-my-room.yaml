@@ -117,3 +117,31 @@
     - service: scene.turn_on
       data:
         entity_id: scene.lightoff
+
+- alias: Turn ON Bengal Rubber Tree Light
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.bengal_rubber_tree_presence
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: switch.gardening_light
+      state: 'off'
+  action:
+    - service: switch.turn_on
+      data:
+        entity_id: switch.gardening_light
+
+- alias: Turn ON Bengal Rubber Tree Light
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.bengal_rubber_tree_presence
+      to: 'off'
+  condition:
+    - condition: state
+      entity_id: switch.gardening_light
+      state: 'on'
+  action:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.gardening_light

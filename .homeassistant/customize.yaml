@@ -213,3 +213,7 @@ sensor.poinsettia_conductivity:
   icon: mdi:pine-tree
 sensor.poinsettia_battery:
   device_class: battery
+
+binary_sensor.bengal_rubber_tree_presence:
+  device_class: occupancy
+  icon: mdi:pine-tree

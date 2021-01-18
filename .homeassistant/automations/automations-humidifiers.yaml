@@ -39,3 +39,19 @@
     - service: switch.turn_on
       data:
         entity_id: switch.mi_dehumidifier
+
+- alias: Notify Humidifier Depth is Low
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.mi_humidifier_depth
+      below: 20
+      for:
+        minutes: 5
+  condition:
+    - condition: state
+      entity_id: binary_sensor.yunhan_android
+      state: 'on'
+  action:
+    - service: notify.home
+      data_template:
+        message: "🚰 가습기에 물이 떨어졌습니다. 물을 채워주세요."
