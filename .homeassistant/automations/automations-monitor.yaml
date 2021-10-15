@@ -117,3 +117,14 @@
     - service_template: switch.turn_off
       data:
         entity_id: switch.sub_pc_monitor
+
+- alias: Sync Monitor Light
+  trigger:
+    - platform: state
+      entity_id: switch.main_pc_monitor
+  condition: []
+  action:
+    - data_template:
+        entity_id: switch.monitor_light
+      service_template: >
+        switch.turn_{{ trigger.to_state.state }}

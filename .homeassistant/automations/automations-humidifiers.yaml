@@ -28,10 +28,22 @@
     - platform: numeric_state
       entity_id: sensor.room_humidify
       above: 70
+    - platform: state
+      entity_id: binary_sensor.window_sensor
+      state: 'off'
+    - platform: state
+      entity_id: binary_sensor.room_door_status
+      state: 'off'
   condition:
     - condition: state
       entity_id: binary_sensor.yunhan_android
       state: 'on'
+    - condition: state
+      entity_id: binary_sensor.window_sensor
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.room_door_status
+      state: 'off'
   action:
     - service: fan.turn_off
       data:

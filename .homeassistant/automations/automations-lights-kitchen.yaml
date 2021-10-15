@@ -104,11 +104,29 @@
     - platform: numeric_state
       entity_id: sensor.kitchen_temperature
       above: 30.0
+      for:
+        minutes: 1
   condition:
     - condition: state
       entity_id: switch.kitchen_hood
       state: 'off'
   action:
     - service: switch.turn_on
+      data:
+        entity_id: switch.kitchen_hood
+
+- alias: Hood OFF
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.kitchen_temperature
+      below: 28.0
+      for:
+        minutes: 1
+  condition:
+    - condition: state
+      entity_id: switch.kitchen_hood
+      state: 'on'
+  action:
+    - service: switch.turn_off
       data:
         entity_id: switch.kitchen_hood

@@ -20,6 +20,9 @@
         entity_id: switch.screen_projector
   - service: switch.turn_off
     data:
+        entity_id: switch.gardening_light
+  - service: switch.turn_off
+    data:
         entity_id: switch.music_auto_play
   - condition: template
     value_template: "{{ states.sun.sun.state == 'above_horizon'  }}"

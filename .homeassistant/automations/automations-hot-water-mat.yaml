@@ -15,6 +15,9 @@
     - condition: time
       after: '20:00:00'
       before: '08:00:00'
+    - condition: numeric_state
+      entity_id: sensor.weather_temperature
+      below: 15.0
   action:
     - service: switch.turn_on
       data:
